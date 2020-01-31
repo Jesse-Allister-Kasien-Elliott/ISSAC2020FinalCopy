@@ -1,0 +1,1003 @@
+%%
+%% This is file `sample-xelatex.tex',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% samples.dtx  (with options: `sigconf')
+%% 
+%% IMPORTANT NOTICE:
+%% 
+%% For the copyright see the source file.
+%% 
+%% Any modified versions of this file must be renamed
+%% with new filenames distinct from sample-xelatex.tex.
+%% 
+%% For distribution of the original source see the terms
+%% for copying and modification in the file samples.dtx.
+%% 
+%% This generated file may be distributed as long as the
+%% original source files, as listed above, are part of the
+%% same distribution. (The sources need not necessarily be
+%% in the same archive or directory.)
+%%
+%% The first command in your LaTeX source must be the \documentclass command.
+\documentclass[sigconf]{acmart}
+
+% new commands and shortcuts
+\def\bs{\textit{\textbf{s}}}
+\def\Lb{\textit{\textbf{L}}}
+\def\Xb{\textit{\textbf{X}}}
+\def\xb{\textit{\textbf{x}}}
+\def\fb{\textit{\textbf{f}}}
+\def\ab{\textit{\textbf{a}}}
+\def\ajb{\overline{a_j}}
+\def\bjb{\overline{b_{j,l}}}
+\def\pjb{\overline{P_{j}}}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\htt}{ht}
+\def\C{\mathbb{C}}
+\def\vt{\vartheta}
+\def\Q{\mathbb{Q}}
+\def\R{\mathbb{R}}
+\def\rs{\mathscr{R}}
+\def\P{\mathscr{P}}
+\def\d{\delta}
+\def\sing{ \textrm{sing}}
+\def\codim{ \textrm{codim}}
+\def\jac{ \textrm{jac}}
+\def\exp{\textrm{exp}}
+\def\grad{\textrm{grad}}
+\def\rank{\textrm{rank}}
+\def\reg{\textrm{reg}}
+\def\jt{\widetilde{J}}
+\def\At{\widetilde{A}}
+\def\Yt{\widetilde{Y}}
+\def\dt{\widetilde{d}}
+\def\Dt{\widetilde{D}}
+\def\rk{\textrm{rank }}
+\def\pa{\partial}
+\def\D{\Delta}
+\def\Z{\frak{Z}}
+\def\I{\frak{I}}
+\def\Is{\frak{I}^{\star}}
+\def\A{\frak{A}}
+\def\fp{\frak{P}}
+\def\sp{\mathscr{P}}
+\def\la{\langle}
+\def\ra{\rangle}
+% matrices 
+\def\bbm{\begin{bmatrix}}
+\def\ebm{\end{bmatrix}}
+%%
+%% \BibTeX command to typeset BibTeX logo in the docs
+\AtBeginDocument{%
+  \providecommand\BibTeX{{%
+    \normalfont B\kern-0.5em{\scshape i\kern-0.25em b}\kern-0.8em\TeX}}}
+
+%% Rights management information.  This information is sent to you
+%% when you complete the rights form.  These commands have SAMPLE
+%% values in them; it is your responsibility as an author to replace
+%% the commands and values with those provided to you when you
+%% complete the rights form.
+\setcopyright{acmcopyright}
+\copyrightyear{2020}
+\acmYear{2020}
+\acmDOI{10.1145/1122445.1122456}
+
+%% These commands are for a PROCEEDINGS abstract or paper.
+%\acmConference[ Kalamata, Messinia, Greece '20]{ Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation}{July 20--23, 2020}{ Kalamata, Messinia, Greece}
+\acmBooktitle{ Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation,  July 20--23, 2020,  Kalamata, Messinia, Greece}
+\acmPrice{15.00}
+\acmISBN{978-1-4503-XXXX-X/18/06}
+
+
+%%
+%% Submission ID.
+%% Use this when submitting an article to a sponsored event. You'll
+%% receive a unique submission ID from the organizers
+%% of the event, and this ID should be used as the parameter to this command.
+%%\acmSubmissionID{123-A56-BU3}
+
+%%
+%% The majority of ACM publications use numbered citations and
+%% references.  The command \citestyle{authoryear} switches to the
+%% "author year" style.
+%%
+%% If you are preparing content for an event
+%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
+%% citations and references.
+%% Uncommenting
+%% the next command will enable that style.
+%%\citestyle{acmauthoryear}
+
+%%
+%% end of the preamble, start of the body of the document source.
+
+
+
+%\usepackage[options ]{algorithm2e}
+\usepackage[ruled,vlined]{algorithm2e}
+
+\begin{document}
+
+%%
+%% The "title" command has an optional parameter,
+%% allowing the author to define a "short title" to be used in page headers.
+\title{Bit Complexity for Computation of one Point in each Connected Component of a Smooth Real Hypersurface}
+
+%%
+%% The "author" command and its associated commands are used to define
+%% the authors and their affiliations.
+%% Of note is the shared affiliation of the first two authors, and the
+%% "authornote" and "authornotemark" commands
+%% used to denote shared contribution to the research.
+\author{Jesse Elliott}
+\affiliation{%
+  \institution{Cheriton School of Computer Science}
+  \city{University of Waterloo}
+}
+\email{jakellio@uwaterloo.ca}
+
+\author{Mark Giesbrecht}
+\affiliation{%
+  \institution{Cheriton School of Computer Science}
+  \city{University of Waterloo}
+}
+\email{mwg@uwaterloo.ca}
+
+\author{Eric Schost}
+\affiliation{%
+  \institution{Cheriton School of Computer Science}
+  \city{University of Waterloo}
+}
+\email{eschost@uwaterloo.ca}
+%%
+%% By default, the full list of authors will be used in the page
+%% headers. Often, this list is too long, and will overlap
+%% other information printed in the page headers. This command allows
+%% the author to define a more concise list
+%% of authors' names for this purpose.
+\renewcommand{\shortauthors}{Elliott, Giesbrecht, and Schost.}
+
+%%
+%% The abstract is a short summary of the work to be presented in the
+%% article.
+\begin{abstract}
+We provide bit complexity estimates for the computation of at least one point in each connected component of a smooth real hypersurface. This problem is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface. The algorithm requires some genericity properties, which we ensure through random changes of variables that produce generic coordinate systems. In order to ensure these properties with arbitrarily high probability, we developed a new quantitative extension of Thom's weak transversality theorem, and a quantitative Noether normalization statement for polar varieties. These statements enable us to give a precise probability analysis of a modular algorithm, where the algorithm is monte carlo and we can guarantee correctness with arbitrarily high probability. 
+\par
+Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{a,b,c,d}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions have been left for future work.  Our results therefore begin to fill a missing gap in the research. 
+%Furthermore, as bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost whereas bit complexity provide more information for both time and space resources that are needed in practice, it is important that this missing gap is filled. 
+%As bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost, our contribution is necessary and important. Indeed, bit estimates provide more information for both time and space resources that are needed in practice. 
+\end{abstract}
+
+%%
+%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+%% Please copy and paste the code instead of the example below.
+%%
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010520.10010553.10010562</concept_id>
+  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010575.10010755</concept_id>
+  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010553.10010554</concept_id>
+  <concept_desc>Computer systems organization~Robotics</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10003033.10003083.10003095</concept_id>
+  <concept_desc>Networks~Network reliability</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+%\ccsdesc[500]{Computer systems organization~Embedded systems}
+%\ccsdesc[300]{Computer systems organization~Redundancy}
+%\ccsdesc{Computer systems organization~Robotics}
+%\ccsdesc[100]{Networks~Network reliability}
+
+%%
+%% Keywords. The author(s) should pick words that accurately describe
+%% the work being presented. Separate the keywords with commas.
+\keywords{Real algebraic geometry, weak transversality, Noether position, bit complexity}
+%% A "teaser" image appears between the author and affiliation
+%% information and the body of the document, and typically spans the
+%% page.
+
+
+%%
+%% This command processes the author and affiliation and title
+%% information and builds the first part of the formatted document.
+\maketitle
+%
+%
+%
+%
+%%%%%% Introduction
+%
+\section{Introduction}
+%
+%
+%%%%%% Problem statement
+%
+\subsection{Problem statement}
+Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. We provide bit-complexity estimates for computing one point in each connected component of $V(f)\cap \R^n.$ Its boolean complexity is $\hdots$.
+%
+%
+%
+%%%%%% Motivation
+%
+\subsection{Motivation}
+\subsubsection{Applications}
+Computing one point in each connected component of the real part of a hypersurface is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface, and it is used in determining whether or not a complex hypersurface has real solutions. 
+\subsubsection{Bit-complexity}
+Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{a,b,c,d}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions have been left for future work. As bit complexity provides a far more realistic model of computation compared to arithmetic complexity,  which only counts each operation at unit cost, our results therefore begin to fill an important missing gap in the research. 
+%Indeed, bit estimates provide more information for both time and space resources that are needed in practice.  
+\subsubsection{Quantitative genericity statements}
+%
+%
+%
+%%%%%% Main result
+%
+\subsection{Main result}
+\begin{theorem}
+Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $\hdots$. Otherwise the algorithm either produces a subset of the critical points or FAIL. In any case, the algorithm uses 
+\[
+\hdots  
+\]
+boolean operations.
+\end{theorem}
+%
+The algorithm is Monte Carlo and can error on one side by producing a proper subset of the points. Running the algorithm $k$ times gives a list of outputs among which the highest cardinality set includes at least one point in each connected component with probability at least $\hdots.$
+%
+%
+%
+%
+%%%%%% Notation and Preliminaries
+%
+\section{Notation and preliminaries}
+%
+%
+%%%%%% Algebraic Sets
+%
+\subsection{Algebraic sets}
+An \textit{algebraic set} $V \subset \C^n$ is the set of common zeros of a set of polynomials $\textit{\textbf{f}}=(f_1,\hdots,f_s)$ in $\C[X_1,\hdots,X_n].$
+\subsubsection{Dimension and degree}
+The \textit{dimension} of an algebraic set $V \subset \C^n$, denoted $\dim V,$ can be defined in the following ways:
+\begin{enumerate}
+    \item The number of generic hyperplanes needed to intersect with $V$ to obtain a finite set. 
+    \item The Krull Dimension of $\C[X_1,\hdots,X_n]/I(V)$.
+\end{enumerate}
+The \textit{codimension} of $V$ is $n - \dim V$. An algebraic set is \textit{equidimensional} if each irreducible component has the same dimension.  If each component has dimension $d$ then we say it is $d-$equidimensional. 
+The \textit{degree} of an algebraic set is the number of intersection points between itself and $\dim V$ generic hyperplanes.
+\begin{example} 
+An algebraic set of dimension zero is a finite set, with degree equal to its cardinality.
+\end{example}
+\begin{example}
+An algebraic set of dimension 1 is a curve, with degree equal to the number of intersection points with a generic hyperplane.
+\end{example}
+%
+%
+%
+%%%%%% Bit-size, height and degree
+%
+\subsection{Bit-size, height and degree}
+For $r \leq n,$ $\textit{\textbf{X}}_{\leq r}$ denotes $[X_1,\hdots,X_r]$ and $\textit{\textbf{X}}$ denotes $[X_1,\hdots,X_n]$. 
+\par 
+For $a=\frac{u}{v}$ in $\mathbb{Q}-\{0\},$ the  \textit{height} of $a,$ $\htt(a),$ is the maximum of $\log(|u|)$ and $\log(|v|),$ where $u \in \mathbb{Z}$ and $v \in \mathbb{N}$ are coprime. If $v$ is the minimal common denominator of all non zero coefficients of $f$, then the \textit{height} of $f, \htt(f),$ is defined as the maximum of the logarithms of $v$ and of the absolute values of the coefficients of $vf$. 
+%
+\par
+We write $\htt(\textit{\textbf{f}})=(\htt(f_1),\hdots,\htt(f_N))$ and assume that $\htt(\textit{\textbf{f}}) \leq \textit{\textbf{s}} = (S_1,\hdots,s_N),$  with $\htt(f_i) \leq s_i$ for all $i \in \{ 1,\hdots,N\}.$
+%
+%
+%%%%%% Data structures
+\subsection{Data structures}
+\subsubsection{Strait-line programs}
+\subsubsection{Zero-dimensional parameterizations}
+%
+%
+%
+%%%%%% Regular and singular points
+%
+\subsection{Critical / singular points}
+\subsubsection{Regular and singular points of varieties}
+Let $V \subset \C^n$ be a $d$-equidimensional algebraic set. 
+The point $x \in V$ is a \textit{regular point} if $\dim (T_xV) = d.$ Otherwise $x$ is a \textit{singular point}. We let $\reg(V)$ and $\sing(V)$ respectively denote the regular and singular points of $V$. 
+%
+\par 
+We assume that $V$ is smooth so that $V=\reg(V).$
+%
+%
+%
+%
+%
+%%%%%%%%%%%%%%%% Critical points of polynomial mappings
+%
+\subsubsection{Critical points of polynomial mappings}
+Let $\phi : V \rightarrow \C^m$ be a polynomial mapping. A \textit{critical point} of $\phi$ is a regular point of $V$ with $d_x \phi(T_xV) \not = \C^m,$ where $d_x \phi$ is the differential of $\phi$ at $x.$ A \textit{critical} value of $\phi$ is the image of a critical point by $\phi$.
+%
+%
+%%%%%% The zariski-tangent space
+%
+\subsection{The zariski-tangent space}
+Denote by $\grad_{\xb}(f)$ the evaluation of the gradient vector of $f$ in $\C[X_1,\hdots,X_n]$ at $\textit{\textbf{x}}$ in $\C$.
+The \textit{Zariski-tangent space} to $V$ at $\textit{\textbf{x}} \in V$ is the vector space $T_{\xb}V$ defined by the equations $\grad_{\xb}(f) \cdot \textit{\textbf{v}}=0$ for all polynomials $f$ that vanish on $V$. For a polynomial system $\textit{\textbf{f}}=(f_1,\hdots,f_N)$ in $\C[X_1,\hdots,X_n]$, denote by $\jac(\textit{\textbf{f}})$ the Jacobian matrix.
+%and $\jac(\textit{\textbf{f}},i)$ the truncated Jacobian matrix
+%\[ 
+%\bbm 
+%\frac{\partial f_1}{\partial X_{i+1}} \hdots \frac{\partial f_1}{\partial X_n} \\
+%\frac{\partial f_N}{\partial X_{i+1}} \hdots \frac{\partial f_N}{\partial X_n}
+%\ebm,~\textrm{for }i \in \{1,\hdots,n-1\}.\]
+The following is a direct consequence of \cite[Corollary 16.20]{ECA}.
+\begin{proposition}
+If $V \subset \C^n$ is a $d$-equidimensional algebraic set with ideal $I(V)=\langle f_1,\hdots,f_N \rangle$, then at any point $\textbf{x}$ of $\reg(V),$ $\jac_\textbf{x}(\textbf{f})$ has full rank $n - \dim(V)$ and the kernel of $\jac_\textbf{x}(\textbf{f})$ is equal to $T_\textbf{x}V.$ 
+\end{proposition}
+%
+%
+%%%%%% Polar Varieties
+%
+\subsection{Polar varieties}
+%
+Let $V\subset \C^n$ be a smooth $d$-equidimensional variety. For $i \in \{1,\hdots,d\},$ denote by $\pi_i:\C^n \rightarrow \C^i$ the projection
+$(x_1,\hdots,x_n) \mapsto  (x_1,\hdots,x_i)$. A \textit{critical point} $\textit{\textbf{x}}$ in $V$ is a singular point on $\pi_i.$ In other words, the point $\textit{\textbf{x}} \in V$ is a critical point if $\dim \pi_i( T_\textit{\textbf{x}}V) < i$. The $i$-th  \textit{polar variety} \[W(\pi_i,V) := \{\textit{\textbf{x}} \in V~|~\dim \pi_i(T_xV) < i\}\] is the set of critical points of $\pi_i$ on $V$. Denote by $\I$ the ideal \[\frak{I}(\pi_i,V) := I(W(\pi_i,V)).\] 
+%
+%
+\begin{proposition} 
+Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ squarefree with $V(f)$ smooth. Then, for $i \in \{1,\hdots,n\}$, the polar variety $W(\pi_i,V)$ is defined by the vanishing of \[f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.\]
+\end{proposition}
+\begin{proof}
+We have a proof but maybe we should reference it?
+\end{proof}
+%
+%
+%
+%
+%
+%%%%%% Changes of Variables
+%
+\subsection{Changes of variables}
+Consider $A \in \C^{n^2}, f \in \C[X_1,\hdots,X_n], \textit{\textbf{x}} \in \mathbb{C}^n,$ and $V \subset \C^n$. We denote by 
+$V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ denotes $A^{-1}\xb$. Notice $f^A(\xb^A) = f(A A^{-1}\xb)=f(\xb).$
+%
+%
+%
+%%%%%% Main Algorithm 
+%
+\section{The Main Algorithm}
+\begin{algorithm}
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
+\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
+\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
+\nl Use \cite{4} to compute the partial derivatives $\frac{\pa f^A}{\pr X_{i+1}},\hdots,\frac{\pa f^A}{\pr X_n}$\;
+    \caption{{Main Algorithm} \label{}}
+\nl \For{$i\gets1$ \KwTo $n$}{
+Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;
+} 
+\nl \Return $\cup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
+\end{algorithm}
+%
+%
+%
+%
+%
+%
+%%%%%% Genericity Properties
+%
+\section{Genericity properties}
+%
+Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ squarefree with total degree $D$ and $V(f)$ smooth. We say that $V$ is in \textit{Noether position} for $\pi_D$ when the extension \[\C[X_1,\hdots,X_D] \rightarrow \C[X_1,\hdots,X_n]/I(V)\] is injective and integral.  Then, for any $\xb \in \C^D,$ the fiber 
+$V \cap \pi_D^{-1}(\xb)$ has dimension zero. 
+We say that $f$ satisfies $\textbf{H}$ if 
+\begin{enumerate}
+    \item $f$ is squarefree;
+    \item $V(f)$ is smooth.
+\end{enumerate}
+For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
+\begin{enumerate}
+\item $\I(\pi_i,V)$ is radical;
+\item either $W(\pi_i,V)$ is empty or $(i-1)$-equidimensional;
+\item $W(\pi_i,V)$ is smooth;
+\item $\langle X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
+\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ has dimension $0$;
+\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
+\item either $W(\pi_i,V)$ is empty or in Noether position for $\pi_{i-1}$.
+\end{enumerate}
+%
+\begin{theorem}
+Suppose that $f$ satisfies \textbf{H}. Then there exists a Zariski closed set $\frak{X} \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{?}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\frak{X}$ then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+\end{theorem}
+\begin{corollary} 
+Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{?}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
+\end{corollary}
+%
+%
+%
+%
+%
+%%%%%% A Quantitative Extension of Thom's Weak Transversality
+%
+\section{Weak Transversality}
+Write more about transversality? Provide an example?
+%
+%
+\subsection{Extending Thom's weak transversality}
+%
+We prove a quantitative extension of Thom's weak transversality \cite{TWT} specialized to the particular case of transversality to a point, which can be rephrased entirely in terms of critical / regular values.
+\par 
+Denote by $\Phi :\C^n \times \C^{\dt} ~ \rightarrow \C^{m}$
+a polynomial mapping, where $n,\dt,$ and $m$ are positive integers (assume $m \leq n$?). Assume the total degree of $\Phi$ is bounded by an integer $d$. For $\vt$ in $\C^{\dt}$, let $\Phi_{\vt} : \C^n \rightarrow \C^{m}$ be the induced mapping $x\mapsto \Phi(x,\vt)$.
+\begin{theorem} (Weak transversality)
+Suppose that $0$ is a regular value of $\Phi$. Then there exists a hypersurface $\Delta \subset \C^{\dt}$ of degree at most $d^n$ for which, if $\vt \in \C^{\dt}-\Delta$ then $0$ is a regular value of $\Phi_{\vt}$. 
+\end{theorem}
+%
+%
+\subsection{Genericity and Sard's lemma}
+It will sometimes be useful for us to let the matrix $A$ represent new indeterminates: let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ It follows from Proposition 4.2 that for a generic $A \in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of \cite[Theorem B.3]{NO}, which shows the existence of $\Delta \subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the critical values of a polynomial mapping are contained in a hypersurface. It follows from Sard's lemma that for the matrix of indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise it could not be that $0$ is a regular value of $\Phi_A,$ for a generic $A\in \C^{n^2}.$ Therefore,
+\[
+\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(x),\frac{\pa f^{\A}(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(x)}{\pa X_n}\right)
+\]
+has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. We will rely on this fact in Section 5. 
+%
+%
+\subsection{Proof of Proposition 5.1}
+% 
+The proof of \cite[Theorem B.3]{TWT} shows the existence of $\Delta.$ We extend the theorem by showing that the degree of $\Delta$ is upper bounded by $d^n.$ 
+\subsubsection{More notation and setup}
+Put $X = \Phi^{-1}(0)$ and consider the projection $\pi:(x, \vt) \in \C^n \times \C^{\dt} \mapsto \vt \in\C^{\dt}$. The proof of \cite[Theorem B.3]{NO} also shows that $X$ is $(n+ \dt -m)$-equidimensional, and that if $\vt \in \C^{\dt}$
+is such that $0$ is a critical value of $\Phi_{\vt}$, then $\vt$ is a critical value of the restriction of $\pi$ to $X.$ We show that the critical points of $\pi|_X$ are contained in an algebraic set
+$\Delta^{'}$. We then show that 
+\[\deg \Delta \leq \deg \Delta^{'} \leq d^n.
+\] 
+%
+\subsubsection{Explicitly characterizing $\Delta^{'}$.} 
+We will use \cite[Lemma B.4]{NO}:
+\begin{lemma}
+Let $A=\bbm A_1 \\ A_2 \ebm$ be a matrix. Then, 
+\[ 
+\textup{rank}(A) = 
+\textup{rank}(A_1) + \textup{rank}(A_2|\ker(A_1)),
+\]
+where $A_2|\ker(A_1)$ is the restriction of the linear map defined by $A_2$ to the kernel of $A_1$. 
+\end{lemma}
+Let $M$ denote the matrix
+\begin{align*}M(\xb,\vt)&:= \jac_{(\xb,\vt)}(\Phi;X)\\
+&= 
+\bbm 
+\jac_{(\xb,\vt)}(\pi)\\
+\jac_{(\xb,\vt)}(\Phi) 
+\ebm 
+=
+\bbm 
+\textbf{0}_{\dt \times n}\hspace{5mm}\textbf{I}_{\dt} \\
+\jac_{(\xb,\vt)}(\Phi)
+\ebm.\end{align*}
+%
+%
+\begin{proposition} 
+$M(\xb,\vt)$ has full rank $m+\dt$ if and only if $(\xb,\vt)$ is a regular point on $\pi|_X.$ 
+\end{proposition}
+\begin{proof}
+The dimension of the source $\pi|_X$ is $\dim X = n + \dt - m.$ The dimension of the target space is $\dim \C^{\dt} = \dt.$ Now, if $(\xb,\vt)$ is a regular point of $\pi|_{X}$ then $\dim \textrm{Im}(d\pi|_X(T_{\xb}X)) = \dt$. When $\xb$ is regular on $X$, by Proposition 2.3, $\jac_{(\xb,\vt)} (\Phi) = T_{(\xb,\vt)}X$ and has full $\rk n + \dt - \dim X = n + \dt - (n + \dt - m) = m$. By applying Lemma 4.3 we have
+\begin{align*}
+\rank ~M(\xb,\vartheta) &= 
+\rank ~
+\bbm 
+\jac_{(\xb,\vartheta)}(\pi|_X)\\
+\jac_{(\xb,\vartheta)}(\Phi) 
+\ebm \\
+&= \rank~ \jac_{(\xb,\vartheta)}(\pi|_X) + \rank ~\jac_{(\xb,\vartheta)}(\Phi)|_{T_{(x,\vartheta)}X} \\
+&= m + \dim \textrm{Im}(d\pi|_{\Xb}(T_xX)) \\
+&= m + \dt 
+\end{align*}
+Otherwise, if $(\xb,\vt)$ is not a regular point of $\pi|_X,$ then \[\dim \textrm{Im}(d\pi|_X(T_{\xb}X)) < \dt\]  and therefore $\rank ~M(\xb,\dt) < m+\dt.$ 
+\end{proof}
+%
+Therefore if $M(x,\vt)$ does not have full rank $\dt+m$ then $(x,\vt)$ is a critical point of $\pi|_X$. Since the minors of order $\dt+m$ vanish when $(x,\vt)$ is a critical point, the algebraic set defined by the vanishing of the minors of $M$ of order $\dt + m$ describe the critical points:
+\[
+\Delta^{'} = V(\textrm{minors of }M\textrm{ of order }\dt + m).
+\]
+Furthermore, we can characterize $\Delta^{'}$ with fewer equations by discarding those that evaluate to zero. Indeed, the first $\dt$ rows of $M(x,\vt)$ is the Jacobian matrix of the projection mapping $\pi|_X,$ which consists of a sub-matrix of zeros followed by an identity sub-matrix. Hence, we can discard several minors that evaluate to zero. Let $J$ denote the sub-matrix of the Jacobian of $\Phi$ consisting of the first $n$ columns:
+ \[J := \jac_{(\xb,\vt)}(\Phi)[-;1,n].\]
+\begin{proposition} 
+$J(\xb,\vt)$ has full rank $\min\{m,n\}$ if and only if $M(\xb,\vt)$ has full rank $\dt+m.$ 
+\end{proposition}
+\begin{proof}
+Notice 
+\begin{align*}
+M(\xb,\vt)&= 
+\bbm 
+\jac_{(\xb,\vt)}(\pi)\\
+\jac_{(\xb,\vt)}(\Phi) 
+\ebm \\
+&=
+\bbm 
+\textbf{0}_{\dt \times n}\hspace{5mm}\textbf{I}_{\dt} \\
+\jac_{(\xb,\vt)}(\Phi)
+\ebm\\
+&=
+\bbm 
+\textbf{0}_{\dt \times n} &\textbf{I}_{\dt} \\
+J(\xb,\vt)     &\jac_{(\xb,\vt)}(\Phi)[-;n+1,\dt]
+\ebm.
+\end{align*}
+The first $n$ columns of $M(\xb,\vt)$ must all be different from the remaining $\dt$ columns. Therefore $J(\xb,\vt)$ has full rank $\min\{n,m\}$ if and only if $M(\xb,\vt)$ has full rank $\dt+m.$
+\end{proof}
+Therefore $\Delta^{'} = V(\textrm{minors of }J\textrm{ of order }\min\{m,n\}).$
+%
+%
+%
+%
+\subsubsection{Bounding the degree of $\Delta^{'}$.}
+% 
+Let $\textit{\textbf{L}}=[L_1,\hdots,L_m]$ be Lagrange multipliers, and consider the Lagrange system 
+\[
+\textit{\textbf{L}}\cdot J(x,A)=[\mathscr{L}_1,\hdots,\mathscr{L}_{n}]=[0,\hdots,0].
+\] 
+Denote by $\frak{Z}$ the algebraic set defined by the vanishing of $\mathscr{L}_1,\hdots,\mathscr{L}_{n},$ and consider the projection 
+\begin{align*} 
+\pi_{n+\dt} :~ \C^{n+\dt+m} &\rightarrow \C^{n+\dt}\\
+(\textit{\textbf{x}},\vt,\textit{\textbf{L}})~ &\mapsto (\textit{\textbf{x}},\vt).
+\end{align*}
+Denote by $\frak{Z}^{'}$ the algebraic set
+\[
+\frak{Z}^{'} := \overline{\frak{Z} - \{(\textit{\textbf{x}},\vt,0,\hdots,0) \in \C^{n+\dt+m}~|~(\textit{\textbf{x}},\vt,0\hdots,0) \in \frak{Z}\}}.
+\]
+\begin{proposition}  
+The projection $\pi_{n+\dt}$ on $\frak{Z}^{'}$ is equal to $\Delta^{'}$.
+\end{proposition}
+%
+We will use the following lemma to prove Proposition 4.6.
+%
+%
+\begin{lemma} 
+For an irreducible component $Z$ of $\Z^{'},$ there exists a Zariski open subset $Z^o \subset Z$ with \[\pi_{n+\dt}~(Z^{o}) \subset \D^{'}~(\textrm{why?})\]
+and
+\[\overline{\pi_{n+\dt}~(\overline{Z^o})} = \overline{\pi_{n+\dt}~(Z^o)}.\] 
+\end{lemma} 
+\begin{proof}
+There exists a Zariski open subset $Z^o \subset Z$ with 
+%
+\[\pi_{n+\dt}~(Z^{o}) \subset \D^{'}~(\textrm{why?}).\] 
+%
+Since $Z^o \subset \overline{Z^o}$, we have $\pi_{n+\dt}~(Z^o) \subset \pi_{n+\dt}~(\overline{Z^o})$ and thus 
+\[\overline{\pi_{n+\dt}~(Z^o)} \subset \overline{\pi_{n+\dt}~(\overline{Z^o})}.
+\]   
+Since closed sets are by definition varieties in the Zariski topology, \[\overline{\pi_{n+\dt}~(\overline{Z^o})} = V\left( I(\overline{Z^o}) \cap \mathbb{C}[\textit{\textbf{X}},\vt]\right),
+\] 
+so let 
+\[\overline{\pi_{n+\dt}~(\overline{Z^o})} = V(\mathscr{I}),
+\] 
+for some ideal $\mathscr{I} \subset \C[\Xb,\vt].$ Take $f$ in $\mathscr{I}$ so that $f$ vanishes on 
+\[
+\overline{\pi_{n+\dt}~(Z^o)}\subset \overline{\pi_{n+\dt}~(\overline{Z^o})}
+\]
+Then $f$ must also vanish on the subset 
+\[
+\pi_{n+\dt}~(Z^o)\subset \overline{\pi_{n+\dt}~(Z^o)}\subset \overline{\pi_{n+\dt}~(\overline{Z^o})}
+\]
+and $Z^o,$ and hence also on $\overline{Z^o}.$ Therefore, 
+\[
+f \in I(\overline{Z^o}) \cap \mathbb{}[\textit{\textbf{X}},\vt]
+\]
+and  $\mathscr{I} \subset I(\overline{Z^o}) \cap \mathbb{Q}[\textit{\textbf{X}},\vt]$ (why?), and it then follows that 
+\begin{align*}
+\overline{\pi_{n+\dt}~(\overline{Z^o})}&=V\left(I(\overline{Z^o})\cap \mathbb{C}[\textit{\textbf{X}},\vt]\right) \\&\subset V(\mathscr{I})\\&\subset \overline{\pi_{n + \dt}~(Z^o)}\textrm{ (why?)}.
+\end{align*}
+\end{proof}
+%
+%
+Now we prove Proposition 4.7.
+\begin{proof}
+For all $(\textit{\textbf{x}},\vt) \in \D^{'}, $ there exists $\textit{\textbf{L}}^{'} \not = (0,\hdots,0)$ with $(\textit{\textbf{x}},\vt,\textit{\textbf{L}}^{'}) \in \Z.$ Thus, $(\textit{\textbf{x}},\vt,\textit{\textbf{L}}^{'})$ is in
+\[
+     \Z - \left\{(x,\vt,0,\hdots,0) \in \C^{n+\dt+m}~|~(x,\vt,0\hdots,0) \in \Z\right\}, 
+\]
+which implies that $(x,\vt,\textit{\textbf{L}}^{'}) \in \Z^{'}$, which then in turn implies that
+\[
+    (x,\vt) \in \Pi_{n + \dt}~(\Z^{'}).
+\]
+Therefore $\D^{'} \subset \pi_{n+\dt}~(\Z^{'}).$
+\newline \indent 
+Now let $Z$ be an irreducible component of $\Z^{'}.$ By Lemma 4.7 there exists a Zariski open subset $Z^o \subset Z$ with $\pi_{n+\dt}~(Z^{o}) \subset \D^{'}$, and
+\begin{align*}
+ \Pi_{n+\dt}~(Z) = 
+  \Pi_{n+\dt}~(\overline{Z^o})
+  &\subset 
+  \overline{\pi_{n+\dt}~(\overline{Z^o})}\\
+  &=
+  \overline{\Pi_{n+\dt}~(Z^o)}, &\textrm{by Lemma 4.7,}\\
+  &\subset \overline{\D^{'}}=\D^{'}.
+\end{align*}
+   Therefore $\Pi_{n+\dt}~(\Z^{'}) \subset \D^{'}.$
+\end{proof}
+%
+%
+\begin{proposition} 
+The degree of $\D^{'}$ is at most $d^n.$
+\end{proposition} 
+\begin{proof}
+It follows from B\'ezout's Theorem that 
+\[
+\deg \frak{Z} \leq (d-1+1)^n=d^n.
+\]
+From \cite[Lemma 2]{H} we have 
+\[
+\deg(\pi_{n+\dt}(\Z^{'})) \leq \deg(\Z^{'}).
+\]
+Therefore 
+\begin{align*}
+\deg(\D^{'}) &= \deg(\pi_{n+\dt}~(\Z^{'})),&\textrm{by Proposition 4.6,}\\ 
+            &\leq \deg(\Z^{'}),\\ 
+            &\leq \deg(\Z), &\textrm{by ?,}\\ 
+            &\leq d^n.
+\end{align*}
+\end{proof}
+%
+%
+%
+\section{Proof of $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$}
+%
+%
+We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of \[\fb := \left(f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right).\]
+If the Jacobian of $\fb$ has full rank at all $x \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion [4, Theorem 16.19] that $f$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. 
+%
+\begin{theorem}
+There exists a Zariski closed set $\Delta \subset \C^{n^2}$ of degree at most $D^n$ with the property that, if $A \in \C^{n^2} - \Delta$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+\end{theorem}
+\subsection{Sketch of the proof of Theorem 6.1}
+We will let $\Phi$ be the mapping 
+\[
+(\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
+\] 
+so that 
+\[
+\Phi_A^{-1}(0)= W(\pi_i,V^A).
+\]
+Then we show that $0$ is a regular value of $\Phi$, so that, by Proposition 4.2, $\Delta \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta$ then $0$ is a regular value of $\Phi_A.$ It then follows that 
+\[
+\jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(x),\frac{\pa f^A(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(x)}{\pa X_n}\right)
+\]
+has full rank for all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+\subsection{Proof of Theorem 6.1}
+Now, with $i \in \{1,\hdots,n\}$, let $\Phi$ be the mapping \[(\xb,A) \mapsto (f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,
+\frac{\partial f^A}{\partial X_n}(\xb))\] so that 
+\[
+\Phi^{-1}(0)= W(\pi_i,V^A).
+\]
+\begin{proposition} 
+0 is a regular value of $\Phi$.
+\end{proposition}
+\begin{proof}
+Put
+\[
+G_0 = f(Ax), 
+G_1 = \frac{\partial (f(Ax))}{\partial X_{i+1}},\hdots,G_{n-i} = \frac{\partial (f(Ax))}{\partial X_n},
+\] 
+and assume that $G_0(\xb,A)=G_1(\xb,A)=\hdots =G_{n-i}(\xb,A)=0.$ We can simplify by removing $Ax$ from the system because  
+\[(f(Ax),(\grad(f)\cdot 
+\bbm 
+a_{i+1,1} \\
+\vdots \\
+a_{i+1,n} 
+\ebm)(Ax),\hdots, 
+(\grad(f)\cdot 
+\bbm 
+a_{n,1} \\
+\vdots \\
+a_{n,n} 
+\ebm)(Ax)
+\] 
+defines a radical ideal of dimension ? whose variety is smooth if and only if 
+\[(f,\grad(f)\cdot 
+\bbm 
+a_{i+1,1} \\
+\vdots \\
+a_{i+1,n} 
+\ebm),\hdots, 
+\grad(f)\cdot 
+\bbm 
+a_{n1} \\
+\vdots \\
+a_{nn} 
+\ebm)
+\]
+defines a radical ideal of dimension ? whose variety is smooth. Now, let $g$ be the following:
+%
+%
+\begin{align*}
+    g: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
+       (\xb,A) &\mapsto 
+       \left(f(\xb),\grad(f(\xb))\cdot 
+A_{i+1},\hdots, 
+\grad(f(\xb))\cdot 
+A_{n}
+\right)
+\end{align*}
+%
+%
+I claim that for all $(\xb,A) \in g^{-1}(0),$ the Jacobian matrix of $g$ at $(\xb,A)$ has full rank $n-i+1$ (i.e. $g$ is transverse to $\{0\}).$ The Jacobian of 
+\begin{align*}
+       & \left(f,\grad(f)\cdot 
+\bbm 
+a_{i+1,1} \\
+\vdots \\
+a_{i+1,n} 
+\ebm,\hdots, 
+\grad(f)\cdot 
+\bbm 
+a_{n,1} \\
+\vdots \\
+a_{n,n} 
+\ebm\right) \\
+&= \left(f, \frac{\pa f}{\pa X_1} a_{i+1,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+1,n}, \hdots, \frac{\pa f}{\pa X_1} a_{n,1} + \hdots + \frac{\pa f}{\pa X_n}a_{n,n}\right) \\
+&= (f,F_{1},\hdots,F_{n-i}),  
+\end{align*} where 
+\[
+F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, 1 \leq j \leq n-i,\]
+is
+\[
+\left[ 
+\begin{array}{cccccc}
+\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
+\frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
+\ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
+\frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
+\end{array}
+\right]. 
+\] 
+Since $f$ is square-free, \[I(V(f)) = \langle f \rangle,\]  and thus for all $\xb \in V(f)$, 
+\[
+T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
+\]
+Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i$ rows, the matrix has full rank $n-i$. 
+
+\end{proof}
+Since $\deg \Phi \leq D,$ it follows by Theorem 4.2 that a hypersurface $\Delta \subset \C^{n^2}$ exists, of degree at most $D^n,$ with the property that, if $A \in \C^{n^2}-\Delta,$ then $0$ is a regular value of $\Phi_{A}$, which means that 
+\[
+\jac_\textit{\textbf{x}} \Phi_A 
+= \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+\] has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$, for each $i \in \{1,\hdots,n\}.$
+%
+%
+%
+%
+%
+%%%%%%% Proof of $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$
+\section{Proof of $\textbf{H}_i^{'}(4),\textbf{H}_i^{'}(5)$ and $\textbf{H}_i^{'}(6)$}
+%
+\begin{theorem}
+There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $D^{\textrm{?}}$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(4),\textbf{H}_i^{'}(5)$ and $\textbf{H}_i^{'}(6)$.
+\end{theorem}
+%
+\subsection{Sketch of the proof of Theorem 7.1}
+%
+Let 
+\[
+Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
+\]
+where $b_i$ is the i-th row of $A^{-1}$. For $i \in \{1,\hdots,n\}$, we want to show that the Jacobian of the system of polynomials
+\[
+Y_1(\xb),\hdots,Y_{i-1}(\xb), f(\xb),  \frac{\pa f(A\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(A\xb)}{\pa X_n}
+\]
+has full rank, at all points $\xb \in \C^n$ with 
+\[
+X_1(\xb)=\hdots,X_{i-1}(\xb)=f(\xb)= \frac{\pa f(xb)}{\pa X_{i+1}}=\hdots = \frac{\pa f(\xb)}{\pa X_{n}}=0.
+\]
+Then we could use Theorem 5.1 to obtain a hypersurface with the desired properties. Let $\Phi$ be the mapping 
+\begin{align*}
+    \Phi: \C^n \times \C^{n^2} &\rightarrow \C^{n+1} \\
+           (\xb,A) &\mapsto 
+       (Y_1,\hdots,Y_i,f(\xb),\grad(f(\xb))\cdot A_{i+1},\hdots \\
+       \hdots&~,\grad(f(\xb))\cdot A_{n}\right)),
+\end{align*}
+We cannot directly define the appropriate polynomial mapping, as $Y_j(A\xb)$ is rational in $A^{-1}.$ To circumvent this issue, we can alternativly define a polynomial mapping $\Psi$ as  
+\begin{align*}
+    \Psi: \C^n \times \C^{n^2} \times \C &\rightarrow \C^{n+2} \\
+           (\xb,A,T) &\mapsto 
+       (\Yt_1,\hdots,\Yt_i,f(\xb),\grad(f(\xb))\cdot A_{i+1},\hdots \\
+\hdots,\grad(f(\xb))\cdot A_{n}\right),&~T\cdot \det (A) - 1),
+\end{align*}
+where $\Yt_j=TY_j$ with denominators cleared. Now, look at the points in $\Psi^{-1}(0).$ Here, $\det A \not = 0$ and therefore invertible, and therefore at all points in $\Psi^{-1}(0)$ the Jacobian matrix has full rank? 
+\begin{proposition}
+For all $(\xb,A) \in \Psi^{-1}(0),$ the Jacobian matrix of $\Psi$ at $(\xb,A)$ has full rank (i.e. $\Psi$ is transverse to $\{0\}).$
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+Thus, by Theorem 5.1, there exists a hypersurface $\Delta_2 \subset \C^{n^2}$, of degree at most $D^{n+1}$ with the property that if $A \in \C^{n^2}-\Delta_2$ then $\jac_{\xb}\Psi_A$ has full rank. $\hdots$ It then follows that for all $A \in \C^{n^2}-\Delta_2, \jac_{\xb}\Phi_A$ also has full rank. Therefore, by the Jacobian criterion, $f^A$ satisfies  $\textbf{H}_i^{'}(4),\textbf{H}_i^{'}(5)$ and $\textbf{H}_i^{'}(6)$. 
+%
+%
+%
+%
+%%%%%% Quantitative Noether Position
+%
+\section{Proof of $\textbf{H}_i^{'}(7)$}
+%
+Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, for simplicity let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ To increase readability and simplify notation, we often do not specify $i$, as it is fixed.   
+\subsection{Sketch of the proof}
+Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. For $i \in \{1,\hdots,n\}$, recall $\textbf{H}_i^{'}(4):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
+\[
+\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
+\]
+injective and  integral.
+%
+%
+%%%%% Theorem
+%
+\begin{theorem}
+There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $D^{?}$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i^{'}(7)$.
+\end{theorem}
+%
+%
+%%%%% Proposition
+%
+\begin{proposition} 
+The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
+\end{proposition}
+%
+\begin{proof}
+Let $(\frak{P}_l)_{l \leq L}$ be the prime components of the radical ideal $\I^\A$. By \cite[Proposition 1]{EMP}, 
+\[
+\mathbb{Q}(\frak{A})[\textit{\textbf{X}}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textit{\textbf{X}}]/\fp_l^{\A}
+\] 
+is integral. Therefore polynomials $p_{l,j}\in\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ exist, monic in $T$, with $p_{l,j}(X_j)\in \frak{P}_l$ for each $j\in \{i,\hdots,n\}.$ Thence, 
+\begin{align*}
+&P_{j}(X_j) := \prod_l p_{l,j}(X_j)\in\I^\A, 
+\end{align*}
+for each $j \in \{i,\hdots,n\},$ and therefore 
+\[
+\mathbb{Q}(\frak{A})[\textit{\textbf{X}}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textit{\textbf{X}}]/\I^{\A}
+\] 
+is integral.
+\end{proof}
+%
+%
+Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 8.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
+ we can write
+\[
+P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
+\]
+For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
+then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define 
+\[
+\Xi_j:=V(h_j), 
+\]
+where $h_j$ is the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$, so that when $A \not \in \Xi_j$ then $A$ cancels none of the denominators $a_{j}$ or $b_{j,l}$ which provide the integral dependence relation. For each $j$, we want a bound on the degree of $\Xi_j$. We can obtain bounds by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by $d_j \in \Q[\A_{i,j}]$ equal to the least common multiple of the denominators of $P_{j}.$ Put 
+\[
+\overline{P_{j}} := dP_{j}\in \Q[\A][\textit{\textbf{X}}],
+\]
+and note that $\pjb(X_j) \in \I^{\A}$ with 
+\[
+\pjb(X_j) = \ajb f^{\A} + \sum_{l=1}^{n-i}\bjb \frac{\partial f^\A}{\partial X_{i+l}}, ~\ajb,\bjb \in \mathbb{Q}[\A][\textbf{X}].
+\]
+\begin{proposition} 
+$\deg \pjb\leq (D+1)^{n-i+1}.$ 
+\end{proposition} 
+\begin{proof}
+Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I$ in  $\Q[\A,\Xb],$ and consider the finite field extension
+\begin{align*}
+    \Q(\A,\Xb_{i-1}) &\rightarrow \Q(\A,\Xb_{i-1})[X_i,\hdots,X_n]/\Is.
+\end{align*}
+%
+As $\pjb$ is monic (it is not....), the minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is equal to $\pjb$. It therefore follows by \cite[Proposition 1]{CGR} that
+\begin{align*}
+&\deg \pjb \leq (D+1)^{n-i+1}.&(2D)^{n-i+1}\textrm{?} 
+\end{align*}
+\end{proof}
+Note that 
+\[
+\deg d \leq \deg \pjb \leq (D+1)^{n-i+1}.
+\]
+%
+%
+%
+\subsection{Applying the effective Nullstellensatz}
+We have
+\[
+\deg_{\Xb}\left\{ 
+f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
+\right\}\leq D,
+\]
+\[
+\deg_{\A}  
+\left\{ 
+f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
+\right\} \leq D,
+\]
+\[
+\deg_{\Xb}(1-T\pjb) \leq \deg \pjb +1 \leq (D+1)^{n-i+1}+1
+\]
+and
+\[
+\deg_{\A}(1-T\pjb) \leq \deg \pjb\leq (D+1)^{n-i+1}.
+\]
+For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, there exists $\alpha_j \in \mathbb{Q}[\A]\setminus\{0\}$ with 
+\begin{align*}
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\textit{\textbf{X}},T)g_l + B_j(\textit{\textbf{X}},T)(1-\pjb T), \\ g_l \in 
+\left\{ 
+f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
+\right\},~ A_{j,l},B_j \in \mathbb{Q}[\A][\Xb][T]
+\end{align*}
+with the degree of $\alpha_j$ upper bounded by
+\begin{align*}
+    &\left(\prod_{l=1}^{n-i+1} \deg_{\Xb,T} g_l\right)\deg_{\A} (1-T\pjb)\\ 
+    + ~~~~~&(n-i+1)\left(\deg_{\Xb,T}\pjb\right)\left(\prod_{l=1}^{n-i+1}\deg_{\Xb,T} g_l \right)\deg_{\A} g_l\\
+    \leq ~~~~~&D^{n-i+1}\left( (D+1)^{n-i+1}\right)\\
+    +~~~~~&(n-i+1)\left( (D+1)^{n-i+1}+1\right)D^{n-i+2}.
+\end{align*}
+Now substitute $T \leftarrow 1/\pjb$ so that 
+\[
+\alpha_i = \sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l + 0
+\]
+and 
+\begin{align*}
+A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb) &= \sum_{i=1}^{n_l} A_{l,i}(\A_{i,j},\Xb,1/\pjb)\\
+&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_l}}\right)\At_{l,i}(\A_{i,j},\textit{\textbf{X}}), ~k_l \in \mathbb{Z}.
+\end{align*}
+Now let $k := \max\{k_l\}$ so that 
+\begin{align*}
+    \pjb^k \alpha &= \pjb^k\left(\sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l\right)\\
+    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{k-k_{n_l}}\right)\At_l(\A_{i,j},\Xb) \right)g_l \in \Q[\A_{i,j}][\Xb],
+\end{align*}
+which shows that $\alpha$ is the only remaining denominator. We know that $\alpha$ is not zero, we know the leading coefficient of $\overline{P_j}$ is not zero, we have an upper bound for the degree of $\alpha$, and we know $\deg d \leq \deg P_j = (D+1)^{n-i+1}$, where $\pjb=dP_j.$ By making $\pjb$ monic, the integrality of 
+\begin{align*}\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}]/\I_i^{\A}
+\end{align*}
+holds with $\pjb(X_j)\in \I_i^{\A}.$
+%
+\subsection{Proof of Theorem 5.1?}
+%
+There is a Zariski-open subset $\Gamma \subset \GL(n,\C)$ such that for $A \in \Gamma$, the entries of $A$ cancel none of the denominators of the coefficients of the generators of $\I(\pi_i,V^{A}).$ Thus, we set
+\[
+\Xi := \C^{n^2} - \Gamma = V(h),
+\]
+with $h \in \Q[\A_{i,j}]$ defined as the least common multiple of the denominators of the generators of $\I^\A.$ Since $\pjb^k \in \I^\A$ and since
+\[
+\pjb^k = \frac{1}{\alpha}\left( Q(\A_{i,j},\Xb) \right), Q \in \Q[\A_{i,j}][\Xb],
+\]
+it follows that 
+\[
+\deg \Xi = \deg h \leq \deg \alpha \leq D^{\frac{3}{2} n \ln n+1}.
+\]
+Furthermore, since $\pjb^k \in \I^\A,$ it follows from by proposition 5.2 that, if $A \in \C^{n^2} - \Xi$ then the extension  
+\[
+\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}^\A
+\]
+is integral, and thus $V(\I^A)=W^\A$ is in Noether position for $\pi_{i-1}.$ Therefore, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i^{'}(4)$.
+%
+%
+%
+%
+%
+%%%%%% Proof of Theorem 3.1
+%
+\section{Proof of Theorem 3.1}
+%
+Assume that $f\in \Q[X_1,\hdots,X_n]$ satisfies $\textbf{H}.$
+%
+%
+%
+%%%%%% Bit-complexity
+%
+\section{Proof of Theorem 1.1}
+%
+%
+%%
+%% The next two lines define the bibliography style to be used, and
+%% the bibliography file.
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{sample-base}
+%%
+\end{document}
+\endinput
+%%
+%% End of file `sample-xelatex.tex'.

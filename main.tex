@@ -24,6 +24,7 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
 
+% test 
 \usepackage{mathrsfs}
 % new commands and shortcuts
 \def\bs{\textit{\textbf{s}}}
@@ -190,16 +191,6 @@
   questions were left for future work.  Our results are an important
   first step in this analysis.
 
-  % Furthermore, as bit complexity provides a far more realistic model
-  % of computation compared to arithmetic complexity, which only
-  % counts each operation at unit cost whereas bit complexity provide
-  % more information for both time and space resources that are needed
-  % in practice, it is important that this missing gap is filled.
-  % As bit complexity provides a far more realistic model of
-  % computation compared to arithmetic complexity, which only counts
-  % each operation at unit cost, our contribution is necessary and
-  % important. Indeed, bit estimates provide more information for both
-  % time and space resources that are needed in practice.
 \end{abstract}
 
 %%
@@ -373,7 +364,7 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 \KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
 \nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\Pr X_{i+1}},\hdots,\frac{\pa f^A}{\Pr X_n}$\;
+\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
 Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;

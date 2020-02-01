@@ -24,6 +24,7 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
 
+\usepackage{mathrsfs}
 % new commands and shortcuts
 \def\bs{\textit{\textbf{s}}}
 \def\Lb{\textit{\textbf{L}}}
@@ -164,11 +165,28 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-We provide bit complexity estimates for the computation of at least one point in each connected component of a smooth real hypersurface. This problem is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface. The algorithm requires some genericity properties, which we ensure through random changes of variables that produce generic coordinate systems. In order to ensure these properties with arbitrarily high probability, we developed a new quantitative extension of Thom's weak transversality theorem, and a new quantitative Noether normalization statement for polar varieties. These statements enable us to give a precise probability analysis of a monte carlo algorithm, where we can guarantee correctness with arbitrarily high probability. 
-\par
-Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{a,b,c,d}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions were left for future work.  Our results therefore begin to fill a missing gap in the research. 
-%Furthermore, as bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost whereas bit complexity provide more information for both time and space resources that are needed in practice, it is important that this missing gap is filled. 
-%As bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost, our contribution is necessary and important. Indeed, bit estimates provide more information for both time and space resources that are needed in practice. 
+ We present a full analysis of an efficient algorithm for the
+ computation of at least one point in each connected component of a
+ smooth real hypersurface, taking into account bit complexity and
+ all coefficient growth.  This problem is a basic and important
+ subroutine used in semi-algebraic geometry. For instance, it is used
+ in determining an upper bound on the number of connected components
+ of a real hypersurface. The algorithm requires some genericity
+ properties, which we ensure through random changes of variables that
+ produce generic coordinate systems. In order to ensure these
+ properties with arbitrarily high probability, we developed a new
+ quantitative extension of Thom's weak transversality theorem, and a
+ new quantitative Noether normalization statement for polar
+ varieties. These statements enable us to give a precise probability
+ analysis of a monte carlo algorithm, where we can guarantee
+correctness with arbitrarily high probability.
+\par 
+  Algorithms for deciding connectivity queries in real algebraic
+  geometry have been developed in a series of papers
+  \cite{a,b,c,d}. However, these algorithms are based in the
+  arithmetic complexity model, and analyses of the bit complexity
+  questions were left for future work.  Our results are an important
+  first step in this analysis.
 \end{abstract}
 
 %%
@@ -342,7 +360,7 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 \KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
 \nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pr X_{i+1}},\hdots,\frac{\pa f^A}{\pr X_n}$\;
+\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
 Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;
@@ -822,9 +840,10 @@ Thus, by Theorem 5.1, there exists a hypersurface $\Delta_2 \subset \C^{n^2}$, o
 %
 \section{Proof of $\textbf{H}_i^{'}(7)$}
 %
-Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, for simplicity let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ To increase readability and simplify notation, we often do not specify $i$, as it is fixed.   
+Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, for simplicity let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ To simplify notation, we will let $i \in \{1,\hdots,\}$ be fixed, and we wil avoid writing $i$ where the context is clear. 
+%
 \subsection{Sketch of the proof}
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. For $i \in \{1,\hdots,n\}$, recall $\textbf{H}_i^{'}(4):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
+Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. Recall $\textbf{H}_i^{'}(4):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
 \[
 \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
 \]
@@ -833,6 +852,8 @@ injective and  integral.
 \begin{theorem}
 There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $D^{?}$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i^{'}(7)$.
 \end{theorem}
+%
+Section 8 is devoted to proving Theorem 8.1. The majority of work is in upper bounding the degree of $\Delta_3,$ as in \cite{EMP} it was shown that $f^A$ satisfies $\textbf{H}_i^{'}$ for a generic change of variables $A\in\C^{n^2}.$ 
 %
 \begin{proposition} 
 The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
@@ -862,13 +883,13 @@ Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Pr
 P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
 \]
 For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
-then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define 
+then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \not \in V(h_j)$ then $A$ cancels none of the denominators $a_{j}$ or $b_{j,l}$ which are providing the integral dependence relation. Define
 \[
-\Xi_j:=V(h_j), 
+\Xi_i := V(h_i,\hdots,h_n).
 \]
-where $h_j$ is the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$, so that when $A \not \in \Xi_j$ then $A$ cancels none of the denominators $a_{j}$ or $b_{j,l}$ which provide the integral dependence relation. For each $j$, we want a bound on the degree of $\Xi_j$. We can obtain bounds by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by $d_j \in \Q[\A_{i,j}]$ equal to the least common multiple of the denominators of $P_{j}.$ Put 
+For each $j \in \{i,\hdots,n\}$, we want a bound on the degree of $h_j$. Then by applying Bezout's theorem we can obtain a bound on the degrees of $\Xi_i$. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by $d_j \in \Q[\A_{i,j}]$ equal to the least common multiple of the denominators of $P_{j}.$ Put 
 \[
-\overline{P_{j}} := dP_{j}\in \Q[\A][\textit{\textbf{X}}],
+\overline{P_{j}} := d_jP_{j}\in \Q[\A][\textit{\textbf{X}}],
 \]
 and note that $\pjb(X_j) \in \I^{\A}$ with 
 \[
@@ -876,7 +897,7 @@ and note that $\pjb(X_j) \in \I^{\A}$ with
 \]
 %
 \begin{proposition} 
-$\deg \pjb\leq (D+1)^{n-i+1}.$ 
+$\deg \pjb\leq (D+1)^{n-i+1}.$ (The same for all $j$?)
 \end{proposition} 
 %
 \begin{proof}
@@ -896,11 +917,8 @@ As $\pjb$ is monic (it is not....), the minimal polynomial of the linear mapping
 %
 Note that 
 \[
-\deg d \leq \deg \pjb \leq (D+1)^{n-i+1}.
+\deg d_j \leq \deg \pjb \leq (D+1)^{n-i+1}.
 \]
-%
-%
-%
 %
 \subsection{Applying the effective Nullstellensatz}
 %
@@ -943,26 +961,30 @@ with the degree of $\alpha_j$ upper bounded by
 %
 Now substitute $T \leftarrow 1/\pjb$ so that 
 \[
-\alpha_i = \sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l + 0
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l + 0
 \]
 and
 %
 \begin{align*}
-A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb) &= \sum_{i=1}^{n_l} A_{l,i}(\A_{i,j},\Xb,1/\pjb)\\
-&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_l}}\right)\At_{l,i}(\A_{i,j},\textit{\textbf{X}}), ~k_l \in \mathbb{Z}.
+A_{j,l}(\A,\textit{\textbf{X}},1/\pjb) 
+&= \sum_{i=1}^{n_l} A(\A,\Xb,1/\pjb)\\
+&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_l}}\right)\At_{j,l,i}(\A,\textit{\textbf{X}}), ~k_l \in \mathbb{Z}.
 \end{align*}
 %
-Now let $k := \max\{k_l\}$ so that 
+Now let $K := \max\{k_l\}$ so that 
 %
 \begin{align*}
-    \pjb^k \alpha &= \pjb^k\left(\sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l\right)\\
-    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{k-k_{n_l}}\right)\At_l(\A_{i,j},\Xb) \right)g_l \in \Q[\A_{i,j}][\Xb],
+    \pjb^K \alpha_j &= \pjb^K\left(\sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l\right)\\
+    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{K-k_{n_l}}\right)\At_{j,l,i}(\A,\Xb) \right)g_l \in \Q[\A][\Xb],
 \end{align*}
 %
-which shows that $\alpha$ is the only remaining denominator. We know that $\alpha$ is not zero, we know the leading coefficient of $\overline{P_j}$ is not zero, we have an upper bound for the degree of $\alpha$, and we know $\deg d \leq \deg P_j = (D+1)^{n-i+1}$, where $\pjb=dP_j.$ By making $\pjb$ monic, the integrality of 
-\begin{align*}\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}]/\I_i^{\A}
+which shows that $\alpha_j$ is the only remaining denominator (i.e.\ the only denominators are $d_j$ and $\alpha_j$). We know that $\alpha_j$ is not zero, we know the leading coefficient of $\overline{P_j}$ is $d_j$ which is not zero, we have an upper bound for the degrees of $\alpha_j$, and we know $\deg d \leq \deg P_j = (D+1)^{n-i+1}$, where $\pjb=d_jP_j.$ By making $\pjb$ monic (this is just $P_j$?), the integrality of 
+%
+\begin{align*}
+\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}]/\I^{\A}
 \end{align*}
-holds with $\pjb(X_j)\in \I_i^{\A}.$
+%
+holds with $\pjb(X_j)\in \I^{\A}.$
 %
 \subsection{Proof of Theorem 5.1?}
 %

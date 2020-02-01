@@ -24,6 +24,7 @@
 %% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
 
+\usepackage{mathrsfs}
 % new commands and shortcuts
 \def\bs{\textit{\textbf{s}}}
 \def\Lb{\textit{\textbf{L}}}
@@ -124,7 +125,9 @@
 %%
 %% The "title" command has an optional parameter,
 %% allowing the author to define a "short title" to be used in page headers.
-\title{Bit Complexity for Computation of one Point in each Connected Component of a Smooth Real Hypersurface}
+%\title{Bit Complexity for Computation of one Point in each Connected
+%Component of a Smooth Real Hypersurface}
+\title{On the Bit Complexity of Finding Points in Connected Components of a Smooth Real Hypersurface}
 
 %%
 %% The "author" command and its associated commands are used to define
@@ -164,11 +167,39 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-We provide bit complexity estimates for the computation of at least one point in each connected component of a smooth real hypersurface. This problem is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface. The algorithm requires some genericity properties, which we ensure through random changes of variables that produce generic coordinate systems. In order to ensure these properties with arbitrarily high probability, we developed a new quantitative extension of Thom's weak transversality theorem, and a new quantitative Noether normalization statement for polar varieties. These statements enable us to give a precise probability analysis of a monte carlo algorithm, where we can guarantee correctness with arbitrarily high probability. 
-\par
-Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{a,b,c,d}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions were left for future work.  Our results therefore begin to fill a missing gap in the research. 
-%Furthermore, as bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost whereas bit complexity provide more information for both time and space resources that are needed in practice, it is important that this missing gap is filled. 
-%As bit complexity provides a far more realistic model of computation compared to arithmetic complexity, which only counts each operation at unit cost, our contribution is necessary and important. Indeed, bit estimates provide more information for both time and space resources that are needed in practice. 
+  We present a full analysis of an efficient algorithm for the
+  computation of at least one point in each connected component of a
+  smooth real hypersurface, taking into account bit complexity and
+  all coefficient growth.  This problem is a basic and important
+  subroutine used in semi-algebraic geometry. For instance, it is used
+  in determining an upper bound on the number of connected components
+  of a real hypersurface. The algorithm requires some genericity
+  properties, which we ensure through random changes of variables that
+  produce generic coordinate systems. In order to ensure these
+  properties with arbitrarily high probability, we developed a new
+  quantitative extension of Thom's weak transversality theorem, and a
+  new quantitative Noether normalization statement for polar
+  varieties. These statements enable us to give a precise probability
+  analysis of a monte carlo algorithm, where we can guarantee
+  correctness with arbitrarily high probability.
+
+  Algorithms for deciding connectivity queries in real algebraic
+  geometry have been developed in a series of papers
+  \cite{a,b,c,d}. However, these algorithms are based in the
+  arithmetic complexity model, and analyses of the bit complexity
+  questions were left for future work.  Our results are an important
+  first step in this analysis.
+
+  % Furthermore, as bit complexity provides a far more realistic model
+  % of computation compared to arithmetic complexity, which only
+  % counts each operation at unit cost whereas bit complexity provide
+  % more information for both time and space resources that are needed
+  % in practice, it is important that this missing gap is filled.
+  % As bit complexity provides a far more realistic model of
+  % computation compared to arithmetic complexity, which only counts
+  % each operation at unit cost, our contribution is necessary and
+  % important. Indeed, bit estimates provide more information for both
+  % time and space resources that are needed in practice.
 \end{abstract}
 
 %%
@@ -342,7 +373,7 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 \KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
 \nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pr X_{i+1}},\hdots,\frac{\pa f^A}{\pr X_n}$\;
+\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\Pr X_{i+1}},\hdots,\frac{\pa f^A}{\Pr X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
 Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;
@@ -1011,3 +1042,8 @@ Assume that $f\in \Q[X_1,\hdots,X_n]$ satisfies $\textbf{H}.$
 \endinput
 %%
 %% End of file `sample-xelatex.tex'.
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

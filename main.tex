@@ -844,17 +844,21 @@ Thus, by Theorem 5.1, there exists a hypersurface $\Delta_2 \subset \C^{n^2}$, o
 %
 \section{Proof of $\textbf{H}_i^{'}(7)$}
 %
-Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, for simplicity let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ To increase readability and simplify notation, we often do not specify $i$, as it is fixed.   
+Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, to simplify notation, let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore, throughout this section, consider that $i \in \{1,\hdots,n\}$ is fixed. We will avoid writing $i$ where the context is clear. 
+%
 \subsection{Sketch of the proof}
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. For $i \in \{1,\hdots,n\}$, recall $\textbf{H}_i^{'}(4):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
+%
+Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfies \textbf{H}, so that $f$ is squarefree with $V(f)$ smooth. Recall $\textbf{H}_i^{'}(7):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
 \[
-\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
+\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
 \]
 injective and  integral.
 %
 \begin{theorem}
 There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $D^{?}$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i^{'}(7)$.
 \end{theorem}
+%
+Section 8 is devoted to proving Theorem 8.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
 %
 \begin{proposition} 
 The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
@@ -884,13 +888,21 @@ Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Pr
 P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
 \]
 For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
-then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define 
+then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
 \[
-\Xi_j:=V(h_j), 
+\Xi_i := V(h_i,\hdots,h_n), 
 \]
-where $h_j$ is the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$, so that when $A \not \in \Xi_j$ then $A$ cancels none of the denominators $a_{j}$ or $b_{j,l}$ which provide the integral dependence relation. For each $j$, we want a bound on the degree of $\Xi_j$. We can obtain bounds by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by $d_j \in \Q[\A_{i,j}]$ equal to the least common multiple of the denominators of $P_{j}.$ Put 
+and we obtain a bound on the degree of $\Xi_i$ by applying Bezout's theorem. Hence, if $A\in \Q^{n^2}-\Xi_i$ then
 \[
-\overline{P_{j}} := dP_{j}\in \Q[\A][\textit{\textbf{X}}],
+P_j(X_j) \in \I^A,  
+\]
+for each $j \in \{i,\hdots,n\},$ and therefore the extension 
+\[
+\mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{A})
+\]
+is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A_{i,j}]$. Put 
+\[
+\overline{P_{j}} := d_jP_{j}\in \Q[\A][\textit{\textbf{X}}],
 \]
 and note that $\pjb(X_j) \in \I^{\A}$ with 
 \[
@@ -902,13 +914,17 @@ $\deg \pjb\leq (D+1)^{n-i+1}.$
 \end{proposition} 
 %
 \begin{proof}
-Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I$ in  $\Q[\A,\Xb],$ and consider the finite field extension
+\textbf{Eric and Mark}: I am unsure of how to do this part correctly, so I will assume 
+\[
+\deg \pjb\leq \Dt_j.
+\]
+Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I^{\A}$ in  $\Q[\A,\Xb],$ and consider the finite field extension
 %
 \begin{align*}
     \Q(\A,\Xb_{i-1}) &\rightarrow \Q(\A,\Xb_{i-1})[X_i,\hdots,X_n]/\Is.
 \end{align*}
 %
-As $\pjb$ is monic (it is not....), the minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is equal to $\pjb$. It therefore follows by \cite[Proposition 1]{CGR} that
+The minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is \textbf{almost}(?) equal to $\pjb$ (the leading coefficient of $\pjb$ is $d_j$). It therefore follows by \cite[Proposition 1]{CGR} that
 %
 \begin{align*}
 &\deg \pjb \leq (D+1)^{n-i+1}.&(2D)^{n-i+1}\textrm{?} 
@@ -918,15 +934,12 @@ As $\pjb$ is monic (it is not....), the minimal polynomial of the linear mapping
 %
 Note that 
 \[
-\deg d \leq \deg \pjb \leq (D+1)^{n-i+1}.
+\deg d_j \leq \deg \pjb \leq \Dt_j.
 \]
-%
-%
-%
 %
 \subsection{Applying the effective Nullstellensatz}
 %
-We have
+To apply the effective Nullstellensatz theorem, we first need to determine degree bounds, separately in $\Xb$ and $\A,$ of the polynomials in the membership relationship. We have
 \[
 \deg_{\Xb}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
@@ -939,72 +952,88 @@ f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial
 \right\} \leq D,
 \]
 \[
-\deg_{\Xb}(1-T\pjb) \leq \deg \pjb +1 \leq (D+1)^{n-i+1}+1
+\deg_{\Xb,T}(1-T\pjb) \leq \Dt_j +1 
 \]
 and
 \[
-\deg_{\A}(1-T\pjb) \leq \deg \pjb\leq (D+1)^{n-i+1}.
+\deg_{\A}(1-T\pjb) \leq \Dt_j.
 \]
 For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, there exists $\alpha_j \in \mathbb{Q}[\A]\setminus\{0\}$ with 
 %
 \begin{align*}
-\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\textit{\textbf{X}},T)g_l + B_j(\textit{\textbf{X}},T)(1-\pjb T), \\ g_l \in 
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},T)g_l + B_j(\A,\textit{\textbf{X}},T)(1-\pjb T), \\ g_l \in 
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\},~ A_{j,l},B_j \in \mathbb{Q}[\A][\Xb][T]
+\right\},~ A_{j,l},B_j \in \mathbb{Q}[\A][\Xb][T],
 \end{align*}
 %
-with the degree of $\alpha_j$ upper bounded by
+and with the degree of $\alpha_j$ upper bounded by
 %
 \begin{align*}
-    &\left(\prod_{l=1}^{n-i+1} \deg_{\Xb,T} g_l\right)\deg_{\A} (1-T\pjb)\\ 
-    + ~~~~~&(n-i+1)\left(\deg_{\Xb,T}\pjb\right)\left(\prod_{l=1}^{n-i+1}\deg_{\Xb,T} g_l \right)\deg_{\A} g_l\\
-    \leq ~~~~~&D^{n-i+1}\left( (D+1)^{n-i+1}\right)\\
-    +~~~~~&(n-i+1)\left( (D+1)^{n-i+1}+1\right)D^{n-i+2}.
+    &\left(\prod_{k=1}^{n-i+1} D\right)\Dt_j 
+    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}D \right)D\\
+    = &\left(D^{n-i+1}\right)\Dt_j+
+    (n-i+1)\left(\Dt_j+1\right)\left(D^{n-i+1} \right)\\
+    &\leq D^{n}\Dt_j + n\left(\Dt_j+1\right)D^{n}\\
+    &=D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
-Now substitute $T \leftarrow 1/\pjb$ so that 
+Now we will show that $\alpha_j$ is the only remaining denominator whose degree we need to bound. Substitute $T \leftarrow 1/\pjb$ so that 
 \[
-\alpha_i = \sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l + 0
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l + 0
 \]
 and
 %
 \begin{align*}
-A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb) &= \sum_{i=1}^{n_l} A_{l,i}(\A_{i,j},\Xb,1/\pjb)\\
-&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_l}}\right)\At_{l,i}(\A_{i,j},\textit{\textbf{X}}), ~k_l \in \mathbb{Z}.
+A_{j,l}(\A,\textit{\textbf{X}},1/\pjb) 
+&= \sum_{i=1}^{n_l} A_{j,l,i}(\A,\Xb,1/\pjb)\\
+&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_i}}\right)\At_{j,l,i}(\A,\textit{\textbf{X}}), ~k_i \in \mathbb{Z}.
 \end{align*}
 %
-Now let $k := \max\{k_l\}$ so that 
+Let $K := \max\{k_l\}$ so that 
 %
 \begin{align*}
-    \pjb^k \alpha &= \pjb^k\left(\sum_{l=1}^{n-i+1} A_l(\A_{i,j},\textit{\textbf{X}},1/\pjb)g_l\right)\\
-    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{k-k_{n_l}}\right)\At_l(\A_{i,j},\Xb) \right)g_l \in \Q[\A_{i,j}][\Xb],
+    \pjb^K \alpha_j &= \pjb^K\left(\sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l\right)\\
+    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{K-k_{i}}\right)\At_{j,l,i}(\A,\Xb) \right)g_l \in \Q[\A][\Xb].
 \end{align*}
 %
-which shows that $\alpha$ is the only remaining denominator. We know that $\alpha$ is not zero, we know the leading coefficient of $\overline{P_j}$ is not zero, we have an upper bound for the degree of $\alpha$, and we know $\deg d \leq \deg P_j = (D+1)^{n-i+1}$, where $\pjb=dP_j.$ By making $\pjb$ monic, the integrality of 
-\begin{align*}\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A}_{i,j})[\textbf{X}]/\I_i^{\A}
+which shows that $\alpha_j$ is the only remaining denominator whose degree we need to bound other than $d_j$. Note as well that
+\[
+\pjb^K \in \I^{\A}.
+\]
+Therefore 
+%
+\begin{align*}
+\deg h_j &\leq \left(\deg \alpha_j\right)\left(\deg d_j\right)\\
+    &\leq \left(D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
+    &=D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
-holds with $\pjb(X_j)\in \I_i^{\A}.$
 %
-\subsection{Proof of Theorem 5.1?}
+\subsection{Proof of Theorem 8.1}
 %
-There is a Zariski-open subset $\Gamma \subset \GL(n,\C)$ such that for $A \in \Gamma$, the entries of $A$ cancel none of the denominators of the coefficients of the generators of $\I(\pi_i,V^{A}).$ Thus, we set
+We can apply B\'ezout and obtain
+%
+\begin{align*}
+    \deg \Xi_i = \deg V(h_i,\hdots,h_n)
+    &\leq \prod_{j=i}^n \deg h_j\\
+    &\leq  \prod_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
+    &=  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n-i+1}\\
+    &\leq  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n}.
+\end{align*}
+%
+And therefore, by another application of B\'ezout, 
+%
+\begin{align*}
+    \deg& \Delta_3 \leq \prod_{i=1}^n \deg \Xi_i\\
+    &\leq \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n^2},
+    &(=D^{O(n^3 \log n)}\textrm{?})
+\end{align*}
+%
+where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 
 \[
-\Xi := \C^{n^2} - \Gamma = V(h),
+\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
 \]
-with $h \in \Q[\A_{i,j}]$ defined as the least common multiple of the denominators of the generators of $\I^\A.$ Since $\pjb^k \in \I^\A$ and since
-\[
-\pjb^k = \frac{1}{\alpha}\left( Q(\A_{i,j},\Xb) \right), Q \in \Q[\A_{i,j}][\Xb],
-\]
-it follows that 
-\[
-\deg \Xi = \deg h \leq \deg \alpha \leq D^{\frac{3}{2} n \ln n+1}.
-\]
-Furthermore, since $\pjb^k \in \I^\A,$ it follows from by proposition 5.2 that, if $A \in \C^{n^2} - \Xi$ then the extension  
-\[
-\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}^\A
-\]
-is integral, and thus $V(\I^A)=W^\A$ is in Noether position for $\pi_{i-1}.$ Therefore, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i^{'}(4)$.
+is integral.
 %
 %
 %

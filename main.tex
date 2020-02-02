@@ -649,31 +649,18 @@ equations). Finally, consider the projection
 
 \subsection{Genericity and Sard's lemma}
 %
-It will sometimes be useful for us to let the matrix $A$ represent new
-indeterminates: let $\A$ be an $n \times n$ matrix of new
-indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in
-\mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and
-$V^\A=V(f^\A).$ It follows from Proposition 4.2 that for a generic $A
-\in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of
-\cite[Theorem B.3]{NO}, which shows the existence of $\Delta \subset
-\C^{n^2},$ applies \textit{Sard's lemma}, which shows that the
-critical values of a polynomial mapping are contained in a
-hypersurface. It follows from Sard's lemma that for the matrix of
-indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise
-it could not be that $0$ is a regular value of $\Phi_A,$ for a generic
-$A\in \C^{n^2}.$ Therefore,
+It will sometimes be useful for us use in replace of the matrix $A$, a matrix representing indeterminants: let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A \in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of \cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta \subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the critical values of a polynomial mapping are contained in a hypersurface. It follows from Sard's lemma that, for the matrix of indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise it could not be that $0$ is a regular value of $\Phi_A,$ for a generic $A\in \C^{n^2}.$ The proof is routine and we omit details. It then follows that 
 \[
-\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(x),\frac{\pa f^{\A}(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(x)}{\pa X_n}\right)
+\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(\xb),\frac{\pa f^{\A}(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(\xb)}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$. We will rely on this fact in Section 5. 
+has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this fact in Section 8.
 %
 \section{Proof of $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$}
 %
-We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of \[\fb := \left(f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right).\]
-If the Jacobian of $\fb$ has full rank at all $x \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion [4, Theorem 16.19] that $f$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$. 
+We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of this set of polynomials has full rank at all $\xb \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem 16.19]{ECA} that $f$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. 
 %
 \begin{theorem}
-There exists a Zariski closed set $\Delta \subset \C^{n^2}$ of degree at most $D^n$ with the property that, if $A \in \C^{n^2} - \Delta$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$.
+There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $D^n$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \end{theorem}
 %
 \subsection{Sketch of the proof of Theorem 6.1}
@@ -686,93 +673,53 @@ so that
 \[
 \Phi_A^{-1}(0)= W(\pi_i,V^A).
 \]
-Then we show that $0$ is a regular value of $\Phi$, so that, by Proposition 4.2, $\Delta \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta$ then $0$ is a regular value of $\Phi_A.$ It then follows that 
+We want to apply Theorem 5.1, and thus we show that $0$ is a regular value of $\Phi$, where then it follows that $\Delta_1 \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta_1$ then $0$ is a regular value of $\Phi_A,$ which means that 
 \[
 \jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(x),\frac{\pa f^A(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(x)}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$.
+has full rank for all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \subsection{Proof of Theorem 6.1}
-Now, with $i \in \{1,\hdots,n\}$, let $\Phi$ be the mapping \[(\xb,A) \mapsto (f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,
-\frac{\partial f^A}{\partial X_n}(\xb))\] so that 
-\[
-\Phi^{-1}(0)= W(\pi_i,V^A).
-\]
+With $i \in \{1,\hdots,n\}$, let $\Phi$ be as stated above.
 %
 \begin{proposition} 
 0 is a regular value of $\Phi$.
 \end{proposition}
 %
 \begin{proof}
-Put
-\[
-G_0 = f(Ax), 
-G_1 = \frac{\partial (f(Ax))}{\partial X_{i+1}},\hdots,G_{n-i} = \frac{\partial (f(Ax))}{\partial X_n},
+Let $A_1,\hdots,A_n$ denote the columns of $A,$ and let $(\xb,A) \in \C^n \times \C^{n^2}$ be such that \[
+f^A(\xb) = \frac{\partial f^A(\xb)}{\partial X_{i+1}}=\hdots= \frac{\partial f^A(\xb)}{\partial X_n}=0.
 \] 
-and assume that $G_0(\xb,A)=G_1(\xb,A)=\hdots =G_{n-i}(\xb,A)=0.$ We can simplify by removing $Ax$ from the system because  
+We want to show that the system
 \[
-(f(Ax),(\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm)(Ax),\hdots, 
+f(Ax),(\grad(f)\cdot 
+A_{i+1})(Ax),\hdots, 
 (\grad(f)\cdot 
-\bbm 
-a_{n,1} \\
-\vdots \\
-a_{n,n} 
-\ebm)(Ax)
-\] 
-defines a radical ideal of dimension ? whose variety is smooth if and only if 
-\[
-(f,\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm),\hdots, 
-\grad(f)\cdot 
-\bbm 
-a_{n1} \\
-\vdots \\
-a_{nn} 
-\ebm)
+A_n)(Ax)
 \]
-defines a radical ideal of dimension ? whose variety is smooth. Now, let $g$ be the following:
+defines a radical ideal of dimension ? whose variety is smooth, which holds if and only if 
+\[
+f,\grad(f)\cdot 
+A_{i+1},\hdots, 
+\grad(f)\cdot 
+A_n
+\]
+defines a radical ideal of dimension ? whose variety is smooth. Now, let $\Psi$ be the mapping
 %
 \begin{align*}
-    g: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
+    \Psi: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
        (\xb,A) &\mapsto 
        \left(f(\xb),\grad(f(\xb))\cdot 
-A_{i+1},\hdots, 
+A_{i+1},\hdots. 
 \grad(f(\xb))\cdot 
 A_{n}
-\right)
+\right),
 \end{align*}
 %
-I claim that for all $(\xb,A) \in g^{-1}(0),$ the Jacobian matrix of $g$ at $(\xb,A)$ has full rank $n-i+1$ (i.e. $g$ is transverse to $\{0\}).$ The Jacobian of 
-%
-\begin{align*}
-       & \left(f,\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm,\hdots, 
-\grad(f)\cdot 
-\bbm 
-a_{n,1} \\
-\vdots \\
-a_{n,n} 
-\ebm\right) \\
-&= \left(f, \frac{\pa f}{\pa X_1} a_{i+1,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+1,n}, \hdots, \frac{\pa f}{\pa X_1} a_{n,1} + \hdots + \frac{\pa f}{\pa X_n}a_{n,n}\right) \\
-&= (f,F_{1},\hdots,F_{n-i}),  
-\end{align*} 
-%
-where 
+For all $(\xb,A) \in \Psi^{-1}(0),$ the Jacobian matrix of $\Psi$ at $(\xb,A)$ has full rank $n-i+1$. Indeed, set 
 \[
-F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, 1 \leq j \leq n-i,\]
-is
+F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, ~1 \leq j \leq n-i,
+\]
+The Jacobian of the system of polynomials $f,F_{1},\hdots,F_{n-i}$ is
 \[
 \left[ 
 \begin{array}{cccccc}
@@ -783,20 +730,19 @@ is
 \end{array}
 \right]. 
 \] 
-Since $f$ is square-free, \[I(V(f)) = \langle f \rangle,\]  and thus for all $\xb \in V(f)$, 
+Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
 \[
 T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
 \]
 Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i$ rows, the matrix has full rank $n-i$.
 \end{proof}
 %
-Since $\deg \Phi \leq D,$ it follows by Theorem 4.2 that a hypersurface $\Delta \subset \C^{n^2}$ exists, of degree at most $D^n,$ with the property that, if $A \in \C^{n^2}-\Delta,$ then $0$ is a regular value of $\Phi_{A}$, which means that 
+Since $\deg \Phi \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Delta_1 \subset \C^{n^2}$ exists, of degree at most $D^n,$ with the property that, if $A \in \C^{n^2}-\Delta_1,$ then $0$ is a regular value of $\Phi_{A}$, which means that 
 \[
 \jac_\textit{\textbf{x}} \Phi_A 
 = \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
 \] 
-has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$, for each $i \in \{1,\hdots,n\}.$
-%
+has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, for each $i \in \{1,\hdots,n\},$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.%
 %
 %
 %

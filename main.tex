@@ -376,7 +376,7 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 \nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;
+Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
 } 
 \nl \Return $\cup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
 \end{algorithm}
@@ -386,12 +386,7 @@ Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_
 %
 \section{Genericity properties}
 %
-Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ squarefree with total degree $D$ and $V(f)$ smooth. We say that $V$ is in \textit{Noether position} for $\pi_D$ when the extension 
-\[
-\C[X_1,\hdots,X_D] \rightarrow \C[X_1,\hdots,X_n]/I(V)
-\] 
-is injective and integral.  Then, for any $\xb \in \C^D,$ the fiber 
-$V \cap \pi_D^{-1}(\xb)$ has dimension zero. 
+Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ with total degree $D$.  
 We say that $f$ satisfies $\textbf{H}$ if 
 %
 \begin{enumerate}
@@ -399,7 +394,12 @@ We say that $f$ satisfies $\textbf{H}$ if
     \item $V(f)$ is smooth.
 \end{enumerate}
 %
-For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
+An equidimensional algebraic set $X$ of dimension $d$ is in \textit{Noether position} for $\pi_d$ when the extension 
+\[
+\C[X_1,\hdots,X_d] \rightarrow \C[X_1,\hdots,X_n]/I(V)
+\] 
+is injective and integral.  Then, for any $\xb \in \C^d,$ the fiber 
+$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
 %
 \begin{enumerate}
 \item $\I(\pi_i,V)$ is radical;
@@ -412,7 +412,7 @@ For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if
 \end{enumerate}
 %
 \begin{theorem}
-Suppose that $f$ satisfies \textbf{H}. Then there exists a Zariski closed set $\frak{X} \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{?}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\frak{X}$ then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{?}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
 \end{theorem}
 %
 \begin{corollary} 

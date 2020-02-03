@@ -407,24 +407,24 @@ An equidimensional algebraic set $X$ of dimension $d$ is in \textit{Noether posi
 \C[X_1,\hdots,X_d] \rightarrow \C[X_1,\hdots,X_n]/I(V)
 \] 
 is injective and integral.  Then, for any $\xb \in \C^d,$ the fiber 
-$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
+$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, and for a randomly chosen point $p_{i-1} = (x_1,\hdots,x_{i-1}) \in \Q^{i-1}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
 %
 \begin{enumerate}
 \item $\I(\pi_i,V)$ is radical;
 \item either $W(\pi_i,V)$ is empty or $(i-1)$-equidimensional;
 \item $W(\pi_i,V)$ is smooth;
-\item $\langle X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
-\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ has dimension $0$;
-\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
+\item $\langle X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
+\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is finite;
+\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
 \item either $W(\pi_i,V)$ is empty or in Noether position for $\pi_{i-1}$.
 \end{enumerate}
 %
 \begin{theorem}
-Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{?}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
 \end{theorem}
 %
 \begin{corollary} 
-Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{?}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
+Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
 \end{corollary}
 %
 %
@@ -1001,9 +1001,32 @@ is integral.
 %
 %
 %
-\section{Proof of Theorem 3.1}
+\section{Proof of Theorem 4.1}
 %
-Assume that $f\in \Q[X_1,\hdots,X_n]$ satisfies $\textbf{H}.$
+Recall Theorem 4.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
+%
+\begin{proof}
+Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 6.1, there exists a zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 7.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
+\[
+A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
+\]
+then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
+\[
+\Delta = \prod_{i=1}^3 \D_i,
+\]
+and note that 
+\[
+\deg \D \leq  \prod_{i=1}^3 \deg \D_i.
+\]
+\end{proof}
+%
+Recall Corollary 4.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
+%
+\begin{proof}
+\[
+Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
+\]
+\end{proof}
 %
 %
 %

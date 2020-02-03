@@ -65,6 +65,7 @@
 \def\jt{\widetilde{J}}
 \def\At{\widetilde{A}}
 \def\Yt{\widetilde{Y}}
+\def\kt{\widetilde{k}}
 \def\dt{s}
 %% \def\dt{\widetilde{d}}
 \def\Dt{\widetilde{D}}
@@ -273,14 +274,14 @@ Algorithms for deciding connectivity queries in real algebraic geometry have bee
 \subsection{Main result}
 %
 \begin{theorem}
-Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $\hdots$. Otherwise the algorithm either produces a subset of the critical points or FAIL. In any case, the algorithm uses 
+Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the algorithm either produces a subset of the points or FAIL. In any case, the algorithm uses 
 \[
-\hdots  
+O^{\sim}(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
 \]
-boolean operations.
+boolean operations, with $k \geq -\lg(1-2^{(-1/n)})$. 
 \end{theorem}
 %
-The algorithm is Monte Carlo and can error on one side by producing a proper subset of the points. Running the algorithm $k$ times gives a list of outputs among which the highest cardinality set includes at least one point in each connected component with probability at least $\hdots.$
+The algorithm can error on one side by producing a proper subset of the points. Running the algorithm $\kt$ times gives a list of $n$ zero-dimensional parameterizations, among which the highest cardinality output includes at least one point in each connected component with probability at least $1-(1/2)^{\kt}.$
 %
 %
 %
@@ -368,26 +369,6 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 %
 %
 %
-\section{The Algorithm}
-%
-For a matrix $A \in \GL(n,\Q),$ let 
-\[
-Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
-\]
-where $b_i$ is the i-th row of $A^{-1}$.
-%
-\begin{algorithm}
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
-\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \td$\;
-\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
-    \caption{{Main Algorithm} \label{}}
-\nl \For{$i\gets1$ \KwTo $n$}{
-Randomly choose a point $p_{i-1}=(x_1,\hdots,x_{i-1}) \in \Q^{i-1}~(p_0$?) and apply the symbolic homotopy algorithm from \cite{SH} with input $\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$, to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(p_{i-1})$;
-} 
-\nl \Return $\bigcup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(p_{i-1})$.
-\end{algorithm}
 %
 %
 %
@@ -671,7 +652,7 @@ We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefre
 There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $D^n$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \end{theorem}
 %
-\subsection{Sketch of the proof of Theorem 6.1}
+\subsection{Sketch of the proof of Theorem 5.1}
 %
 Let $\Phi$ be the polynomiall mapping 
 \[
@@ -682,7 +663,9 @@ so that $\Phi_A^{-1}(0)= W(\pi_i,V^A).$ We want to apply Theorem 5.1, and thus w
 \jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(\xb),\frac{\pa f^A(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(\xb)}{\pa X_n}\right)
 \]
 has full rank at all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
-\subsection{Proof of Theorem 6.1}
+%
+\subsection{Proof of Theorem 5.1}
+%
 With $i \in \{1,\hdots,n\}$, let $\Phi$ be as stated above.
 %
 \begin{proposition} 
@@ -749,7 +732,7 @@ has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, for each $i \i
 There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $D^{\textrm{?}}$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
 \end{theorem}
 %
-\subsection{Sketch of the proof of Theorem 7.1}
+\subsection{Sketch of the proof of Theorem 6.1}
 %
 Let 
 \[
@@ -968,7 +951,7 @@ Therefore
     &=D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
-\subsection{Proof of Theorem 8.1}
+\subsection{Proof of Theorem 7.1}
 %
 We can apply B\'ezout and obtain
 %
@@ -1001,12 +984,12 @@ is integral.
 %
 %
 %
-\section{Proof of Theorem 4.1}
+\section{Proof of Theorem 3.1}
 %
-Recall Theorem 4.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
+Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
 %
 \begin{proof}
-Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 6.1, there exists a zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 7.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
+Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
 \[
 A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
 \]
@@ -1020,7 +1003,7 @@ and note that
 \]
 \end{proof}
 %
-Recall Corollary 4.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
+Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
 %
 \begin{proof}
 \[
@@ -1033,8 +1016,37 @@ Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D
 %
 \section{Proof of Theorem 1.1}
 %
+Recall Theorem 1.1: \textit{Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the algorithm either produces a subset of the points or FAIL. In any case, the algorithm uses 
+\[
+O^{\sim}(k(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
+\]
+boolean operations, with $k \geq -\lg(1-2^{(-1/n)})$. }
 %
-
+\subsection{The Algorithm}
+%
+For a matrix $A \in \GL(n,\Q),$ let 
+\[
+Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
+\]
+where $b_i$ is the i-th row of $A^{-1}$.
+%
+\begin{algorithm}
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
+\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \td$\;
+\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
+\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
+    \caption{{Main Algorithm} \label{}}
+\nl \For{$i\gets1$ \KwTo $n$}{
+\nl Randomly choose a point $p_{i-1}=(x_1,\hdots,x_{i-1}) \in \Q^{i-1}~(p_0$?)\; 
+\nl Run the symbolic homotopy algorithm from \cite{SH} $k \geq -\lg(1-2^{(-1/n)})$ times with input 
+\[
+\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } D\;
+\]
+\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
+} 
+\nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
+\end{algorithm}
 
 
 

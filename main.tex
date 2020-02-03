@@ -41,6 +41,7 @@
 \def\xb{\textit{\textbf{x}}}
 \def\fb{\textit{\textbf{f}}}
 \def\ab{\textit{\textbf{a}}}
+\def\pb{\textit{\textbf{p}}}
 \def\ajb{\overline{a_j}}
 \def\bjb{\overline{b_{j,l}}}
 \def\pjb{\overline{P_{j}}}
@@ -366,19 +367,25 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 %
 %
 %
-\section{The Main Algorithm}
+\section{The Algorithm}
+%
+For a matrix $A \in \GL(n,\Q),$ let 
+\[
+Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
+\]
+where $b_i$ is the i-th row of $A^{-1}$.
 %
 \begin{algorithm}
 \KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \td$\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
 \nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
+Randomly choose a point $p_{i-1}=(x_1,\hdots,x_{i-1}) \in \Q^{i-1}~(p_0$?) and apply the symbolic homotopy algorithm from \cite{SH} with input $\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$, to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(p_{i-1})$;
 } 
-\nl \Return $\cup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
+\nl \Return $\bigcup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(p_{i-1})$.
 \end{algorithm}
 %
 %

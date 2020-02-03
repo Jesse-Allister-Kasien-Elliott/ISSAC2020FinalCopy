@@ -33,6 +33,7 @@
 % new commands and shortcuts
 \def\td{{\bf todo}}
 \def\bs{\textit{\textbf{s}}}
+\def\bz{\textit{\textbf{0}}}
 \def\Lb{\textit{\textbf{L}}}
 \def\Xb{\textit{\textbf{X}}}
 \def\Lambdab{\bm{\Lambda}}
@@ -672,48 +673,37 @@ There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most 
 %
 \subsection{Sketch of the proof of Theorem 6.1}
 %
-We will let $\Phi$ be a mapping essentiall equal to 
+Let $\Phi$ be the polynomiall mapping 
 \[
 (\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
 \] 
-so that 
+so that $\Phi_A^{-1}(0)= W(\pi_i,V^A).$ We want to apply Theorem 5.1, and thus we show that $0$ is a regular value of $\Phi$, where then it follows that $\Delta_1 \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta_1$ then  
 \[
-\Phi_A^{-1}(0)= W(\pi_i,V^A).
+\jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(\xb),\frac{\pa f^A(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(\xb)}{\pa X_n}\right)
 \]
-We want to apply Theorem 5.1, and thus we show that $0$ is a regular value of $\Phi$, where then it follows that $\Delta_1 \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta_1$ then $0$ is a regular value of $\Phi_A,$ which means that 
-\[
-\jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(x),\frac{\pa f^A(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(x)}{\pa X_n}\right)
-\]
-has full rank for all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+has full rank at all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \subsection{Proof of Theorem 6.1}
 With $i \in \{1,\hdots,n\}$, let $\Phi$ be as stated above.
 %
 \begin{proposition} 
-0 is a regular value of $\Phi$.
+$\bz$ is a regular value of $\Phi$.
 \end{proposition}
 %
 \begin{proof}
-Let $A_1,\hdots,A_n$ denote the columns of $A,$ and let $(\xb,A) \in \C^n \times \C^{n^2}$ be such that \[
-f^A(\xb) = \frac{\partial f^A(\xb)}{\partial X_{i+1}}=\hdots= \frac{\partial f^A(\xb)}{\partial X_n}=0.
-\] 
-We want to show that the system
+Let $A_1,\hdots,A_n$ denote the columns of $A,$ and let $(\xb,A) \in \C^n \times \C^{n^2}$ be such that 
+$f^A(\xb) = \frac{\partial f^A(\xb)}{\partial X_{i+1}}=\hdots= \frac{\partial f^A(\xb)}{\partial X_n}=\bz.$
+We want to show that the system of polynomials 
 \[
-f(Ax),(\grad(f)\cdot 
-A_{i+1})(Ax),\hdots, 
-(\grad(f)\cdot 
-A_n)(Ax)
+f(Ax),(\grad(f)\cdot A_{i+1})(Ax),\hdots, (\grad(f)\cdot A_n)(Ax)
 \]
-defines a radical ideal of dimension ? whose variety is smooth, which holds if and only if 
+defines a radical ideal of dimension ? whose variety is smooth (we just want the Jacobian of the system to have full rank?), which holds if and only if 
 \[
-f,\grad(f)\cdot 
-A_{i+1},\hdots, 
-\grad(f)\cdot 
-A_n
+f,\grad(f)\cdot A_{i+1},\hdots, \grad(f)\cdot A_n
 \]
-defines a radical ideal of dimension ? whose variety is smooth. Now, let $\Phi$ be the mapping
+defines a radical ideal of dimension ? whose variety is smooth. Let $\Psi$ be the mapping
 %
 \begin{align*}
-    \Phi: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
+    \Psi: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
        (\xb,A) &\mapsto 
        \left(f(\xb),\grad(f(\xb))\cdot 
 A_{i+1},\hdots. 
@@ -722,7 +712,7 @@ A_{n}
 \right),
 \end{align*}
 %
-For all $(\xb,A) \in \Phi^{-1}(0),$ the Jacobian matrix of $\Phi$ at $(\xb,A)$ has full rank $n-i+1$. Indeed, set 
+For all $(\xb,A) \in \Psi^{-1}(0),$ the Jacobian matrix of $\Psi$ at $(\xb,A)$ has full rank $n-i+1$. Indeed, set 
 \[
 F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, ~1 \leq j \leq n-i,
 \]
@@ -744,17 +734,12 @@ T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
 Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i$ rows, the matrix has full rank $n-i$.
 \end{proof}
 %
-Since $\deg \Phi \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Delta_1 \subset \C^{n^2}$ exists, of degree at most $\td$ with the property that, if $A \in \C^{n^2}-\Delta_1,$ then $0$ is a regular value of $\Phi_{A}$, which means that 
+Since $\deg \Phi \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Delta_1 \subset \C^{n^2}$ exists, of degree at most $\td$ with the property that, if $A \in \C^{n^2}-\Delta_1,$ then 
 %
-\begin{align*}
-\jac_\textit{\textbf{x}} \Phi_A &=\left(f(\xb),\grad(f(\xb))\cdot A_{i+1},\hdots. \grad(f(\xb))\cdot A_{n} \right) 
-\end{align*}
-%
-has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). It follows that 
 \[
  \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
 \]
-also has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, for each $i \in \{1,\hdots,n\},$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.%
+has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, for each $i \in \{1,\hdots,n\},$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.%
 %
 %
 %

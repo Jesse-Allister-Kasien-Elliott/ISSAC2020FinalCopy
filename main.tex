@@ -503,7 +503,7 @@ $g^\fA:=g(\fA \Xb) \in \K[X_1,\dots,X_n]$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Weak Transversality}
+\section{Weak Transversality and Applications}
 
 Sard's lemma states that the set of critical values of a smooth
 function $\R^n \to \R^m$ has measure zero. One can give ``algebraic''
@@ -523,6 +523,10 @@ presentation is inspired by that in~\cite{TWT}.
 %% $F(\Xb,\Lambda)$, depending on parameters $\Lamdba$ in $\C^s$ is
 %% ``transverse'' to a certain submanifold in its domain space, then for
 %% most values $\lambda \in \C^s$, $F(\Xb,\lambda)$ remains
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Weak Transversality}
 
 Transversality to a point can be rephrased entirely in terms of
 critical and regular values. Recall that if $\bm \Psi$ is a mapping
@@ -730,24 +734,46 @@ equations). Finally, consider the projection
 \end{proof}
 
 
-\subsection{Genericity and Sard's lemma}
-%
-It will sometimes be useful for us use in replace of the matrix $A$, a matrix representing indeterminants: let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A \in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of \cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta \subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the critical values of a polynomial mapping are contained in a hypersurface. It follows from Sard's lemma that, for the matrix of indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise it could not be that $0$ is a regular value of $\Phi_A,$ for a generic $A\in \C^{n^2}.$ The proof is routine and we omit details. It then follows that 
+
+It will sometimes be useful for us use in replace of the matrix $A$, a
+matrix representing indeterminants: let $\A$ be an $n \times n$ matrix
+of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define
+$f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and
+$V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A
+\in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of
+\cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta
+\subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the
+critical values of a polynomial mapping are contained in a
+hypersurface. It follows from Sard's lemma that, for the matrix of
+indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise
+it could not be that $0$ is a regular value of $\Phi_A,$ for a generic
+$A\in \C^{n^2}.$ The proof is routine and we omit details. It then
+follows that
 \[
 \jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(\xb),\frac{\pa f^{\A}(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(\xb)}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this fact in Section 8.
-%
-\section{Proof of $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$}
-%
-We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of this set of polynomials has full rank at all $\xb \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem 16.19]{ECA} that $f$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. 
+has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies
+$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by
+the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this
+fact in Section 8.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Application: property $\textbf{H}_i(1)$}
+
+We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is
+squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition
+2.4, $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa
+  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of
+this set of polynomials has full rank at all $\xb \in V(f) \cap
+\mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem
+  16.19]{ECA} that $f$ satisfies
+$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 %
 \begin{theorem}
 There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $d^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \end{theorem}
-%
-\subsection{Sketch of the proof of Theorem 4.1}
-%
+
 For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
 \[
 \Phi_i : (\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
@@ -764,9 +790,8 @@ where we can bound the degree by observing that
 \[
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i.
 \]
-%
-\subsection{Proof of Theorem 4.1}
-%
+
+
 Fix $i \in \{1,\hdots,n\}$, and let $\Phi_i$ be as stated above.
 %
 \begin{proposition} 
@@ -831,26 +856,24 @@ where we have the following bound on the degree which proves the claim:
 \[
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
 \] 
-%
-%
-%
-%
-\section{Proof of $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$}
-%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Application: property $\textbf{H}'_i$}
+
 \begin{theorem}
-There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
+  There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of
+  degree at most $\td$ with the property that, if $A \in \C^{n^2} -
+  \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies
+  $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
 \end{theorem}
-%
-\subsection{Sketch of the proof of Theorem 5.1}
-%
+
 Let $p_{n-1} = (\alpha_1,\hdots,\alpha_{n-1}) \in \Q^{n-1}$ be a randomly chosen point. For $i \in \{1,\hdots,n\}$, we want to show that the Jacobian of the system of polynomials
 \[
 X_1(\xb)-\alpha_1,\hdots,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),  \frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n}
 \]
 has full rank, at all points $(\xb,A) \in \C^n \times \C^{n^2}$ in the zero set of this system. It would then follow from Theorem 5.1 that a hypersurface  exists with the desired properties. 
-%
-\subsection{Proof of Theorem 5.1}
-%
+
 Let $\Phi_i$ be the mapping 
 %
 \begin{align*}
@@ -865,16 +888,16 @@ $\bz$ is a regular value of $\Phi_i.$
 \end{proposition} 
 \begin{proof}
 For all $(\xb,A) \in \Phi_i^{-1}(0),$ the Jacobian matrix of $\Phi_i$ at $(\xb,A)$ has full rank $\td$. Indeed, the Jacobian is equal to
-\[
-\left[ 
-\begin{array}{cccccc}
-\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
-\frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
-\ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
-\frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
-\end{array}
-\right]. 
-\] 
+%% \[
+%% \left[ 
+%% \begin{array}{cccccc}
+%% \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
+%% \frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
+%% \ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
+%% \frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
+%% \end{array}
+%% \right]. 
+%% \] 
 Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
 \[
 T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
@@ -895,17 +918,32 @@ where we have the following bound on the degree which proves the claim:
 \[
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq D^{2n^2}.
 \] 
-%
-%
-%
-%
-\section{Proof of $\textbf{H}_i'(7)$}
-Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, to simplify notation, let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore, throughout this section, consider that $i \in \{1,\hdots,n\}$ is fixed. We will avoid writing $i$ where the context is clear. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Property ${\bf H}_i(2)$ -- Noether position}
+
+Throughout this section, we consider that $i \in \{1,\hdots,n\}$ is
+fixed. We prove that there exists a hypersurface $\D_{3,i} \subset
+\C^{n^2}$ such that if $\mA$ is not in $\D_{3,i}$, then $\mA$ is
+invertible and satisfies $\textbf{H}_i(1)$ and $\textbf{H}_i(2)$.
+
+
+Let $\A$ be an $n \times n$ matrix of new indeterminates
+$(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in
+\mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$
+Recall from Section 4.1.4 that $f^\A$ satisfies
+$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$
+, to simplify notation, let $\I^\A$ denote
+$\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore,
+throughout this section, We will avoid writing $i$ where the context is clear.
 %
 \subsection{Sketch of the proof}
 %
 Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfies \textbf{H}, so that $f$ is squarefree with $V(f)$ smooth. Recall $\textbf{H}_i^{'}(7):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
-%% >>>>>>> f9eb2445ca6e153d1e49c3d2767097d331dbcbee
+
 \[
 \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
 \]

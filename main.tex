@@ -1,31 +1,4 @@
-%%
-%% This is file `sample-xelatex.tex',
-%% generated with the docstrip utility.
-%%
-%% The original source files were:
-%%
-%% samples.dtx  (with options: `sigconf')
-%% 
-%% IMPORTANT NOTICE:
-%% 
-%% For the copyright see the source file.
-%% 
-%% Any modified versions of this file must be renamed
-%% with new filenames distinct from sample-xelatex.tex.
-%% 
-%% For distribution of the original source see the terms
-%% for copying and modification in the file samples.dtx.
-%% 
-%% This generated file may be distributed as long as the
-%% original source files, as listed above, are part of the
-%% same distribution. (The sources need not necessarily be
-%% in the same archive or directory.)
-%%
-%% The first command in your LaTeX source must be the \documentclass command.
 \documentclass[sigconf]{acmart}
-
-
-
 
 % test 
 \usepackage{mathrsfs}
@@ -49,6 +22,7 @@
 \def\C{\mathbb{C}}
 \def\vt{\vartheta}
 \def\Q{\mathbb{Q}}
+\def\ZZ{\mathbb{Z}}
 \def\R{\mathbb{R}}
 \def\rs{\mathscr{R}}
 \def\P{\mathscr{P}}
@@ -78,6 +52,7 @@
 \def\la{\langle}
 \def\ra{\rangle}
 % matrices 
+\def\scrQ{\ensuremath{\mathscr{Q}}}
 \def\bbm{\begin{bmatrix}}
 \def\ebm{\end{bmatrix}}
 %%
@@ -102,33 +77,9 @@
 \acmPrice{15.00}
 \acmISBN{978-1-4503-XXXX-X/18/06}
 
-
-%%
-%% Submission ID.
-%% Use this when submitting an article to a sponsored event. You'll
-%% receive a unique submission ID from the organizers
-%% of the event, and this ID should be used as the parameter to this command.
-%%\acmSubmissionID{123-A56-BU3}
-
-%%
-%% The majority of ACM publications use numbered citations and
-%% references.  The command \citestyle{authoryear} switches to the
-%% "author year" style.
-%%
-%% If you are preparing content for an event
-%% sponsored by ACM SIGGRAPH, you must use the "author year" style of
-%% citations and references.
-%% Uncommenting
-%% the next command will enable that style.
-%%\citestyle{acmauthoryear}
-
-%%
-%% end of the preamble, start of the body of the document source.
-
-
-
-%\usepackage[options ]{algorithm2e}
 \usepackage[ruled,vlined]{algorithm2e}
+\usepackage{chngcntr}
+\usepackage{titlesec}
 
 \begin{document}
 
@@ -159,7 +110,7 @@
 }
 \email{mwg@uwaterloo.ca}
 
-\author{Eric Schost}
+\author{\'Eric Schost}
 \affiliation{%
   \institution{Cheriton School of Computer Science}
   \city{University of Waterloo}
@@ -173,39 +124,29 @@
 %% of authors' names for this purpose.
 \renewcommand{\shortauthors}{Elliott, Giesbrecht, and Schost.}
 
-%%
-%% The abstract is a short summary of the work to be presented in the
-%% article.
 \begin{abstract}
-  We present a full analysis of an efficient algorithm for the
-  computation of at least one point in each connected component of a
-  smooth real hypersurface, taking into account bit complexity and
-  all coefficient growth.  This problem is a basic and important
-  subroutine used in semi-algebraic geometry. For instance, it is used
-  in determining an upper bound on the number of connected components
-  of a real hypersurface. The algorithm requires some genericity
-  properties, which we ensure through random changes of variables that
-  produce generic coordinate systems. In order to ensure these
-  properties with arbitrarily high probability, we developed a new
-  quantitative extension of Thom's weak transversality theorem, and a
-  new quantitative Noether normalization statement for polar
-  varieties. These statements enable us to give a precise probability
-  analysis of a monte carlo algorithm, where we can guarantee
-  correctness with arbitrarily high probability.
+  We present a full analysis of the bit complexity of an efficient
+  algorithm for the computation of at least one point in each
+  connected component of a smooth real hypersurface. This is a basic
+  and important operation in semi-algebraic geometry: it gives an
+  upper bound on the number of connected components of a real
+  hypersurface, and is also used in many higher level algorithms.
+  
+  Our starting point is an algorithm by Safey El Din and Schost ({\em
+    Polar varieties and computation of one point in each connected
+    component of a smooth real algebraic set}, ISSAC'03). This
+  algorithm uses random changes of variables, that are proved to
+  generically ensure certain desirable geometric properties. The
+  complexity of the algorithm was given in an algebraic complexity
+  model; the analysis of the bit complexity and the error probability
+  were left for future work.
 
-  Algorithms for deciding connectivity queries in real algebraic
-  geometry have been developed in a series of papers
-  \cite{a,b,c,d}. However, these algorithms are based in the
-  arithmetic complexity model, and analyses of the bit complexity
-  questions were left for future work.  Our results are an important
-  first step in this analysis.
-
+  Our paper answer these questions. Our main contribution is a
+  quantitative analysis of several genericity statements, such as
+  Thom's weak transversality theorem or Noether normalization
+  properties for polar varieties.
 \end{abstract}
 
-%%
-%% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
-%% Please copy and paste the code instead of the example below.
-%%
 \begin{CCSXML}
 <ccs2012>
  <concept>
@@ -231,64 +172,182 @@
 </ccs2012>
 \end{CCSXML}
 
-%\ccsdesc[500]{Computer systems organization~Embedded systems}
-%\ccsdesc[300]{Computer systems organization~Redundancy}
-%\ccsdesc{Computer systems organization~Robotics}
-%\ccsdesc[100]{Networks~Network reliability}
 
-%%
-%% Keywords. The author(s) should pick words that accurately describe
-%% the work being presented. Separate the keywords with commas.
-\keywords{Real algebraic geometry, transversality, Noether normalization, bit complexity}
-%% A "teaser" image appears between the author and affiliation
-%% information and the body of the document, and typically spans the
-%% page.
+\setcounter{secnumdepth}{4}
+\renewcommand{\theparagraph}{\thesubsection.\arabic{paragraph}}
+\counterwithin{paragraph}{subsection} % makes paragraph depend on subsection
+\titleformat{\paragraph}[runin]{\normalfont\normalsize\bfseries}{\theparagraph.}{1em}{}
+\titlespacing*{\paragraph}{0em}{1ex}{1em}
+\newcommand{\pref}[1]{{\bf\ref{#1}}}
 
+\keywords{Real algebraic geometry, transversality, Noether
+  normalization, bit complexity}
 
-%%
-%% This command processes the author and affiliation and title
-%% information and builds the first part of the formatted document.
 \maketitle
-%
-%
-%
-%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Introduction}
-%
-\subsection{Problem statement}
-%
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. We provide bit-complexity estimates for computing one point in each connected component of $V(f)\cap \R^n.$ Its boolean complexity is $\hdots$.
-%
-\subsection{Motivation}
-%
-\subsubsection{Applications}
-%
-Computing one point in each connected component of the real part of a hypersurface is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface, and it is used in determining whether or not a complex hypersurface has real solutions. 
-\subsubsection{Bit-complexity}
-Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{a,b,c,d}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions have been left for future work. As bit complexity provides a far more realistic model of computation compared to arithmetic complexity,  which only counts each operation at unit cost, our results therefore begin to fill an important missing gap in the research. 
-\subsubsection{Quantitative genericity statements}
-%
-\subsection{Main result}
-%
+
+\paragraph*{Background and problem statement.}
+Computing one point in each connected component of a real algebraic
+set $S$ is a basic subroutine in real alebraic and semi-algebraic
+geometry; it is also useful in its own right, since it allows one to
+decide if $S$ is empty or not. In this paper, we consider only the
+case where $S$ is given as $S=V \cap \R^n$, where $V=V(f) \subset
+\C^n$ is a complex hypersurface defined by a squarefree polynomial $f
+\in \ZZ[X_1,\dots,X_n]$.
+
+Algorithms for this task have been known for decades, and their
+complexity is to some extent well understood. Suppose that $f$ has
+degree $d$, and coefficients of bit-size $h$. Without making any
+assumption on $f$, the algorithm given
+in~\cite[Section~13.1]{BaPoRo03} solves our problem using $d^{O(n)}$
+operations in $\Q$; in addition, the output of the algorithm is
+represented by polynomials of degree $d^{O(n)}$, with coefficients of
+bit-size $hd^{O(n)}$.  The key idea behind this algorithm goes back
+to~\cite{GrVo88}: sample points are found through the computation of
+critical points of well-chosen functions on $V(f)$.
+
+The number of connected components of $V(f)$ admits the lower bound
+$d^{\Omega(n)}$, so up to polynomial factors, this result is
+optimal. However, due to the generality of the algorithm, the constant
+hidden in the exponent $O(n)$ in its runtime turns out to be rather
+large: the algorithm relies on infinitesimal deformations, that affect
+runtime non-trivially.
+
+In this paper, we will work under the additional assumption that
+$V=V(f)$ is a {\em smooth} complex hypersurface. We place ourselves in
+the continuation of the line of work initiated by~\cite{BaGiHeMb97}:
+that reference deals with cases where $V$ is smooth and $V \cap \R^n$
+is compact, pointing out how {\em polar varieties} (that were
+introduced in the 1930's in order to define characteristic
+classes~\cite{Piene78,Teissier88}) can play a role in effective real
+geometry. This paper was extended in several directions: to $V$ being
+a smooth complete intersection, still with $V\cap \R^n$
+compact~\cite{BaGiHeMb01}, then without the compactness
+assumption~\cite{EMP,BaGiHePa05}; the smoothness assumption was then partly
+dropped in~\cite{BaGiHe14,BaGiHeLePa12}.
+
+The starting point in our paper is the algorithm in~\cite{EMP}. In the
+hypersurface case, its runtime is $d^{(4+o(1))n}$ operations in $\Q$;
+as with many results in this line of work, the algorithm is
+randomized: the algorithm needs to assume that we are in generic
+coordinates; this is done by applying a random change of coordinates
+prior to all computations. In addition, it relies on algorithms for
+solving systems of polynomial equations that are themselves
+randomized.  Altogether, this procedure chooses $n^{O(1)}$ random
+vectors, each of them in an affine space of dimension $n^{O(1)}$;
+every time a choice is made, failure corresponds to our chosen vector
+lying in a hypersurface of the parameter space.
+
+This paper revisits the algorithm in~\cite{EMP} (in the hypersurface
+case) and gives a complete analysis of its probality of success and
+its bit complexity. 
+
+
+\paragraph*{Data structures.} As in references such
+as~\cite{GiHeMoPa95,GiHaHeMoMoPa97,GiHeMoMoPa98,BaGiHeMb97,EMP}, the
+input polynomial $f$ is given by means of a {\em straight-line
+  program}, that is, a sequence of operations $+,-,\times$ that
+evaluates $f$, on the input variables $X_1,\dots,X_n$; the {\em
+  length} of a straight-line program of such an objet is simply the
+number of operations it performs. Any polynomial of degree $d$ in $n$
+variables can be computed by a straight-line program of length $O\big
+({{d+n} \choose n}\big)$ (evaluate all monomials of degree up to $d$
+in $n$ variables, multiply them by their respective coefficients and
+sum the result). However, some inputs may be given by shorter
+straight-line program, and the algorithm is able to benefit from it.
+
+The output of the algorithm is a finite set in $\C^n$ defined over
+$\Q$. To represent it, we rely on a widely used data structure based
+on univariate
+polynomials~\cite{Kronecker82,Macaulay16,GiMo89,GiHeMoPa95,ABRW,GiHaHeMoMoPa97,GiHeMoMoPa98,Rouillier99}.
+Consider a zero-dimensional algebraic set $S \subset \C^n$ defined
+over $\Q$. A {\em zero-dimensional parametrization}
+$\scrQ=((q,v_1,\dots,v_n),\lambda)$ of $S$ consists in polynomials
+$(q,v_1,\dots,v_n)$, such that $q\in \Q[T]$ is monic and squarefree,
+all $v_i$'s are in $\Q[T]$ and satisfy $\deg(v_i) < \deg(q)$, and in a
+$\Q$-linear form $\lambda$ in variables $X_1,\dots,X_n$, such that
+\begin{itemize}
+\item $\lambda(v_1,\dots,v_N)=T q' \bmod q$, where $q'=\frac{\partial
+  q}{\partial T}$;
+\item we have the equality
+  $S=\left \{\left(
+      \frac{v_1(\tau)}{q'(\tau)},\dots,\frac{v_N(\tau)}{q'(\tau)}\right
+    ) \ \mid \ q(\tau)=0 \right \}.$
+\end{itemize}
+The constraint on $\lambda$ says that the roots of $q$ are the values
+taken by $\lambda$ on $S$. The parametrization of the coordinates by
+rational functions having $q'$ as a denominator goes back
+to~\cite{Kronecker82,Macaulay16}: as pointed out in~\cite{ABRW}, it
+allows one to control precisely the size of the coefficients of
+$v_1,\dots,v_n$.
+
+\paragraph*{Main result.} To state our main result, we need to define 
+the {\em height} of rationals, and polynomials with rational
+coefficients.
+
+The {\em height} of a non-zero rational $a=u/v$ is the maximum of
+$\ln(|u|)$ and $\ln(|v|),$ where $u \in \mathbb{Z}$ and $v \in
+\mathbb{N}$ are coprime. For a polynomial $f$ with rational
+coefficients, if $v \in \mathbb N$ is the minimal common denominator
+of all non-zero coefficients of $f$, then the \textit{height}
+$\htt(f)$ of $f$ is defined as the maximum of the logarithms of $v$
+and of the absolute values of the coefficients of $vf$.
+
+
 \begin{theorem}
-Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $\hdots$. Otherwise the algorithm either produces a subset of the critical points or FAIL. In any case, the algorithm uses 
-\[
-\hdots  
-\]
-boolean operations.
+  Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, of degree
+  at most $d$ and height at most $s$; assume that $f$ is given by a
+  straight-line program $\Gamma$ of size $L$ with integer constants of
+  height at most $b.$ There exists a randomized algorithm that takes
+  $\Gamma, d,$ and $s$ as input and produces a zero-dimensional
+  parameterization of a set that contains at least one point in each
+  connected component of $V(f) \cap \R^n$ with probability at least
+  $\hdots$. Otherwise the algorithm either produces a subset of the
+  critical points or FAIL. In any case, the algorithm uses
+  \[
+  \hdots  
+  \]
+  boolean operations.
 \end{theorem}
+
+The algorithm is Monte Carlo and can error on one side by producing a
+proper subset of the points. Running the algorithm $k$ times gives a
+list of outputs among which the highest cardinality set includes at
+least one point in each connected component with probability at least
+$\hdots.$
+
+
+
+%% Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree
+%% $d$, and such that $V(f)$ smooth. We provide bit-complexity estimates
+%% for computing one point in each connected component of $V(f)\cap
+%% \R^n.$ Its boolean complexity is $\hdots$.
+
+
+\subsubsection{Bit-complexity}
+
+Algorithms for deciding connectivity queries in real algebraic
+geometry have been developed in a series of papers
+\cite{a,b,c,d}. However, these algorithms are based in the arithmetic
+complexity model, and bit complexity questions have been left for
+future work. As bit complexity provides a far more realistic model of
+computation compared to arithmetic complexity, which only counts each
+operation at unit cost, our results therefore begin to fill an
+important missing gap in the research.
+
+
+
 %
-The algorithm is Monte Carlo and can error on one side by producing a proper subset of the points. Running the algorithm $k$ times gives a list of outputs among which the highest cardinality set includes at least one point in each connected component with probability at least $\hdots.$
 %
 %
-%
-%
-\section{Notation and preliminaries}
-%
-\subsection{Algebraic sets}
-%
+
 An \textit{algebraic set} $V \subset \C^n$ is the set of common zeros of a set of polynomials $\textit{\textbf{f}}=(f_1,\hdots,f_s)$ in $\C[X_1,\hdots,X_n].$
-\subsubsection{Dimension and degree}
+
 The \textit{dimension} of an algebraic set $V \subset \C^n$, denoted $\dim V,$ can be defined in the following ways:
 %
 \begin{enumerate}
@@ -307,20 +366,7 @@ An algebraic set of dimension zero is a finite set, with degree equal to its car
 An algebraic set of dimension 1 is a curve, with degree equal to the number of intersection points with a generic hyperplane.
 \end{example}
 %
-\subsection{Bit-size, height and degree}
 %
-For $r \leq n,$ $\textit{\textbf{X}}_{\leq r}$ denotes $[X_1,\hdots,X_r]$ and $\textit{\textbf{X}}$ denotes $[X_1,\hdots,X_n]$. 
-\par 
-For $a=\frac{u}{v}$ in $\mathbb{Q}-\{0\},$ the  \textit{height} of $a,$ $\htt(a),$ is the maximum of $\log(|u|)$ and $\log(|v|),$ where $u \in \mathbb{Z}$ and $v \in \mathbb{N}$ are coprime. If $v$ is the minimal common denominator of all non zero coefficients of $f$, then the \textit{height} of $f, \htt(f),$ is defined as the maximum of the logarithms of $v$ and of the absolute values of the coefficients of $vf$. 
-%
-\par
-We write $\htt(\textit{\textbf{f}})=(\htt(f_1),\hdots,\htt(f_N))$ and assume that $\htt(\textit{\textbf{f}}) \leq \textit{\textbf{s}} = (S_1,\hdots,s_N),$  with $\htt(f_i) \leq s_i$ for all $i \in \{ 1,\hdots,N\}.$
-%
-\subsection{Data structures}
-%
-\subsubsection{Strait-line programs}
-%
-\subsubsection{Zero-dimensional parameterizations}
 %
 \subsection{Critical / singular points}
 %
@@ -883,7 +929,7 @@ The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\math
 \begin{proof}
 Let $(\frak{P}_l)_{l \leq L}$ be the prime components of the radical ideal $\I^\A$. By \cite[Proposition 1]{EMP}, 
 \[
-\mathbb{Q}(\frak{A})[\textit{\textbf{X}}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textit{\textbf{X}}]/\fp_l^{\A}
+\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\Xb]/\fp_l^{\A}
 \] 
 is integral. Therefore polynomials $p_{l,j}\in\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ exist, monic in $T$, with $p_{l,j}(X_j)\in \frak{P}_l$ for each $j\in \{i,\hdots,n\}.$ Thence, 
 %
@@ -893,7 +939,7 @@ is integral. Therefore polynomials $p_{l,j}\in\mathbb{Q}(\frak{A})[\Xb_{\leq i-1
 %
 for each $j \in \{i,\hdots,n\},$ and therefore 
 \[
-\mathbb{Q}(\frak{A})[\textit{\textbf{X}}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textit{\textbf{X}}]/\I^{\A}
+\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\Xb]/\I^{\A}
 \] 
 is integral.
 \end{proof}
@@ -918,7 +964,7 @@ for each $j \in \{i,\hdots,n\},$ and therefore the extension
 \]
 is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A_{i,j}]$. Put 
 \[
-\overline{P_{j}} := d_jP_{j}\in \Q[\A][\textit{\textbf{X}}],
+\overline{P_{j}} := d_jP_{j}\in \Q[\A][\Xb],
 \]
 and note that $\pjb(X_j) \in \I^{\A}$ with 
 \[
@@ -977,7 +1023,7 @@ and
 For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, there exists $\alpha_j \in \mathbb{Q}[\A]\setminus\{0\}$ with 
 %
 \begin{align*}
-\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},T)g_l + B_j(\A,\textit{\textbf{X}},T)(1-\pjb T), \\ g_l \in 
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,T)g_l + B_j(\A,\Xb,T)(1-\pjb T), \\ g_l \in 
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
 \right\},~ A_{j,l},B_j \in \mathbb{Q}[\A][\Xb][T],
@@ -996,20 +1042,20 @@ and with the degree of $\alpha_j$ upper bounded by
 %
 Now we will show that $\alpha_j$ is the only remaining denominator whose degree we need to bound. Substitute $T \leftarrow 1/\pjb$ so that 
 \[
-\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l + 0
+\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,1/\pjb)g_l + 0
 \]
 and
 %
 \begin{align*}
-A_{j,l}(\A,\textit{\textbf{X}},1/\pjb) 
+A_{j,l}(\A,\Xb,1/\pjb) 
 &= \sum_{i=1}^{n_l} A_{j,l,i}(\A,\Xb,1/\pjb)\\
-&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_i}}\right)\At_{j,l,i}(\A,\textit{\textbf{X}}), ~k_i \in \mathbb{Z}.
+&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_i}}\right)\At_{j,l,i}(\A,\Xb), ~k_i \in \mathbb{Z}.
 \end{align*}
 %
 Let $K := \max\{k_l\}$ so that 
 %
 \begin{align*}
-    \pjb^K \alpha_j &= \pjb^K\left(\sum_{l=1}^{n-i+1} A_{j,l}(\A,\textit{\textbf{X}},1/\pjb)g_l\right)\\
+    \pjb^K \alpha_j &= \pjb^K\left(\sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,1/\pjb)g_l\right)\\
     &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{K-k_{i}}\right)\At_{j,l,i}(\A,\Xb) \right)g_l \in \Q[\A][\Xb].
 \end{align*}
 %

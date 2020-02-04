@@ -78,6 +78,8 @@
 \def\pa{\partial}
 \def\D{\Delta}
 \def\Z{\frak{Z}}
+\newcommand{\ZZ}{{\mathbb{Z}}}
+\newcommand{\softO}{{O^{\sim}}}
 \def\I{\frak{I}}
 \def\Is{\frak{I}^{\star}}
 \def\A{\frak{A}}
@@ -263,15 +265,32 @@
 %
 \subsection{Problem statement}
 %
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. We provide bit-complexity estimates for computing one point in each connected component of $V(f)\cap \R^n.$ Its boolean complexity is $\hdots$.
+Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. We provide bit-complexity estimates for computing one point in each connected component of $V(f)\cap \R^n.$ Its bit complexity is $\hdots$.
 %
 \subsection{Motivation}
 %
 \subsubsection{Applications}
 %
 Computing one point in each connected component of the real part of a hypersurface is a basic and important subroutine used in semi-algebraic geometry. For instance, it is used in determining an upper bound on the number of connected components of a real hypersurface, and it is used in determining whether or not a complex hypersurface has real solutions. 
+
 \subsubsection{Bit-complexity}
-Algorithms for deciding connectivity queries in real algebraic geometry have been developed in a series of papers \cite{EMP,SchostMohabBabySteps2011,SchostMohabBabySteps2014,TWT}. However, these algorithms are based in the arithmetic complexity model, and bit complexity questions have been left for future work. As bit complexity provides a far more realistic model of computation compared to arithmetic complexity,  which only counts each operation at unit cost, our results therefore begin to fill an important missing gap in the research. 
+Algorithms for deciding connectivity queries in real algebraic geometry
+have been developed in a series of papers
+\cite{EMP,SchostMohabBabySteps2011,SchostMohabBabySteps2014,TWT}. However,
+these algorithms are based in the arithmetic complexity model, and bit
+complexity questions have been left for future work. As bit complexity
+provides a far more realistic model of computation compared to arithmetic
+complexity,  which only counts each operation at unit cost and does not
+account for coefficient size, our results therefore address an important
+missing aspect of previous research.
+
+Note that by the bit complexity we mean to count the number of all machine
+operations require on a standard computer in terms of the length of a
+standard representation (accounting for coefficient size, etc.).  In
+particular, we assume that an integer $a\in\ZZ$ is represented with
+$O(\log|a|)$ bits, and operations on integers with $\ell$ bits require
+$\softO(\ell)$ bit operations.
+
 \subsubsection{Quantitative genericity statements}
 %
 \subsection{Main result}
@@ -281,7 +300,7 @@ Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D,
 \[
 O^{\sim}(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
 \]
-boolean operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
+bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
 \[
 O^{\sim}((s+D)D^n + nD^n).
 \]
@@ -1044,7 +1063,7 @@ Recall Theorem 1.1: \textit{Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree a
 \[
 O^{\sim}(nk(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
 \]
-boolean operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
+bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
 \[
 O^{\sim}((s+D)D^n + nD^n).
 \]
@@ -1078,7 +1097,7 @@ $\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\
 %
 \subsection{Proof of Theorem 1.1}
 %
-\textbf{The boolean cost:} The following lists the costs for each step of Algorithm 1:
+\textbf{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 %
 \begin{enumerate}
     \item By our assumption on the size of $S$ we know that $|S| = \log (\epsilon^{-1}D^{\td}) \leq \td.$ Thus for $a_{ij} \in S$ we know that $|a_{ij}| \leq \td.$
@@ -1095,7 +1114,8 @@ $\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\
     \end{enumerate}
     \item After computing the partial derivatives the height grows by at most another factor of $\log D$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
     \item 
-    After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the following upper bound on the total boolean cost of the algorithm:
+    After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the
+    following upper bound on the total number of bit operations required by the algorithm:
     \[
     O^\sim(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4))),
     \]

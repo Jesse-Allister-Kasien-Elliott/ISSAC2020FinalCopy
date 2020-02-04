@@ -15,6 +15,8 @@
 \def\Lambdab{\bm{\Lambda}}
 \def\Thetab{\bm{\Theta}}
 \def\thetab{\bm{\vartheta}}
+\def\mA{{\bm A}}
+\def\fA{{\frak A}}
 \def\xb{\textit{\textbf{x}}}
 \def\fb{\textit{\textbf{f}}}
 \def\ab{\textit{\textbf{a}}}
@@ -29,12 +31,13 @@
 \def\vt{\vartheta}
 \def\Q{\mathbb{Q}}
 \def\R{\mathbb{R}}
+\def\K{\mathbb{K}}
 \def\rs{\mathscr{R}}
 \def\P{\mathscr{P}}
 \def\d{\delta}
 \def\sing{ \textrm{sing}}
 \def\codim{ \textrm{codim}}
-\def\jac{ \textrm{jac}}
+\def\jac{ \textbf{jac}}
 \def\exp{\textrm{exp}}
 \def\grad{\textrm{grad}}
 \def\rank{\textrm{rank}}
@@ -304,7 +307,7 @@ of all non-zero coefficients of $f$, then the \textit{height}
 $\htt(f)$ of $f$ is defined as the maximum of the logarithms of $v$
 and of the absolute values of the coefficients of $vf$.
 
-\begin{theorem}
+\begin{theorem}\label{theo:main}
   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
   $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
   smooth.  Assume also that $f$ is given by a straight-line program
@@ -333,12 +336,12 @@ V) < i\}\] is the set of critical points of $\pi_i$ on $V$.  It is
 thus defined by the vanishing of \[f,\frac{\pa f}{\pa
   X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.\]
 
-In general, we cannot say much about the geometric properties of
-$W(\pi_i,V)$, but if we apply a generic change of coordinates $\bm A$,
+In general, we cannot say much about the geometry of
+$W(\pi_i,V)$, but if we apply a generic change of coordinates $\mA$,
 $W(\pi_i,V)$ is then known to be equidimensional of dimension $(i-1)$
 or empty~\cite{BaGiHeMb97}, and to be in so-called {\em Noether
   position}~\cite{EMP} (background notions in algebraic geometry are
-in~\cite{Mumford76,Shafarevich77,Eisenbud96}; we will recall key
+in~\cite{Mumford76,Shafarevich77,ECA}; we will recall key
 definitions). If this is case, it suffices to choose arbitrary
 $\alpha_1,\dots,\alpha_{n-1}$ in $\Q$, and solve the systems defined
 by
@@ -351,7 +354,7 @@ Theorem~2 in~\cite{EMP} proves that the union of their solution sets
 contains one point on each connected component of $V \cap \R^n$.
 
 Our main contribution is to analyse precisely what conditions on our
-change of coordinates $\bm A$ guarantee success. This is done by
+change of coordinates $\mA$ guarantee success. This is done by
 revisiting the key ingredients in the proofs given
 in~\cite{BaGiHeMb97} and~\cite{EMP} and giving quantitative versions
 of these results, bounding the degree of the hypersurfaces we have to
@@ -360,7 +363,7 @@ in~\cite{SH}, for which a complete bit complexity analysis is
 available.
 
 This work should be seen as a first step toward the analysis of
-randomized algorithms in real algebraic geometry. An immediate
+further randomized algorithms in real algebraic geometry. An immediate
 follow-up question would be to handle the case of algebraic sets
 defined by {\em regular sequences}: the algorithm in~\cite{EMP} still
 applies, but the modifications needed would take us to far for the
@@ -411,73 +414,110 @@ revisited using the techniques introduced here.
 %% \begin{proposition}
 %% If $V \subset \C^n$ is a $d$-equidimensional algebraic set with ideal $I(V)=\langle f_1,\hdots,f_N \rangle$, then at any point $\textbf{x}$ of $\reg(V),$ $\jac_\textbf{x}(\textbf{f})$ has full rank $n - \dim(V)$ and the kernel of $\jac_\textbf{x}(\textbf{f})$ is equal to $T_\textbf{x}V.$ 
 %% \end{proposition}
-%% %
-%% \subsection{Polar varieties}
-%% %
-%% %
-%% \subsection{Changes of variables}
-%
-Consider $A \in \C^{n^2}, f \in \C[X_1,\hdots,X_n], \xb \in \mathbb{C}^n,$ and $V \subset \C^n$. We denote by 
-$V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ denotes $A^{-1}\xb$. Notice $f^A(\xb^A) = f(A A^{-1}\xb)=f(\xb).$
-%
-%
-%
-%
-%
-%
-%
-%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Genericity properties}
-%
-Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ with total degree $D$.  
-We say that $f$ satisfies $\textbf{H}$ if 
-%
+
+Consider $f \in \ZZ[X_1,\hdots,X_n]$ with total degree $d$, and assume
+that $f$ is squarefree and that $V(f) \subset \C^n$ is smooth. The key
+to the proof of Theorem~\ref{theo:main} is the following quantitative
+version of facts we stated above, namely that in generic coordinates,
+polar varieties are smooth, equidimensional, and in Noether position.
+
+We recall that an equidimensional algebraic set $X \subset \C^n$ of
+dimension $d$ is in \textit{Noether position} for the projection
+$\pi_d$ when the extension $\C[X_1,\hdots,X_d] \rightarrow
+\C[X_1,\hdots,X_n]/I(X)$ is injective and integral; here, $I(X)
+\subset \C[X_1,\dots,X_n]$ is the defining ideal of $X$. In this case,
+for any $\xb \in \C^d,$ the fiber $X \cap \pi_d^{-1}(\xb)$ has
+dimension zero (so it is finite and not empty).
+
+For $i$ in $\{1,\dots,n-1\}$ and $f$ as above, we will let $\I(i, f)$
+denote the sequence of $n-(i-1)$ polynomials $(f, {\pa f}/{\pa
+  X_{i+1}},\dots,{\pa f}/{\pa X_n})$. As we pointed out in the
+introduction, their zero-set is the $i$th polar variety $W(\pi,V(f))$.
+Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \begin{enumerate}
-    \item $f$ is squarefree;
-    \item $V(f)$ is smooth.
+\item For any $\xb$ in $W(\pi,V(f))$, the Jacobian matrix
+  $\jac(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
+
+  {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
+  implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional.}
+
+\smallskip
+
+\item $W(\pi_i,V(f))$ is either empty or in Noether position for
+  $\pi_{i-1}$.
 \end{enumerate}
-%
-An equidimensional algebraic set $X$ of dimension $d$ is in \textit{Noether position} for $\pi_d$ when the extension 
-\[
-\C[X_1,\hdots,X_d] \rightarrow \C[X_1,\hdots,X_n]/I(V)
-\] 
-is injective and integral.  Then, for any $\xb \in \C^d,$ the fiber 
-$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, and for a randomly chosen point $p_{i-1} = (x_1,\hdots,x_{i-1}) \in \Q^{i-1}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
-%
+When this holds, given $\bm \alpha = (\alpha_1,\hdots,\alpha_{i-1})$
+in $\C^{i-1}$, we further say that $f$ and $\bm \alpha$ satisfy
+$\textbf{H}'_i$ if
 \begin{enumerate}
-\item $\I(\pi_i,V)$ is radical;
-\item either $W(\pi_i,V)$ is empty or $(i-1)$-equidimensional;
-\item $W(\pi_i,V)$ is smooth;
-\item $\langle X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
-\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is finite;
-\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
-\item either $W(\pi_i,V)$ is empty or in Noether position for $\pi_{i-1}$.
+\item the $n$ equations
+  $(X_1-\alpha_1,\dots,X_{i-1}-\alpha_{i-1}),\I(i, f))$ generate a
+  radical ideal.
+
+  {\em By point (2) above, we know that there are finitely many solutions 
+    to these equations.}
 \end{enumerate}
-%
+
+Even if $f$ does not satisfy $\textbf{H}_i$, we mentioned that it does
+after applying a change of variables. The precise statement is the
+following; to state it, we use the following notation. For a matrix
+$\mA$ in $\C^{n^2}$ and $g$ in $\C[X_1,\hdots,X_n]$ we write
+$g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
+
+%% , $\xb \in
+%% \mathbb{C}^n$ and $X \subset \C^n$. We write $\xb^\mA:=\mA^{-1}\xb$,
+%% $X^\mA:=\{x^\mA~|~\xb \in V\}$ and $g^\mA:=g(\mA \Xb) \in
+%% \C[X_1,\dots,X_n]$. In particular, we have $g^\mA(\xb^\mA) =g(\xb)$,
+%% and $V(f)^\mA=V(f^\mA)$.
+
 \begin{theorem}
-Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+  There exists a hypersurface $\D \subset \mathbb{C}^{n^2}$ of degree
+  at most $\td$ such that, if $\mA$ is chosen from $\C^{n^2}-\Delta$
+  then $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for
+  all $i \in \{1,\hdots,n-1\}.$
 \end{theorem}
-%
-\begin{corollary} 
-Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
-\end{corollary}
-%
-%
-%
-%
+%% %
+%% \begin{corollary} 
+%%   Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1}
+%%   D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen
+%%   randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i
+%%   \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
+%% \end{corollary}
+
+We will also work with change of variables with ``generic entries''.
+For this, we will introduce $n^2$ new indeterminates $(\frak
+A_{i,j})_{1\le i,j \le n^2}$, we will let $\K$ be the field $\C(\frak
+A_{i,j})_{1\le i,j \le n^2})$, and use the corresponding matrix $ \fA$
+over $\K$. For $g$ as above, we will then define the polynomial 
+$g^\fA:=g(\fA \Xb) \in \K[X_1,\dots,X_n]$.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Weak Transversality}
 
 Sard's lemma states that the set of critical values of a smooth
 function $\R^n \to \R^m$ has measure zero. One can give ``algebraic''
 versions of it, for semi-algebraic mappings $\R^n \to \R^m$ as
 in~\cite[Chapter~9]{bochnak1998real} or polynomial mappings $\C^n \to
-\C^m$ as in~\cite[Chapter~3]{Mumford76}, for which the sets of critical
-values are contained in strict semi-algebraic, resp.\ algebraic sets
-in the codomain. Thom's weak transversality lemma, as given for
-instance in~\cite{demazure2000bifurcations}, generalizes Sard's
-lemma. In this section, we consider a particular case of this result
-(transversality to a point), and establish a quantitative version of
-it. Our presentation is inspired by that in~\cite{TWT}.
+\C^m$ as in~\cite[Chapter~3]{Mumford76}, for which the sets of
+critical values are contained in strict semi-algebraic,
+resp.\ algebraic sets in the codomain. Thom's weak transversality
+lemma, as given for instance in~\cite{demazure2000bifurcations},
+generalizes Sard's lemma. In this section, we consider a particular
+case of this result (transversality to a point), and establish a
+quantitative version of it; this will allow us to establish the first
+item in property ${\bf H}_i$, as well as property ${\bf H}'_i$. Our
+presentation is inspired by that in~\cite{TWT}.
 
 %% ; it states that if a smooth function
 %% $F(\Xb,\Lambda)$, depending on parameters $\Lamdba$ in $\C^s$ is

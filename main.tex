@@ -429,28 +429,28 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 %
 \section{Genericity properties}
 %
-Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ with total degree $D$.  
+Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ with total degree $d$.  
 We say that $f$ satisfies $\textbf{H}$ if 
 %
 \begin{enumerate}
     \item $f$ is squarefree;
-    \item $V(f)$ is smooth.
+    \item $V(f) \cap \R^n$ is smooth.
 \end{enumerate}
 %
-An equidimensional algebraic set $X$ of dimension $d$ is in \textit{Noether position} for $\pi_d$ when the extension 
+An equidimensional algebraic set $X$ of dimension $r$ is in \textit{Noether position} for $\pi_r$ when the extension 
 \[
-\C[X_1,\hdots,X_d] \rightarrow \C[X_1,\hdots,X_n]/I(V)
+\C[X_1,\hdots,X_r] \rightarrow \C[X_1,\hdots,X_n]/I(V)
 \] 
-is injective and integral.  Then, for any $\xb \in \C^d,$ the fiber 
-$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, and for a randomly chosen point $p_{i-1} = (x_1,\hdots,x_{i-1}) \in \Q^{i-1}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
+is injective and integral.  Then, for any $\xb \in \C^r,$ the fiber 
+$V \cap \pi_r^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, and for a randomly chosen point $p_{i-1} = (\alpha_1,\hdots,\alpha_{i-1}) \in \Q^{i-1}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
 %
 \begin{enumerate}
 \item $\I(\pi_i,V)$ is radical;
 \item either $W(\pi_i,V)$ is empty or $(i-1)$-equidimensional;
 \item $W(\pi_i,V)$ is smooth;
-\item $\langle X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
-\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is finite;
-\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
+\item $\langle X_1-\alpha_1,\hdots,X_{i-1}-\alpha_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
+\item $V(X_1-\alpha_1,\hdots,X_{i-1}-\alpha_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is finite;
+\item $V(X_1-\alpha_1,\hdots,X_{i-1}-\alpha_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
 \item either $W(\pi_i,V)$ is empty or in Noether position for $\pi_{i-1}$.
 \end{enumerate}
 %
@@ -703,10 +703,10 @@ has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H
 We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of this set of polynomials has full rank at all $\xb \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem 16.19]{ECA} that $f$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. 
 %
 \begin{theorem}
-There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $D^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $d^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \end{theorem}
 %
-\subsection{Sketch of the proof of Theorem 5.1}
+\subsection{Sketch of the proof of Theorem 4.1}
 %
 For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
 \[
@@ -725,7 +725,7 @@ where we can bound the degree by observing that
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i.
 \]
 %
-\subsection{Proof of Theorem 5.1}
+\subsection{Proof of Theorem 4.1}
 %
 Fix $i \in \{1,\hdots,n\}$, and let $\Phi_i$ be as stated above.
 %
@@ -778,6 +778,70 @@ T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
 Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
 \end{proof}
 %
+Since $\deg \Phi_i \leq d,$ it follows by Theorem 5.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $d^{n+(n-i+1)}=d^{2n-i+1}\leq d^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
+%
+\[
+ \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+\]
+has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?), so that  $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
+\[
+\Delta_1 := \bigcup_{i=1}^n \Xi_i,
+\]
+where we have the following bound on the degree which proves the claim:
+\[
+\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
+\] 
+%
+%
+%
+%
+\section{Proof of $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$}
+%
+\begin{theorem}
+There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
+\end{theorem}
+%
+\subsection{Sketch of the proof of Theorem 5.1}
+%
+Let $p_{n-1} = (x_1,\hdots,x_{n-1}) \in \Q^{n-1}$ be a randomly chosen point. For $i \in \{1,\hdots,n\}$, we want to show that the Jacobian of the system of polynomials
+\[
+X_1(\xb)-x_1,\hdots,X_{i-1}(\xb)-x_{i-1}, f(\xb),  \frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n}
+\]
+has full rank, at all points $(\xb,A) \in \C^n \times \C^{n^2}$ in the zero set of this system. It would then follow from Theorem 5.1 that a hypersurface  exists with the desired properties. 
+%
+\subsection{Proof of Theorem 5.1}
+%
+Let $\Phi_i$ be the mapping 
+%
+\begin{align*}
+    \Phi_i: \C^n \times \C^{i-1} &\rightarrow \C^{n} \\
+           (\xb,\alpha_1,\hdots,\alpha_{i-1}) &\mapsto 
+       (X_1(\xb)-\alpha_1,\hdots \\
+       \hdots &,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),\frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n} ).
+\end{align*}
+%
+\begin{proposition}
+$\bz$ is a regular value of $\Phi_i.$
+\end{proposition} 
+\begin{proof}
+For all $(\xb,A) \in \Phi_i^{-1}(0),$ the Jacobian matrix of $\Phi_i$ at $(\xb,A)$ has full rank $\td$. Indeed, the Jacobian is equal to
+\[
+\left[ 
+\begin{array}{cccccc}
+\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
+\frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
+\ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
+\frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
+\end{array}
+\right]. 
+\] 
+Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
+\[
+T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
+\]
+Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
+\end{proof}
+%
 Since $\deg \Phi_i \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $D^{n+(n-i+1)}=D^{2n-i+1}\leq D^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
 %
 \[
@@ -791,58 +855,6 @@ where we have the following bound on the degree which proves the claim:
 \[
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq D^{2n^2}.
 \] 
-%
-%
-%
-%
-\section{Proof of $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$}
-%
-\begin{theorem}
-There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $D^{\textrm{?}}$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
-\end{theorem}
-%
-\subsection{Sketch of the proof of Theorem 6.1}
-%
-Let 
-\[
-Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
-\]
-where $b_i$ is the i-th row of $A^{-1}$. For $i \in \{1,\hdots,n\}$, we want to show that the Jacobian of the system of polynomials
-\[
-Y_1(\xb),\hdots,Y_{i-1}(\xb), f(\xb),  \frac{\pa f(A\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(A\xb)}{\pa X_n}
-\]
-has full rank, at all points $\xb \in \C^n$ with 
-\[
-X_1(\xb)=\hdots,X_{i-1}(\xb)=f(\xb)= \frac{\pa f(xb)}{\pa X_{i+1}}=\hdots = \frac{\pa f(\xb)}{\pa X_{n}}=0.
-\]
-Then we could use Theorem 5.1 to obtain a hypersurface with the desired properties. Let $\Phi$ be the mapping 
-%
-\begin{align*}
-    \Phi: \C^n \times \C^{n^2} &\rightarrow \C^{n+1} \\
-           (\xb,A) &\mapsto 
-       (Y_1,\hdots,Y_i,f(\xb),\grad(f(\xb))\cdot A_{i+1},\hdots \\
-       \hdots&~,\grad(f(\xb))\cdot A_{n})),
-\end{align*}
-%
-We cannot directly define the appropriate polynomial mapping, as $Y_j(A\xb)$ is rational in $A^{-1}.$ To circumvent this issue, we can alternativly define a polynomial mapping $\Psi$ as  
-%
-\begin{align*}
-    \Psi: \C^n \times \C^{n^2} \times \C &\rightarrow \C^{n+2} \\
-           (\xb,A,T) &\mapsto 
-       (\Yt_1,\hdots,\Yt_i,f(\xb),\grad(f(\xb))\cdot A_{i+1},\hdots \\
-\hdots,\grad(f(\xb))\cdot A_{n}),&~T\cdot \det (A) - 1),
-\end{align*}
-%
-where $\Yt_j=TY_j$ with denominators cleared. Now, look at the points in $\Psi^{-1}(0).$ Here, $\det A \not = 0$ and therefore invertible, and therefore at all points in $\Psi^{-1}(0)$ the Jacobian matrix has full rank? 
-%
-\begin{proposition}
-For all $(\xb,A) \in \Psi^{-1}(0),$ the Jacobian matrix of $\Psi$ at $(\xb,A)$ has full rank (i.e. $\Psi$ is transverse to $\{0\}).$
-\end{proposition}
-%
-\begin{proof}
-\end{proof}
-%
-Thus, by Theorem 5.1, there exists a hypersurface $\Delta_2 \subset \C^{n^2}$, of degree at most $D^{n+1}$ with the property that if $A \in \C^{n^2}-\Delta_2$ then $\jac_{\xb}\Psi_A$ has full rank. $\hdots$ It then follows that for all $A \in \C^{n^2}-\Delta_2, \jac_{\xb}\Phi_A$ also has full rank. Therefore, by the Jacobian criterion, $f^A$ satisfies  $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$. 
 %
 %
 %
@@ -1058,11 +1070,11 @@ A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
 \]
 then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
 \[
-\Delta = \prod_{i=1}^3 \D_i,
+\Delta = \bigcup_{i=1}^3 \D_i,
 \]
 and note that 
 \[
-\deg \D \leq  \prod_{i=1}^3 \deg \D_i.
+\deg \D \leq  \sum_{i=1}^3 \deg \D_i.
 \]
 \end{proof}
 %
@@ -1079,15 +1091,24 @@ Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D
 %
 \section{Bit complexity}
 %
-Recall Theorem 1.1: \textit{Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the algorithm either produces a subset of the points or FAIL. In any case, the algorithm uses 
-\[
-O^{\sim}(nk(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
-\]
-bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
-\[
-O^{\sim}((s+D)D^n + nD^n).
-\]
-}
+Recall Theorem 1.1: Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
+  $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
+  smooth.  Assume also that $f$ is given by a straight-line program
+  $\Gamma$ of size $L$ with integer constants of height at most $b.$
+
+  There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
+  as input and produces a zero-dimensional parameterization of a set
+  that contains at least one point in each connected component of
+  $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the
+  algorithm either produces a subset of the points or FAIL. In any
+  case, the algorithm uses
+  \[
+  O^{\sim}(k(Lb+d^{2n}(s+d)(L+d)))
+  \]
+  bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in
+  the output have degree at most $d^n,$ and height $
+  O^{\sim}((s+d)d^n).$
+  
 Recall as well that the algorithm can error on one side by producing a proper subset of the points. Running the algorithm $\kt$ times gives a list of $n$ zero-dimensional parameterizations, among which the highest cardinality output includes at least one point in each connected component with probability at least $1-(1/2)^{\kt}.$
 %
 \subsection{The Algorithm}
@@ -1099,16 +1120,16 @@ Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm,
 where $b_i$ is the i-th row of $A^{-1}$.
 %
 \begin{algorithm}[hbt!]
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \epsilon^{-1}D^{\td}$, where $\epsilon < 5/21$\;
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \epsilon^{-1}d^{\td}$, where $\epsilon < 5/21$\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
 \nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
+\nl Randomly choose a point $p_{n-1}=(\alpha_1,\hdots,\alpha_{n-1}) \in \Q^{n-1}~(p_0$?)\; 
 \nl \For{$i\gets1$ \KwTo $n$}{
-\nl Randomly choose a point $p_{i-1}=(x_1,\hdots,x_{i-1}) \in \Q^{i-1}~(p_0$?)\; 
 \nl Run \cite[Algorithm 2]{SH} $k > -\lg(1-2^{(-1/n)})$ times with input 
-$\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } D$\;
+$\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
 \nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
@@ -1127,21 +1148,22 @@ $\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\
         \item After applying the change of variables obtaining $f(A x)=f^A(x)$ the height grows at most by a factor of
         \begin{align*}
         \log(n!\cdot \max_{\frac{1\leq i\leq n}{1\leq j\leq n}}\{a_{ij}\}) &= 
-        O(n\log n + n\log(D+1)) \\
+        O(n\log n + n\log(d+1)) \\
         &= 
-        O^\sim(\log(D+1)).
+        O^\sim(\log(d+1)).
         \end{align*}
     \end{enumerate}
-    \item After computing the partial derivatives the height grows by at most another factor of $\log D$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
+    \item After computing the partial derivatives the height grows by at most another factor of $\log d$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
+    \item $\td$
     \item 
     After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the
     following upper bound on the total number of bit operations required by the algorithm:
     \[
-    O^\sim(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4))),
+    O^\sim(kn(Lb+d^{2n}(s+d)(L+d))),
     \]
-    where it also follows from \cite[Algorithm 2]{SH} that the polynomials in the output have degree at most $D^n,$ and height at most
+    where it also follows from \cite[Algorithm 2]{SH} that the polynomials in the output have degree at most $d^n,$ and height at most
     \[
-    O^{\sim}((s+D)D^n + nD^n).
+    O^{\sim}((s+d)d^n).
     \]
 \end{enumerate}
 %

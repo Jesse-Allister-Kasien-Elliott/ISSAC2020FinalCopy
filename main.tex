@@ -1,11 +1,23 @@
 \documentclass[sigconf]{acmart}
 
+<<<<<<< HEAD
 % test 
+=======
+
+
+
+% packages 
+%\usepackage[options ]{algorithm2e}
+\usepackage[ruled,vlined]{algorithm2e}
+%\usepackage{algorithm,algpseudocode,float}
+>>>>>>> 569e7e796fa2a3e4ff9a3c8297bc5cd95caad92d
 \usepackage{mathrsfs}
 \usepackage{bm}
+\usepackage{enumitem}
 % new commands and shortcuts
 \def\td{{\bf todo}}
 \def\bs{\textit{\textbf{s}}}
+\def\bz{\textit{\textbf{0}}}
 \def\Lb{\textit{\textbf{L}}}
 \def\Xb{\textit{\textbf{X}}}
 \def\Lambdab{\bm{\Lambda}}
@@ -14,12 +26,14 @@
 \def\xb{\textit{\textbf{x}}}
 \def\fb{\textit{\textbf{f}}}
 \def\ab{\textit{\textbf{a}}}
+\def\pb{\textit{\textbf{p}}}
 \def\ajb{\overline{a_j}}
 \def\bjb{\overline{b_{j,l}}}
 \def\pjb{\overline{P_{j}}}
 \DeclareMathOperator{\GL}{GL}
 \DeclareMathOperator{\htt}{ht}
 \def\C{\mathbb{C}}
+\def\pr{\mathbb{P}}
 \def\vt{\vartheta}
 \def\Q{\mathbb{Q}}
 \def\ZZ{\mathbb{Z}}
@@ -37,6 +51,7 @@
 \def\jt{\widetilde{J}}
 \def\At{\widetilde{A}}
 \def\Yt{\widetilde{Y}}
+\def\kt{\widetilde{k}}
 \def\dt{s}
 %% \def\dt{\widetilde{d}}
 \def\Dt{\widetilde{D}}
@@ -44,6 +59,8 @@
 \def\pa{\partial}
 \def\D{\Delta}
 \def\Z{\frak{Z}}
+\newcommand{\ZZ}{{\mathbb{Z}}}
+\newcommand{\softO}{{O^{\sim}}}
 \def\I{\frak{I}}
 \def\Is{\frak{I}^{\star}}
 \def\A{\frak{A}}
@@ -76,6 +93,7 @@
 \acmBooktitle{ Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation,  July 20--23, 2020,  Kalamata, Messinia, Greece}
 \acmPrice{15.00}
 \acmISBN{978-1-4503-XXXX-X/18/06}
+
 
 \usepackage[ruled,vlined]{algorithm2e}
 \usepackage{chngcntr}
@@ -191,6 +209,7 @@
 
 \section{Introduction}
 
+
 \paragraph*{Background and problem statement.}
 Computing one point in each connected component of a real algebraic
 set $S$ is a basic subroutine in real alebraic and semi-algebraic
@@ -300,20 +319,39 @@ and of the absolute values of the coefficients of $vf$.
 
 
 \begin{theorem}
-  Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, of degree
-  at most $d$ and height at most $s$; assume that $f$ is given by a
-  straight-line program $\Gamma$ of size $L$ with integer constants of
-  height at most $b.$ There exists a randomized algorithm that takes
-  $\Gamma, d,$ and $s$ as input and produces a zero-dimensional
-  parameterization of a set that contains at least one point in each
-  connected component of $V(f) \cap \R^n$ with probability at least
-  $\hdots$. Otherwise the algorithm either produces a subset of the
-  critical points or FAIL. In any case, the algorithm uses
-  \[
-  \hdots  
-  \]
-  boolean operations.
+Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree and satisfies $\deg
+f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a
+straight-line program $\Gamma$ of size $L$ with integer constants of
+height at most $b.$ There exists a randomized algorithm that takes
+$\Gamma, d,$ and $s$ as input and produces a zero-dimensional
+parameterization of a set that contains at least one point in each
+connected component of $V(f) \cap \R^n$ with probability at least
+$1/2$. Otherwise the algorithm either produces a subset of the points
+or FAIL. In any case, the algorithm uses
+\[
+O^{\sim}(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
+\]
+bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
+\[
+O^{\sim}((s+D)D^n + nD^n).
+\]
 \end{theorem}
+
+Algorithms for deciding connectivity queries in real algebraic geometry
+have been developed in a series of papers
+\cite{EMP,SchostMohabBabySteps2011,SchostMohabBabySteps2014,TWT}. However,
+these algorithms are based in the arithmetic complexity model, and bit
+complexity questions have been left for future work. As bit complexity
+provides a far more realistic model of computation compared to arithmetic
+complexity,  which only counts each operation at unit cost and does not
+account for coefficient size, our results therefore address an important
+missing aspect of previous research.
+
+Note that by the bit complexity we mean to count the number of all machine
+operations require on a standard computer in terms of the length of a
+standard representation (accounting for coefficient size, etc.). See below
+for formal definitions.
+
 
 The algorithm is Monte Carlo and can error on one side by producing a
 proper subset of the points. Running the algorithm $k$ times gives a
@@ -322,29 +360,6 @@ least one point in each connected component with probability at least
 $\hdots.$
 
 
-
-%% Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree
-%% $d$, and such that $V(f)$ smooth. We provide bit-complexity estimates
-%% for computing one point in each connected component of $V(f)\cap
-%% \R^n.$ Its boolean complexity is $\hdots$.
-
-
-\subsubsection{Bit-complexity}
-
-Algorithms for deciding connectivity queries in real algebraic
-geometry have been developed in a series of papers
-\cite{a,b,c,d}. However, these algorithms are based in the arithmetic
-complexity model, and bit complexity questions have been left for
-future work. As bit complexity provides a far more realistic model of
-computation compared to arithmetic complexity, which only counts each
-operation at unit cost, our results therefore begin to fill an
-important missing gap in the research.
-
-
-
-%
-%
-%
 
 An \textit{algebraic set} $V \subset \C^n$ is the set of common zeros of a set of polynomials $\textit{\textbf{f}}=(f_1,\hdots,f_s)$ in $\C[X_1,\hdots,X_n].$
 
@@ -412,32 +427,13 @@ $V^A$ the set $\{x^A~|~\xb \in V\}, f^A$ the polynomial $f(A \xb)$ and $\xb^A$ d
 %
 %
 %
-\section{The Main Algorithm}
-%
-\begin{algorithm}
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
-\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq $?\;
-\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{AD} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
-    \caption{{Main Algorithm} \label{}}
-\nl \For{$i\gets1$ \KwTo $n$}{
-Apply the symbolic homotopy algorithm from \cite{SH} with input $\{X_1,\hdots,X_i,f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$ and $D$ to obtain a zero dimensional parameterization of $W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$.;
-} 
-\nl \Return $\cup_{i=1}^n W(\pi_i,V^A) \cap \pi_{i-1}^{-1}(0)$;
-\end{algorithm}
 %
 %
 %
 %
 \section{Genericity properties}
 %
-Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ squarefree with total degree $D$ and $V(f)$ smooth. We say that $V$ is in \textit{Noether position} for $\pi_D$ when the extension 
-\[
-\C[X_1,\hdots,X_D] \rightarrow \C[X_1,\hdots,X_n]/I(V)
-\] 
-is injective and integral.  Then, for any $\xb \in \C^D,$ the fiber 
-$V \cap \pi_D^{-1}(\xb)$ has dimension zero. 
+Consider $f \in \mathbb{Q}[X_1,\hdots,X_n]$ with total degree $D$.  
 We say that $f$ satisfies $\textbf{H}$ if 
 %
 \begin{enumerate}
@@ -445,24 +441,29 @@ We say that $f$ satisfies $\textbf{H}$ if
     \item $V(f)$ is smooth.
 \end{enumerate}
 %
-For $i\in\{1,\hdots,n\}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
+An equidimensional algebraic set $X$ of dimension $d$ is in \textit{Noether position} for $\pi_d$ when the extension 
+\[
+\C[X_1,\hdots,X_d] \rightarrow \C[X_1,\hdots,X_n]/I(V)
+\] 
+is injective and integral.  Then, for any $\xb \in \C^d,$ the fiber 
+$V \cap \pi_d^{-1}(\xb)$ has dimension zero. For $i\in\{1,\hdots,n\}$, and for a randomly chosen point $p_{i-1} = (x_1,\hdots,x_{i-1}) \in \Q^{i-1}$, we say that $f$ satisfies $\textbf{H}_i^{'}$ if 
 %
 \begin{enumerate}
 \item $\I(\pi_i,V)$ is radical;
 \item either $W(\pi_i,V)$ is empty or $(i-1)$-equidimensional;
 \item $W(\pi_i,V)$ is smooth;
-\item $\langle X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
-\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ has dimension $0$;
-\item $V(X_1,\hdots,X_i, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
+\item $\langle X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\rangle $ is radical; 
+\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is finite;
+\item $V(X_1-x_1,\hdots,X_{i-1}-x_{i-1}, f,  \frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n})$ is smooth;
 \item either $W(\pi_i,V)$ is empty or in Noether position for $\pi_{i-1}$.
 \end{enumerate}
 %
 \begin{theorem}
-Suppose that $f$ satisfies \textbf{H}. Then there exists a Zariski closed set $\frak{X} \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{?}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\frak{X}$ then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
 \end{theorem}
 %
 \begin{corollary} 
-Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{?}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
+Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
 \end{corollary}
 %
 %
@@ -695,130 +696,75 @@ equations). Finally, consider the projection
 
 \subsection{Genericity and Sard's lemma}
 %
-It will sometimes be useful for us to let the matrix $A$ represent new
-indeterminates: let $\A$ be an $n \times n$ matrix of new
-indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in
-\mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and
-$V^\A=V(f^\A).$ It follows from Proposition 4.2 that for a generic $A
-\in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of
-\cite[Theorem B.3]{NO}, which shows the existence of $\Delta \subset
-\C^{n^2},$ applies \textit{Sard's lemma}, which shows that the
-critical values of a polynomial mapping are contained in a
-hypersurface. It follows from Sard's lemma that for the matrix of
-indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise
-it could not be that $0$ is a regular value of $\Phi_A,$ for a generic
-$A\in \C^{n^2}.$ Therefore,
+It will sometimes be useful for us use in replace of the matrix $A$, a matrix representing indeterminants: let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A \in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of \cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta \subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the critical values of a polynomial mapping are contained in a hypersurface. It follows from Sard's lemma that, for the matrix of indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise it could not be that $0$ is a regular value of $\Phi_A,$ for a generic $A\in \C^{n^2}.$ The proof is routine and we omit details. It then follows that 
 \[
-\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(x),\frac{\pa f^{\A}(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(x)}{\pa X_n}\right)
+\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(\xb),\frac{\pa f^{\A}(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(\xb)}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$. We will rely on this fact in Section 5. 
+has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this fact in Section 8.
 %
 \section{Proof of $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$}
 %
-We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of \[\fb := \left(f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right).\]
-If the Jacobian of $\fb$ has full rank at all $x \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion [4, Theorem 16.19] that $f$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$. 
+We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition 2.4,  $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of this set of polynomials has full rank at all $\xb \in V(f) \cap \mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem 16.19]{ECA} that $f$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. 
 %
 \begin{theorem}
-There exists a Zariski closed set $\Delta \subset \C^{n^2}$ of degree at most $D^n$ with the property that, if $A \in \C^{n^2} - \Delta$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$.
+There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $D^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
 \end{theorem}
 %
-\subsection{Sketch of the proof of Theorem 6.1}
+\subsection{Sketch of the proof of Theorem 5.1}
 %
-We will let $\Phi$ be the mapping 
+For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
 \[
-(\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
+\Phi_i : (\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
 \] 
-so that 
+so that $\Phi_{i,A}^{-1}(0)= W(\pi_i,V^A).$ We want to apply Theorem 5.1, and thus we show that $\bz$ is a regular value of $\Phi_i$, where then it follows that $\Xi_i \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Xi_i$ then  
 \[
-\Phi_A^{-1}(0)= W(\pi_i,V^A).
+\jac_{\xb}(\Phi_{i,A}) = \jac_{\xb}\left(f^A(\xb),\frac{\pa f^A(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(\xb)}{\pa X_n}\right)
 \]
-Then we show that $0$ is a regular value of $\Phi$, so that, by Proposition 4.2, $\Delta \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Delta$ then $0$ is a regular value of $\Phi_A.$ It then follows that 
+has full rank at all $\xb \in V(f^A)~(\cap\R^n$?). Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. To obtain the result for all $i \in \{1,\hdots,n\}$, we take 
 \[
-\jac_{\xb}(\Phi_A) = \jac_{\xb}\left(f^A(x),\frac{\pa f^A(x)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(x)}{\pa X_n}\right)
+\Delta_1 = \bigcup_{i=1}^n \Xi_i 
 \]
-has full rank for all $\xb \in V(f^A)$. Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$.
-\subsection{Proof of Theorem 6.1}
-Now, with $i \in \{1,\hdots,n\}$, let $\Phi$ be the mapping \[(\xb,A) \mapsto (f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,
-\frac{\partial f^A}{\partial X_n}(\xb))\] so that 
+where we can bound the degree by observing that 
 \[
-\Phi^{-1}(0)= W(\pi_i,V^A).
+\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i.
 \]
+%
+\subsection{Proof of Theorem 5.1}
+%
+Fix $i \in \{1,\hdots,n\}$, and let $\Phi_i$ be as stated above.
 %
 \begin{proposition} 
-0 is a regular value of $\Phi$.
+$\bz$ is a regular value of $\Phi_i$.
 \end{proposition}
 %
 \begin{proof}
-Put
+Let $A_1,\hdots,A_n$ denote the columns of $A,$ and let $(\xb,A) \in \C^n \times \C^{n^2}$ be such that 
+$f^A(\xb) = \frac{\partial f^A(\xb)}{\partial X_{i+1}}=\hdots= \frac{\partial f^A(\xb)}{\partial X_n}=\bz.$
+We want to show that the Jacobian of the system of polynomials 
 \[
-G_0 = f(Ax), 
-G_1 = \frac{\partial (f(Ax))}{\partial X_{i+1}},\hdots,G_{n-i} = \frac{\partial (f(Ax))}{\partial X_n},
-\] 
-and assume that $G_0(\xb,A)=G_1(\xb,A)=\hdots =G_{n-i}(\xb,A)=0.$ We can simplify by removing $Ax$ from the system because  
-\[
-(f(Ax),(\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm)(Ax),\hdots, 
-(\grad(f)\cdot 
-\bbm 
-a_{n,1} \\
-\vdots \\
-a_{n,n} 
-\ebm)(Ax)
-\] 
-defines a radical ideal of dimension ? whose variety is smooth if and only if 
-\[
-(f,\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm),\hdots, 
-\grad(f)\cdot 
-\bbm 
-a_{n1} \\
-\vdots \\
-a_{nn} 
-\ebm)
+f(A\xb),(\grad(f)\cdot A_{i+1})(A\xb),\hdots, (\grad(f)\cdot A_n)(A\xb)
 \]
-defines a radical ideal of dimension ? whose variety is smooth. Now, let $g$ be the following:
+at $(\xb,A)$ has full rank, which holds if and only if the Jacobian of the system of polynomials 
+\[
+f,\grad(f)\cdot A_{i+1},\hdots, \grad(f)\cdot A_n
+\]
+at $(\xb,A)$ has full rank. Let $\Psi_i$ be the mapping
 %
 \begin{align*}
-    g: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
+    \Psi_i: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
        (\xb,A) &\mapsto 
        \left(f(\xb),\grad(f(\xb))\cdot 
-A_{i+1},\hdots, 
+A_{i+1},\hdots
 \grad(f(\xb))\cdot 
 A_{n}
-\right)
+\right).
 \end{align*}
 %
-I claim that for all $(\xb,A) \in g^{-1}(0),$ the Jacobian matrix of $g$ at $(\xb,A)$ has full rank $n-i+1$ (i.e. $g$ is transverse to $\{0\}).$ The Jacobian of 
-%
-\begin{align*}
-       & \left(f,\grad(f)\cdot 
-\bbm 
-a_{i+1,1} \\
-\vdots \\
-a_{i+1,n} 
-\ebm,\hdots, 
-\grad(f)\cdot 
-\bbm 
-a_{n,1} \\
-\vdots \\
-a_{n,n} 
-\ebm\right) \\
-&= \left(f, \frac{\pa f}{\pa X_1} a_{i+1,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+1,n}, \hdots, \frac{\pa f}{\pa X_1} a_{n,1} + \hdots + \frac{\pa f}{\pa X_n}a_{n,n}\right) \\
-&= (f,F_{1},\hdots,F_{n-i}),  
-\end{align*} 
-%
-where 
+For all $(\xb,A) \in \Psi_i^{-1}(0),$ the Jacobian matrix of $\Psi_i$ at $(\xb,A)$ has full rank $n-i+1$. Indeed, set 
 \[
-F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, 1 \leq j \leq n-i,\]
-is
+F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, ~1 \leq j \leq n-i,
+\]
+so that the Jacobian is equal to
 \[
 \left[ 
 \begin{array}{cccccc}
@@ -829,19 +775,26 @@ is
 \end{array}
 \right]. 
 \] 
-Since $f$ is square-free, \[I(V(f)) = \langle f \rangle,\]  and thus for all $\xb \in V(f)$, 
+Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
 \[
 T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
 \]
-Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i$ rows, the matrix has full rank $n-i$.
+Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
 \end{proof}
 %
-Since $\deg \Phi \leq D,$ it follows by Theorem 4.2 that a hypersurface $\Delta \subset \C^{n^2}$ exists, of degree at most $D^n,$ with the property that, if $A \in \C^{n^2}-\Delta,$ then $0$ is a regular value of $\Phi_{A}$, which means that 
+Since $\deg \Phi_i \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $D^{n+(n-i+1)}=D^{2n-i+1}\leq D^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
+%
 \[
-\jac_\textit{\textbf{x}} \Phi_A 
-= \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+ \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+\]
+has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?), so that  $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
+\[
+\Delta_1 := \bigcup_{i=1}^n \Xi_i,
+\]
+where we have the following bound on the degree which proves the claim:
+\[
+\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq D^{2n^2}.
 \] 
-has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2)$ and $\textbf{H}_i'(3)$, for each $i \in \{1,\hdots,n\}.$
 %
 %
 %
@@ -852,7 +805,7 @@ has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?). Therefore, by the Jacobia
 There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of degree at most $D^{\textrm{?}}$ with the property that, if $A \in \C^{n^2} - \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
 \end{theorem}
 %
-\subsection{Sketch of the proof of Theorem 7.1}
+\subsection{Sketch of the proof of Theorem 6.1}
 %
 Let 
 \[
@@ -899,12 +852,6 @@ Thus, by Theorem 5.1, there exists a hypersurface $\Delta_2 \subset \C^{n^2}$, o
 %
 %
 \section{Proof of $\textbf{H}_i'(7)$}
-%
-%% <<<<<<< HEAD
-%% Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i'(1),\textbf{H}_i'(2),$ and $\textbf{H}_i'(3).$ Throughout this section, for simplicity let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ To increase readability and simplify notation, we often do not specify $i$, as it is fixed.   
-%% \subsection{Sketch of the proof}
-%% Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ be squarefree with total degree $D$ and $V(f)$ smooth. For $i \in \{1,\hdots,n\}$, recall $\textbf{H}_i'(4):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
-%% =======
 Let $\A$ be an $n \times n$ matrix of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$ Recall from Section 4.1.4 that $f^\A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Throughout this section, to simplify notation, let $\I^\A$ denote $\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore, throughout this section, consider that $i \in \{1,\hdots,n\}$ is fixed. We will avoid writing $i$ where the context is clear. 
 %
 \subsection{Sketch of the proof}
@@ -917,10 +864,10 @@ Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfi
 injective and  integral.
 %
 \begin{theorem}
-There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $D^{?}$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
+There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
 \end{theorem}
 %
-Section 8 is devoted to proving Theorem 8.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
+Section 7 is devoted to proving Theorem 7.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}(7)$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
 %
 \begin{proposition} 
 The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
@@ -944,7 +891,7 @@ for each $j \in \{i,\hdots,n\},$ and therefore
 is integral.
 \end{proof}
 %
-Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 8.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
+Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 7.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
  we can write
 \[
 P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
@@ -952,9 +899,13 @@ P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial 
 For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
 then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
 \[
-\Xi_i := V(h_i,\hdots,h_n), 
+\Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
 \]
-and we obtain a bound on the degree of $\Xi_i$ by applying Bezout's theorem. Hence, if $A\in \Q^{n^2}-\Xi_i$ then
+and we obtain a bound on the degree of $\Xi_i$ by observing that
+\[
+\deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
+\]
+Hence, if $A\in \Q^{n^2}-\Xi_i$ then
 \[
 P_j(X_j) \in \I^A,  
 \]
@@ -1071,53 +1022,151 @@ Therefore
     &=D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
-\subsection{Proof of Theorem 8.1}
+\subsection{Proof of Theorem 7.1}
 %
-We can apply B\'ezout and obtain
+Now we obtain
 %
 \begin{align*}
-    \deg \Xi_i = \deg V(h_i,\hdots,h_n)
-    &\leq \prod_{j=i}^n \deg h_j\\
-    &\leq  \prod_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
-    &=  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n-i+1}\\
-    &\leq  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n}.
+    \deg \Xi_i 
+    &\leq \sum_{j=i}^n \deg h_j\\
+    &\leq  \sum_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
+    &=  (n-i+1)\left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
+    &\leq  n D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
 \end{align*}
 %
-And therefore, by another application of B\'ezout, 
+And therefore,  
 %
 \begin{align*}
-    \deg& \Delta_3 \leq \prod_{i=1}^n \deg \Xi_i\\
-    &\leq \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n^2},
-    &(=D^{O(n^3 \log n)}\textrm{?})
+    \deg& \Delta_3 \leq \sum_{i=1}^n \deg \Xi_i\\
+    &\leq n^2 D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
 \end{align*}
 %
 where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 
 \[
 \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
 \]
-%% <<<<<<< HEAD
-%% is integral, and thus $V(\I^A)=W^\A$ is in Noether position for $\pi_{i-1}.$ Therefore, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(4)$.
-%% =======
+
 is integral.
-%% >>>>>>> f9eb2445ca6e153d1e49c3d2767097d331dbcbee
 %
 %
 %
 %
 \section{Proof of Theorem 3.1}
 %
-Assume that $f\in \Q[X_1,\hdots,X_n]$ satisfies $\textbf{H}.$
+Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
+%
+\begin{proof}
+Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
+\[
+A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
+\]
+then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
+\[
+\Delta = \prod_{i=1}^3 \D_i,
+\]
+and note that 
+\[
+\deg \D \leq  \prod_{i=1}^3 \deg \D_i.
+\]
+\end{proof}
+%
+Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
+%
+\begin{proof}
+\[
+Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
+\]
+\end{proof}
 %
 %
 %
 %
-\section{Proof of Theorem 1.1}
+\section{Bit complexity}
 %
+Recall Theorem 1.1: \textit{Suppose that $f\in\Q[X_1\hdots,X_n]$ is squarefree and satisfies $\deg f \leq D, \htt(f) \leq s,$ and assume that $f$ is given by a straight-line program $\Gamma$ of size $L$ with integer constants of height at most $b.$ There exists a randomized algorithm that takes $\Gamma, d,$ and $s$ as input and produces a zero-dimensional parameterization of a set that contains at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the algorithm either produces a subset of the points or FAIL. In any case, the algorithm uses 
+\[
+O^{\sim}(nk(Lb+D^{2n}(s+D)(L+n^3D+n^4)))
+\]
+bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in the output have degree at most $D^n,$ and height at most
+\[
+O^{\sim}((s+D)D^n + nD^n).
+\]
+}
+Recall as well that the algorithm can error on one side by producing a proper subset of the points. Running the algorithm $\kt$ times gives a list of $n$ zero-dimensional parameterizations, among which the highest cardinality output includes at least one point in each connected component with probability at least $1-(1/2)^{\kt}.$
 %
-
-
-
-
+\subsection{The Algorithm}
+%
+For a matrix $A \in \GL(n,\Q),$ let 
+\[
+Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
+\]
+where $b_i$ is the i-th row of $A^{-1}$.
+%
+\begin{algorithm}[hbt!]
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $D=\deg(f)$}
+\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \epsilon^{-1}D^{\td}$, where $\epsilon < 5/21$\;
+\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
+\nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
+    \caption{{Main Algorithm} \label{}}
+\nl \For{$i\gets1$ \KwTo $n$}{
+\nl Randomly choose a point $p_{i-1}=(x_1,\hdots,x_{i-1}) \in \Q^{i-1}~(p_0$?)\; 
+\nl Run \cite[Algorithm 2]{SH} $k > -\lg(1-2^{(-1/n)})$ times with input 
+$\{Y_1-x_1,\hdots,Y_{i-1}-x_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } D$\;
+\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
+} 
+\nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
+\end{algorithm}
+ \clearpage
+%
+\subsection{Proof of Theorem 1.1}
+%
+\textbf{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
+%
+\begin{enumerate}
+    \item By our assumption on the size of $S$ we know that $|S| = \log (\epsilon^{-1}D^{\td}) \leq \td.$ Thus for $a_{ij} \in S$ we know that $|a_{ij}| \leq \td.$
+    \item 
+    \begin{enumerate}[label=\roman*.]
+        \item $O(L)$ operations are required to compute $f$ from its straight line program $\Gamma.$
+        \item After applying the change of variables obtaining $f(A x)=f^A(x)$ the height grows at most by a factor of
+        \begin{align*}
+        \log(n!\cdot \max_{\frac{1\leq i\leq n}{1\leq j\leq n}}\{a_{ij}\}) &= 
+        O(n\log n + n\log(D+1)) \\
+        &= 
+        O^\sim(\log(D+1)).
+        \end{align*}
+    \end{enumerate}
+    \item After computing the partial derivatives the height grows by at most another factor of $\log D$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
+    \item 
+    After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the
+    following upper bound on the total number of bit operations required by the algorithm:
+    \[
+    O^\sim(kn(Lb+D^{2n}(s+D)(L+n^3D+n^4))),
+    \]
+    where it also follows from \cite[Algorithm 2]{SH} that the polynomials in the output have degree at most $D^n,$ and height at most
+    \[
+    O^{\sim}((s+D)D^n + nD^n).
+    \]
+\end{enumerate}
+%
+\par \noindent 
+\textbf{Probability of success:} Note that when $\epsilon < 5/21$ (as stated in step 1 of Algorithm 1), then
+\[
+\pr[A \not \in \D] = 1-\epsilon > \frac{16}{21},
+\]
+so that after a single run of \cite[Algorithm 2]{SH}, the probability of success (ensuring all genericity properties and obtaining all points) is at least 
+\[
+\left( \frac{16}{21} \right) \left( \frac{21}{32} \right) = \frac{1}{2}.
+\]
+Thus, running \cite[Algorithm 2]{SH} $k$ times gives a list of outputs among which the highest cardinality set includes all points with probability at least $1-(1/2)^k$. We repeat this $n$ times to obtain $n$ zero-dimensional parameterizations. Thus, the probability that we have every point in each parameterization is $(1-(1/2)^k)^n$. We want 
+\[
+(1-(1/2)^k)^n>\frac{1}{2},
+\]
+which holds if and only if 
+\[
+k > -\lg(1-2^{(-1/n)}),
+\]
+thus proving Theorem 1.1. We can boost our success probability by running the main algorithm $\kt$ times, so that we obtain parameterizations whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$ with probability at least $1 - (1/2)^{\kt}$. 
 %%
 %% The next two lines define the bibliography style to be used, and
 %% the bibliography file.

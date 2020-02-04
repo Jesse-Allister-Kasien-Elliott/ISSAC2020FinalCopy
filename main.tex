@@ -818,10 +818,10 @@ Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfi
 injective and  integral.
 %
 \begin{theorem}
-There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $D^{?}$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
+There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
 \end{theorem}
 %
-Section 8 is devoted to proving Theorem 8.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
+Section 7 is devoted to proving Theorem 7.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}(7)$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
 %
 \begin{proposition} 
 The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
@@ -845,7 +845,7 @@ for each $j \in \{i,\hdots,n\},$ and therefore
 is integral.
 \end{proof}
 %
-Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 8.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
+Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 7.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
  we can write
 \[
 P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
@@ -853,9 +853,13 @@ P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial 
 For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
 then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
 \[
-\Xi_i := V(h_i,\hdots,h_n), 
+\Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
 \]
-and we obtain a bound on the degree of $\Xi_i$ by applying Bezout's theorem. Hence, if $A\in \Q^{n^2}-\Xi_i$ then
+and we obtain a bound on the degree of $\Xi_i$ by observing that
+\[
+\deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
+\]
+Hence, if $A\in \Q^{n^2}-\Xi_i$ then
 \[
 P_j(X_j) \in \I^A,  
 \]
@@ -974,22 +978,21 @@ Therefore
 %
 \subsection{Proof of Theorem 7.1}
 %
-We can apply B\'ezout and obtain
+Now we obtain
 %
 \begin{align*}
-    \deg \Xi_i = \deg V(h_i,\hdots,h_n)
-    &\leq \prod_{j=i}^n \deg h_j\\
-    &\leq  \prod_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
-    &=  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n-i+1}\\
-    &\leq  \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n}.
+    \deg \Xi_i 
+    &\leq \sum_{j=i}^n \deg h_j\\
+    &\leq  \sum_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
+    &=  (n-i+1)\left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
+    &\leq  n D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
 \end{align*}
 %
-And therefore, by another application of B\'ezout, 
+And therefore,  
 %
 \begin{align*}
-    \deg& \Delta_3 \leq \prod_{i=1}^n \deg \Xi_i\\
-    &\leq \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)^{n^2},
-    &(=D^{O(n^3 \log n)}\textrm{?})
+    \deg& \Delta_3 \leq \sum_{i=1}^n \deg \Xi_i\\
+    &\leq n^2 D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
 \end{align*}
 %
 where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 

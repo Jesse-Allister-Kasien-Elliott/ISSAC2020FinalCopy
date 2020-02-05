@@ -45,6 +45,7 @@
 \def\jt{\widetilde{J}}
 \def\At{\widetilde{A}}
 \def\Yt{\widetilde{Y}}
+\def\dtt{\widetilde{d}}
 \def\kt{\widetilde{k}}
 \def\dt{s}
 \def\bI{\textbf{I}}
@@ -492,6 +493,7 @@ $g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
 %%   \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
 %% \end{corollary}
 
+
 It will on occasion be useful to work with change of variables with
 ``generic'' entries. For this, we will introduce $n^2$ new indeterminates
 $(\frak A_{j,k})_{1\le j,k \le n^2}$, we will let $\K$ be the field
@@ -734,6 +736,14 @@ equations). Finally, consider the projection
   $\mu$ yields the result.
 \end{proof}
 
+%% <<<<<<< HEAD
+%% =======
+%% Recall that we work with changes of variables with ``generic entries'' of new indeterminants $(\frak
+%% A_{i,j})_{1\le i,j \le n^2}$, and define the polynomial 
+%% $f^\fA:=f(\fA \Xb)$. Note that $f^\A$ satisfies $\textbf{H}_i(1).$ Indeed, otherwise it could not be that that the Jacobian of $f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$ has full rank at all $\xb \in V(f^A)$ for a generic $A \in \C^{n^2},$ which would contradict Popositon 3.1. The proof of this statement is routine and we omit details. We will rely on this
+%% fact in Section 8.
+
+%% >>>>>>> 3c8b7c51e8e3a65e188ffd3ac7465da21bedb71e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Application: property $\textbf{H}_i(1)$}\label{ssec:Hi1}
@@ -896,6 +906,7 @@ $f^\A$ satisfies $\textbf{H}_i(1)$, so that $\I^\A$ defines a
 radical ideal, and $W^\A$ is equidimensional of dimension $i-1$. We
 now point out that $f^\A$ also satisfies $\textbf{H}_i(2)$.
 
+
 \begin{lemma} 
  The extension $\C(\A)[X_1,\dots,X_{i-1}]\rightarrow
  \C(\A)[X_1,\dots,X_n]/\I^{\A}$ is integral.
@@ -968,6 +979,7 @@ $\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
 \end{proof}
 
 
+
 Our next step is to give degree bounds on the coefficients appearing
 in the membership equality $\pjb \in\I^\A$. This is done using
 Rabinovicz's trick. Let $T$ be a new variable; applying the
@@ -981,6 +993,61 @@ $\C[\A][X_1,\dots,X_n][T]$, such that
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
 \right\}.
 \end{align*}
+
+%% =======
+%% %
+%% Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 4.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
+%%  we can write
+%% \[
+%% P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
+%% \]
+%% For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $\mA \in \Gamma_j$,
+%% then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $\mA \in \C^{n^2}-V(h_j)$ then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
+%% \[
+%% \Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
+%% \]
+%% and we obtain a bound on the degree of $\Xi_i$ by observing that
+%% \[
+%% \deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
+%% \]
+%% Hence, if $\mA\in \Q^{n^2}-\Xi_i$ then
+%% \[
+%% P_j(X_j) \in \I^A,  
+%% \]
+%% for each $j \in \{i,\hdots,n\},$ and therefore the extension 
+%% \[
+%% \mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{\mA})
+%% \]
+%% is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A]$. Put 
+%% \[
+%% \overline{P_{j}} := d_jP_{j}\in \Q[\A][\Xb],
+%% \]
+%% and note that $\pjb(X_j) \in \I^{\A}$ with 
+%% \[
+%% \pjb(X_j) = \ajb f^{\A} + \sum_{l=1}^{n-i}\bjb \frac{\partial f^\A}{\partial X_{i+l}}, ~\ajb,\bjb \in \mathbb{Q}[\A][\textbf{X}].
+%% \]
+%% %
+%% \begin{proposition} 
+%% $\deg \pjb\leq (d+1)^{n-i+1}.$ 
+%% \end{proposition} 
+%% %
+%% \begin{proof}
+%% \textbf{Eric and Mark}: I am unsure of how to do this part correctly, so I will assume 
+%% \[
+%% \deg \pjb\leq \Dt_j.
+%% \]
+%% Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I^{\A}$ in  $\Q[\A,\Xb],$ and consider the finite field extension
+%% %
+%% \begin{align*}
+%%     \Q(\A,\Xb_{i-1}) &\rightarrow \Q(\A,\Xb_{i-1})[X_i,\hdots,X_n]/\Is.
+%% \end{align*}
+%% %
+%% The minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is \textbf{almost}(?) equal to $\pjb$ (the leading coefficient of $\pjb$ is $d_j$). It therefore follows by \cite[Proposition 1]{CGR} that
+%% %
+%% \begin{align*}
+%% &\deg \pjb \leq (d+1)^{n-i+1}.&(2d)^{n-i+1}\textrm{?} 
+%% >>>>>>> 3c8b7c51e8e3a65e188ffd3ac7465da21bedb71e
+%% \end{align*}
 
 
 
@@ -1038,13 +1105,13 @@ polynomials in the membership relationship. We have
 \[
 \deg_{\Xb}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\}\leq D,
+\right\}\leq d,
 \]
 \[
 \deg_{\A}  
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\} \leq D,
+\right\} \leq d,
 \]
 \[
 \deg_{\Xb,T}(1-T\pjb) \leq \Dt_j +1 
@@ -1058,12 +1125,12 @@ For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN},
 and with the degree of $\alpha_j$ upper bounded by
 %
 \begin{align*}
-    &\left(\prod_{k=1}^{n-i+1} D\right)\Dt_j 
-    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}D \right)D\\
-    = &\left(D^{n-i+1}\right)\Dt_j+
-    (n-i+1)\left(\Dt_j+1\right)\left(D^{n-i+1} \right)\\
-    &\leq D^{n}\Dt_j + n\left(\Dt_j+1\right)D^{n}\\
-    &=D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
+    &\left(\prod_{k=1}^{n-i+1} d\right)\Dt_j 
+    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}d \right)d\\
+    = &\left(d^{n-i+1}\right)\Dt_j+
+    (n-i+1)\left(\Dt_j+1\right)\left(d^{n-i+1} \right)\\
+    &\leq d^{n}\Dt_j + n\left(\Dt_j+1\right)d^{n}\\
+    &=d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
 Now we will show that $\alpha_j$ is the only remaining denominator whose degree we need to bound. Substitute $T \leftarrow 1/\pjb$ so that 
@@ -1093,8 +1160,8 @@ Therefore
 %
 \begin{align*}
 \deg h_j &\leq \left(\deg \alpha_j\right)\left(\deg d_j\right)\\
-    &\leq \left(D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
-    &=D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
+    &\leq \left(d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
+    &=d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
 \subsection{Proof of Theorem 7.1}
@@ -1104,16 +1171,16 @@ Now we obtain
 \begin{align*}
     \deg \Xi_i 
     &\leq \sum_{j=i}^n \deg h_j\\
-    &\leq  \sum_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
-    &=  (n-i+1)\left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
-    &\leq  n D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
+    &\leq  \sum_{j=i}^n \left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
+    &=  (n-i+1)\left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
+    &\leq  n d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
 \end{align*}
 %
 And therefore,  
 %
 \begin{align*}
     \deg& \Delta_3 \leq \sum_{i=1}^n \deg \Xi_i\\
-    &\leq n^2 D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
+    &\leq n^2 d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
 \end{align*}
 %
 where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 

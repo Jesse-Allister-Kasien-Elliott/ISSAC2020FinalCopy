@@ -421,7 +421,7 @@ revisited using the techniques introduced here.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Genericity properties}
+\section{Genericity properties}\label{sec:gen}
 
 Consider $f \in \ZZ[X_1,\hdots,X_n]$ with total degree $d$, and assume
 that $f$ is squarefree and that $V(f) \subset \C^n$ is smooth. The key
@@ -492,12 +492,12 @@ $g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
 %%   \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
 %% \end{corollary}
 
-We will also work with change of variables with ``generic entries''.
-For this, we will introduce $n^2$ new indeterminates $(\frak
-A_{i,j})_{1\le i,j \le n^2}$, we will let $\K$ be the field $\C(\frak
-A_{i,j})_{1\le i,j \le n^2})$, and use the corresponding matrix $ \fA$
-over $\K$. For $g$ as above, we will then define the polynomial 
-$g^\fA:=g(\fA \Xb) \in \K[X_1,\dots,X_n]$.
+It will on occasion be useful to work with change of variables with
+``generic'' entries. For this, we will introduce $n^2$ new indeterminates
+$(\frak A_{j,k})_{1\le j,k \le n^2}$, we will let $\K$ be the field
+$\C(\frak A_{i,j})$, and use the corresponding
+matrix $\A$ over $\K$. For $f$ as above, we will then define the
+polynomial $f^\A:=f(\A \Xb) \in \K[X_1,\dots,X_n]$.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -509,7 +509,7 @@ $g^\fA:=g(\fA \Xb) \in \K[X_1,\dots,X_n]$.
 Sard's lemma states that the set of critical values of a smooth
 function $\R^n \to \R^m$ has measure zero. One can give ``algebraic''
 versions of it, for semi-algebraic mappings $\R^n \to \R^m$ as
-in~\cite[Chapter~9]{bochnak1998real} or polynomial mappings $\C^n \to
+in~\cite[Chapter~9]{bochnak1998real}, or polynomial mappings $\C^n \to
 \C^m$ as in~\cite[Chapter~3]{Mumford76}, for which the sets of
 critical values are contained in strict semi-algebraic,
 resp.\ algebraic sets in the codomain. Thom's weak transversality
@@ -734,33 +734,9 @@ equations). Finally, consider the projection
   $\mu$ yields the result.
 \end{proof}
 
-
-
-It will sometimes be useful for us use in replace of the matrix $A$, a
-matrix representing indeterminants: let $\A$ be an $n \times n$ matrix
-of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define
-$f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and
-$V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A
-\in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of
-\cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta
-\subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the
-critical values of a polynomial mapping are contained in a
-hypersurface. It follows from Sard's lemma that, for the matrix of
-indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise
-it could not be that $0$ is a regular value of $\Phi_A,$ for a generic
-$A\in \C^{n^2}.$ The proof is routine and we omit details. It then
-follows that
-\[
-\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(\xb),\frac{\pa f^{\A}(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(\xb)}{\pa X_n}\right)
-\]
-has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies
-$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by
-the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this
-fact in Section 8.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Application: property $\textbf{H}_i(1)$}
+\subsection{Application: property $\textbf{H}_i(1)$}\label{ssec:Hi1}
 
 Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
 %
@@ -837,6 +813,11 @@ where we have the following bound on the degree which proves the claim:
 \deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
 \] 
 
+In Section~\ref{sec:Hi2}, we will need the following alternative form
+of this result: if we consider $f^\A \in \C(\frak
+A_{j,k})[X_1,\dots,X_n]$ as defined Section~\ref{sec:gen}, this
+polynomial satisfies the rank property $\textbf{H}_i(1)$.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Application: property $\textbf{H}'_i$}
@@ -895,120 +876,149 @@ where we have the following bound on the degree which proves the claim:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Property ${\bf H}_i(2)$ -- Noether position}
+\section{Property ${\bf H}_i(2)$ -- Noether position}\label{sec:Hi2}
 
-Throughout this section,  $i \in \{1,\hdots,n\}$ is
-fixed. We prove that there exists a hypersurface $\D_{3,i} \subset
-\C^{n^2}$ such that if $\mA$ is not in $\D_{3,i}$, then $\mA$ is
-invertible and satisfies $\textbf{H}_i$ and $\textbf{H}_i$.
+Throughout this section, $f$ and $i \in \{1,\hdots,n\}$ are fixed. We
+prove that there exists a hypersurface $\D_{3,i} \subset \C^{n\times
+  n}$ of degree at most \td{} such that if $\mA$ is not in $\D_{3,i}$,
+then $\mA$ is invertible and satisfies both conditions in
+$\textbf{H}_i$.
 
-Since $i$ is fixed, to simplify notation, let $\I^\A$ denote
-$\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$
-
-Consider again the matrix of indeterminates $\A$.  Define $f^{\A} \in
-\mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$
-Recall from Section~\ref{xxx} that $f^\A$ satisfies
-$\textbf{H}_i^{'}(1)$, that is, \td.
-
-
-
-
-\[
-\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
-\]
-injective and  integral.
-%
-
-It has already been shown in \cite{EMP} that $f^A$ satisfies
-$\textbf{H}_i^{'}(7)$ for a generic change of variables. The new
-contribution is in upper bounding the degree of $\Delta_3.$
+Consider again the $n\times n$ matrix of indeterminates
+$\A=(\A_{j,k})_{1 \le j,k \le n}$ and the field $\C(\A)$,
+and define $f^{\A} \in \C(\A)[X_1,\dots,X_n]$.  Since $i$ is fixed, to
+simplify notation, let $\I^\A$ denote the following polynomials in
+$\C(\A)[X_1,\dots,X_n]$:
+$$\I(\pi_i,f^\A)= \big (f^\A, {\pa f^\A}/{\pa X_{i+1}},\dots,{\pa
+  f^\A}/{\pa X_n}) \big ),$$ and let $W^\A$ denote their zero-set,
+that is, $W(\pi_i,V(f^\A)).$ In Section~\ref{ssec:Hi1}, we saw that
+$f^\A$ satisfies $\textbf{H}_i(1)$, so that $\I^\A$ defines a
+radical ideal, and $W^\A$ is equidimensional of dimension $i-1$. We
+now point out that $f^\A$ also satisfies $\textbf{H}_i(2)$.
 
 \begin{lemma} 
-The ring
-extension \[\mathbb{Q}(\frak{A})[X_1,\dots,X_{i-1}]\rightarrow\mathbb{Q}(\frak{A})[X_1,\dots,X_n]/\I^{\A}\]
-is integral.
+ The extension $\C(\A)[X_1,\dots,X_{i-1}]\rightarrow
+ \C(\A)[X_1,\dots,X_n]/\I^{\A}$ is integral.
 \end{lemma}
-%
 \begin{proof}
-Let $(\frak{P}_l)_{l \leq L}$ be the prime components of the radical ideal $\I^\A$. By \cite[Proposition 1]{EMP}, 
-\[
-\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\Xb]/\fp_l^{\A}
-\] 
-is integral. Therefore polynomials $p_{l,j}\in\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ exist, monic in $T$, with $p_{l,j}(X_j)\in \frak{P}_l$ for each $j\in \{i,\hdots,n\}.$ Thence, 
-%
-\begin{align*}
-&P_{j}(X_j) := \prod_l p_{l,j}(X_j)\in\I^\A, 
-\end{align*}
-%
-for each $j \in \{i,\hdots,n\},$ and therefore 
-\[
-\mathbb{Q}(\frak{A})[\Xb_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\Xb]/\I^{\A}
-\] 
-is integral.
+  Let $(\fp_\ell)_{1 \le \ell \leq L}$ be the prime components of
+  the radical ideal $\I^\A$. By \cite[Proposition 1]{EMP}, for all
+  $\ell$,
+  \[
+    \C(\A)[X_1,\dots,X_{i-1}]\rightarrow\C(\A)[X_1,\dots,X_n]/\fp_\ell
+  \] 
+  is integral. Therefore polynomials
+  $q_{\ell,j}\in\C(\A)[X_1,\dots,X_{i-1},X_j]$ exist, all monic in
+  $X_j$, with $q_{\ell,j}(X_j)\in \fp_\ell$ for each $j$ in
+  $\{i,\hdots,n\}.$ Thence, $ Q_{j} := \prod_{1 \le \ell\le L}
+  q_{\ell,j}$ is monic in $X_j$ and satisfies $ Q_{j} \in \I^\A$, for
+  each $j \in \{i,\hdots,n\}.$ This proves our claim.
 \end{proof}
-%
-Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 7.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
- we can write
-\[
-P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
-\]
-For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
-then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
-\[
-\Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
-\]
-and we obtain a bound on the degree of $\Xi_i$ by observing that
-\[
-\deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
-\]
-Hence, if $A\in \Q^{n^2}-\Xi_i$ then
-\[
-P_j(X_j) \in \I^A,  
-\]
-for each $j \in \{i,\hdots,n\},$ and therefore the extension 
-\[
-\mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{A})
-\]
-is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A_{i,j}]$. Put 
-\[
-\overline{P_{j}} := d_jP_{j}\in \Q[\A][\Xb],
-\]
-and note that $\pjb(X_j) \in \I^{\A}$ with 
-\[
-\pjb(X_j) = \ajb f^{\A} + \sum_{l=1}^{n-i}\bjb \frac{\partial f^\A}{\partial X_{i+l}}, ~\ajb,\bjb \in \mathbb{Q}[\A][\textbf{X}].
-\]
-%
-\begin{proposition} 
-$\deg \pjb\leq (D+1)^{n-i+1}.$ 
-\end{proposition} 
-%
+
+\noindent
+If $P$ is any polynomial in $\C(\frak A)[X_1,\dots,X_n]$, we will let
+$D \in \C[\frak A]$ be the minimal common denominator of all its
+coefficients, and we will write $\overline P := D P$, so that
+$\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
+
+
+\begin{lemma} 
+  For $j=i,\dots,n$, there exists $P_j$ in $
+  \C(\A)[X_1,\dots,X_{i-1},X_j]$, monic in $X_j$, with $\pjb$ in
+  $\I^\A$, and such that $\deg(\pjb)\leq (2d)^{n-i+1}.$
+\end{lemma} 
 \begin{proof}
-\textbf{Eric and Mark}: I am unsure of how to do this part correctly, so I will assume 
-\[
-\deg \pjb\leq \Dt_j.
-\]
-Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I^{\A}$ in  $\Q[\A,\Xb],$ and consider the finite field extension
-%
-\begin{align*}
-    \Q(\A,\Xb_{i-1}) &\rightarrow \Q(\A,\Xb_{i-1})[X_i,\hdots,X_n]/\Is.
-\end{align*}
-%
-The minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is \textbf{almost}(?) equal to $\pjb$ (the leading coefficient of $\pjb$ is $d_j$). It therefore follows by \cite[Proposition 1]{CGR} that
-%
-\begin{align*}
-&\deg \pjb \leq (D+1)^{n-i+1}.&(2D)^{n-i+1}\textrm{?} 
-\end{align*}
-%
+  We let $\frak L^\A$ denote the extension of $\I^\A$ given by $\frak
+  L^\A:=\I^\A\cdot \C(\frak A, X_1,\dots,X_{i-1})[X_i,\dots,X_n]$. Then,
+  \begin{equation}\label{eq:1}
+    \C(\frak A, X_1,\dots,X_{i-1}) \to \C(\frak A,
+    X_1,\dots,X_{i-1})[X_i,\dots,X_n]/\frak L^\A
+  \end{equation}
+  is an algebraic extension. On the other hand, 
+  the previous lemma states that 
+  \begin{equation}\label{eq:2}
+    \C(\A)[X_1,\dots,X_{i-1}]\rightarrow
+    \C(\A)[X_1,\dots,X_n]/\I^{\A}  
+  \end{equation}
+  is integral; from this, Proposition~3.3.1 in~\cite{GiHeSa93} implies
+  that it is actually a free module. Any basis of the latter is also a
+  basis of~\eqref{eq:1}; as a consequence, for $j$ in $i,\dots,n$, the
+  characteristic polynomials of $X_j$ in~\eqref{eq:1} or~\eqref{eq:2}
+  are the same. Let $P_j$ be the minimal polynomial of $X_j$
+  in~\eqref{eq:1}. The previous discussion implies that the
+  characteristic polynomial $\chi_j$ of $X_j$ in~\eqref{eq:1}, and
+  thus also $P_j$, are in $\C(\A)[X_1,\dots,X_{i-1},X_j]$ and monic in
+  $X_j$.
+
+  By definition, $\chi_{j}$ is in $\frak I^\A$ and since there exists
+  an integer $k$ such that $\chi_j$ divides $P_j{}^k$ in
+  $\C(\A)[X_1,\dots,X_{i-1}][X_j]$, $P_j{}^k$ is in $\frak
+  I^\A$. Since the latter ideal is radical, we conclude that $P_{j}$
+  is in $\frak I^\A$. This implies that $\pjb$ is in $\frak I^\A$ as
+  well.
+
+  Now, consider the polynomials $f^\A, {\pa f^\A}/{\pa
+    X_{i+1}}, \dots, {\pa f^\A}/{\pa X_n}$ in $\C[\A,X_1,\dots,X_n]$,
+  let $\frak W$ be their zero-set, and let $\deg(\frak W)$ be its
+  degree, in the sense of~\cite{H}. Proposition~1 in~\cite{CGR}
+  implies that $\pjb$ has degree at most $\deg(\frak W)$. Since all
+  polynomials defining $\frak W$, seen in $\C[\A,X_1,\dots,X_n]$, have
+  degree at most $2d$, the B\'ezout inequality of~\cite{H} gives
+  $\deg(\pjb) \le (2d)^{n-i+1}$.
 \end{proof}
-%
-Note that 
-\[
-\deg d_j \leq \deg \pjb \leq \Dt_j.
-\]
-%
-\subsection{Applying the effective Nullstellensatz}
-%
-To apply the effective Nullstellensatz theorem, we first need to determine degree bounds, separately in $\Xb$ and $\A,$ of the polynomials in the membership relationship. We have
+
+
+%% \[
+%% \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
+%% \]
+%% injective and  integral.
+
+
+
+%%  Since $P_{j}(X_j) \in\I^{\A}= \langle
+%% f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial
+%%   f^\A}{\partial X_n} \rangle,$ we can write
+%% \[
+%% P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
+%% \]
+%% For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset
+%% \C^{n^2}$ such that if $A \in \Gamma_j$, then $A$ cancels none of the
+%% denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be
+%% the product of the denominators of the coefficients of $a_j$ and
+%% $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of
+%% the denominators of $a_{j}$ or $b_{j,l},$ which are providing the
+%% integral dependence relation. Now we define
+%% \[
+%% \Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
+%% \]
+%% and we obtain a bound on the degree of $\Xi_i$ by observing that
+%% \[
+%% \deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
+%% \]
+%% Hence, if $A\in \Q^{n^2}-\Xi_i$ then
+%% \[
+%% P_j(X_j) \in \I^A,  
+%% \]
+%% for each $j \in \{i,\hdots,n\},$ and therefore the extension 
+%% \[
+%% \mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{A})
+%% \]
+%% is integral. We can obtain bounds for $h_j$ by applying an effective
+%% Nullstellensatz theorem. 
+
+%% %
+%% Note that 
+%% \[
+%% \deg d_j \leq \deg \pjb \leq \Dt_j.
+%% \]
+%% %
+%% \subsection{Applying the effective Nullstellensatz}
+%% %
+
+
+To apply the effective Nullstellensatz theorem, we first need to
+determine degree bounds, separately in $\Xb$ and $\A,$ of the
+polynomials in the membership relationship. We have
 \[
 \deg_{\Xb}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}

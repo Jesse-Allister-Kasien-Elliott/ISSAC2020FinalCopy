@@ -987,12 +987,12 @@ Nullstellensatz in $\C(\A)[X_1,\dots,X_n,T]$, and clearing
 denominators, we obtain the existence of $\alpha_j$ in
 $\C[\A]\setminus\{0\}$ and $ A_{j,\ell},B_j$ in
 $\C[\A][X_1,\dots,X_n][T]$, such that
-\begin{align*}
+\begin{align}\label{eq:nullst}
 \alpha_j = \sum_{\ell=1}^{n-i+1} A_{j,\ell} g_\ell + B_j (1-\pjb T),\ \  g_\ell \in 
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
 \right\}.
-\end{align*}
+\end{align}
 
 %% =======
 %% %
@@ -1097,6 +1097,19 @@ f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial
 %% %
 %% \subsection{Applying the effective Nullstellensatz}
 %% %
+
+Let us then define $\D_{3,i}:=\D_{2,i} \alpha_i \cdots \alpha_n$.
+This is a non-zero polynomial in $\C[\A]$; we will 
+estimate its degree below.
+
+\begin{lemma}
+  Suppose that $\mA \in \C^{n\times n}$ does not cancel
+  $\D_{3,i}$. Then $f^\mA$ satisfies ${\bf H}_i$.
+\end{lemma}
+\begin{proof}
+  By assumption, $\D_{2,i}(\mA)$ is non-zero, so that $\mA$ is invertible
+  and satisfies ${\bf H}_i(1)$.
+\end{proof}
 
 
 To apply the effective Nullstellensatz theorem, we first need to

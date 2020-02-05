@@ -3,6 +3,7 @@
 
 % packages 
 \usepackage[ruled,vlined]{algorithm2e}
+\usepackage[titles]{tocloft}%----------------------------------------
 \usepackage{mathrsfs}
 \usepackage{bm}
 \usepackage{enumitem}
@@ -428,27 +429,29 @@ Consider $f \in \ZZ[X_1,\hdots,X_n]$ with total degree $d$, and assume
 that $f$ is squarefree and that $V(f) \subset \C^n$ is smooth. The key
 to the proof of Theorem~\ref{theo:main} is the following quantitative
 version of facts we stated above, namely that in generic coordinates,
-polar varieties are smooth, equidimensional, and in Noether position.
+polar varieties are smooth, equidimensional, and in Noether position
+(or empty).
 
 We recall that an equidimensional algebraic set $X \subset \C^n$ of
 dimension $d$ is in \textit{Noether position} for the projection
 $\pi_d$ when the extension $\C[X_1,\hdots,X_d] \rightarrow
-\C[X_1,\hdots,X_n]/I(X)$ is injective and integral; here, $I(X)
-\subset \C[X_1,\dots,X_n]$ is the defining ideal of $X$. In this case,
-for any $\xb \in \C^d,$ the fiber $X \cap \pi_d^{-1}(\xb)$ has
-dimension zero (so it is finite and not empty).
+\C[X_1,\hdots,X_n]/I(X)$ is integral; here, $I(X) \subset
+\C[X_1,\dots,X_n]$ is the defining ideal of $X$. In this case, for any
+$\xb \in \C^d,$ the fiber $X \cap \pi_d^{-1}(\xb)$ has dimension zero
+(so it is finite and not empty).
 
-For $i$ in $\{1,\dots,n-1\}$ and $f$ as above, we will let $\I(i, f)$
+For $i$ in $\{1,\dots,n\}$ and $f$ as above, we will let $\I(i, f)$
 denote the sequence of $n-(i-1)$ polynomials $(f, {\pa f}/{\pa
-  X_{i+1}},\dots,{\pa f}/{\pa X_n})$. As we pointed out in the
-introduction, their zero-set is the $i$th polar variety $W(\pi_i,V(f))$.
-Then, we say that $f$ satisfies $\textbf{H}_i$ if
+  X_{i+1}},\dots,{\pa f}/{\pa X_n})$. As pointed out in the
+introduction, their zero-set is the $i$th polar variety
+$W(\pi_i,V(f))$.  Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \begin{enumerate}
 \item For any $\xb$ in $W(\pi_i,V(f))$, the Jacobian matrix
   $\jac(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
 
   {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
-  implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional.}
+  implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional,
+  and that $\I(i, f^\mA)$ is radical.}
 
 \smallskip
 
@@ -459,48 +462,39 @@ When this holds, given $\bm \alpha = (\alpha_1,\hdots,\alpha_{i-1})$
 in $\C^{i-1}$, we further say that $f$ and $\bm \alpha$ satisfy
 $\textbf{H}'_i$ if
 \begin{enumerate}
-\item the $n$ equations
-  $(X_1-\alpha_1,\dots,X_{i-1}-\alpha_{i-1}),\I(i, f))$ generate a
+\item The $n$ polynomials
+  $(X_1-\alpha_1,\dots,X_{i-1}-\alpha_{i-1},\I(i, f))$ generate a
   radical ideal.
 
   {\em By point (2) above, we know that there are finitely many solutions 
     to these equations.}
 \end{enumerate}
 
-Even if $f$ does not satisfy $\textbf{H}_i$, we mentioned that it does
-after applying a change of variables. The precise statement is the
-following; to state it, we use the following notation. For a matrix
-$\mA$ in $\C^{n^2}$ and $g$ in $\C[X_1,\hdots,X_n]$ we write
-$g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
+Even if $f$ does not satisfy $\textbf{H}_i$, we mentioned that it
+does, after applying a generic change of variables. The precise
+statement is the following; to state it, we use the following
+notation. For a matrix $\mA$ in $\C^{n\times n}$ and $g$ in
+$\C[X_1,\hdots,X_n]$ we write $g^\mA:=g(\mA \Xb) \in
+\C[X_1,\dots,X_n]$, where $\Xb$ is the column vector with entries
+$X_1,\dots,X_n$.
 
-%% , $\xb \in
-%% \mathbb{C}^n$ and $X \subset \C^n$. We write $\xb^\mA:=\mA^{-1}\xb$,
-%% $X^\mA:=\{x^\mA~|~\xb \in V\}$ and $g^\mA:=g(\mA \Xb) \in
-%% \C[X_1,\dots,X_n]$. In particular, we have $g^\mA(\xb^\mA) =g(\xb)$,
-%% and $V(f)^\mA=V(f^\mA)$.
+We will also have to consider matrices with generic entries. For this,
+we introduce $n^2$ new indeterminates $(\frak A_{j,k})_{1\le j,k \le
+  n}$. Then, $\A$ will denote the matrix with entries $(\frak
+A_{j,k})_{1\le j,k \le n}$, $\C(\A)$ will denote the rational function
+field $\C((\frak A_{j,k})_{1\le j,k \le n})$ and $\C[\A]$ the
+polynomial ring $\C[(\frak A_{j,k})_{1\le j,k \le n}]$.  For $f$ as
+above, we will then define the polynomial $f^\A:=f(\A \Xb)$, 
+which we will consider in either
+$\C(\A)[X_1,\dots,X_n]$ or $\C[\A,X_1,\dots,X_n]$.
 
-\begin{theorem}
-  There exists a hypersurface $\D \subset \mathbb{C}^{n^2}$ of degree
-  at most $\td$ such that, if $\mA$ is chosen from $\C^{n^2}-\Delta$
-  then $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for
-  all $i \in \{1,\hdots,n-1\}.$
+\begin{theorem}\label{theo:gen}
+  For $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in
+  $\C[\A]$ of degree at most $\td$ such that if $\mA \in \C^{n\times
+    n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$
+  satisfies $\textbf{H}_i$.
 \end{theorem}
-%% %
-%% \begin{corollary} 
-%%   Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1}
-%%   D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen
-%%   randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i
-%%   \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
-%% \end{corollary}
-
-
-It will on occasion be useful to work with change of variables with
-``generic'' entries. For this, we will introduce $n^2$ new indeterminates
-$(\frak A_{j,k})_{1\le j,k \le n^2}$, we will let $\K$ be the field
-$\C(\frak A_{i,j})$, and use the corresponding
-matrix $\A$ over $\K$. For $f$ as above, we will then define the
-polynomial $f^\A:=f(\A \Xb) \in \K[X_1,\dots,X_n]$.
-
+\noindent The proof of this theorem occupies the next two sections.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -519,13 +513,7 @@ lemma, as given for instance in~\cite{demazure2000bifurcations},
 generalizes Sard's lemma. In this section, we consider a particular
 case of this result (transversality to a point), and establish a
 quantitative version of it; this will allow us to establish the first
-item in property ${\bf H}_i$, as well as property ${\bf H}'_i$. Our
-presentation is inspired by that in~\cite{TWT}.
-
-%% ; it states that if a smooth function
-%% $F(\Xb,\Lambda)$, depending on parameters $\Lamdba$ in $\C^s$ is
-%% ``transverse'' to a certain submanifold in its domain space, then for
-%% most values $\lambda \in \C^s$, $F(\Xb,\lambda)$ remains
+item in property ${\bf H}_i$, as well as property ${\bf H}'_i$. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -538,13 +526,12 @@ from a smooth algebraic set $Y$ to $\C^t$, with $t\le \dim(Y)$, a {\em
 image of the tangent space $T_{\bm y} Y$ by the differential $d_{\bm
   Y} \bm \Psi$ has dimension less than $t$. When for instance
 $Y=\C^v$, we have $T_{\bm y} Y=\C^v$ and this condition is equivalent
-to the Jacobian of $\bm \Psi$ having rank less than $t$ at $\bm y$.  A
-{\em regular point} of $\bm \Psi$ is a point on $Y$ that is not
-critical. {\em Critical values} are the images of critical points; the
+to the Jacobian of $\bm \Psi$ having rank less than $t$ at $\bm y$.
+{\em Critical values} are the images by $\Psi$ of critical points; the
 complement of this set are the {\em regular values} (so a regular
-value is not necessarily in the image of $\bm\Psi$).
+value is not necessarily in the image of~$\bm\Psi$).
 
-Let $n,\dt,$ and $m$ be positive integers, with $m \le n$, and denote
+Let then $n,\dt,$ and $m$ be positive integers, with $m \le n$, and denote
 by $\bm\Phi :\C^n \times \C^{\dt} ~ \rightarrow \C^{m}$ a mapping
 defined by polynomials in $\C[\Xb,\Thetab]$, where $\Xb$,
 resp.\ $\Thetab$, is a set of $n$, resp.\ $\dt$, indeterminates.  For
@@ -554,57 +541,57 @@ transversality result we will need is the following.
 
 \begin{proposition} [Weak transversality]\label{prop:weak_t}
   Suppose that $\bm 0$ is a regular value of $\bm\Phi$. Then there
-  exists a hypersurface $\Delta \subset \C^{\dt}$ of degree at most
-  \td for which, if $\thetab \in \C^{\dt}-\Delta$, then $\bm 0$ is a
-  regular value of~$\bm\Phi_{\thetab}$.
+  exists a non-zero polynomial $\Gamma \in \C[\Thetab]$ of degree at
+  most $d^{m+n}$ such that for $\thetab$ in $\C^\dt$, if
+  $\Gamma(\thetab)\ne 0$, then $\bm 0$ is a regular value
+  of~$\bm\Phi_{\thetab}$.
 \end{proposition}
 
 Here is a simple example that shows this result at work. Consider a
 squarefree $f$ in $\C[X_1,X_2]$, such that $V(f)$ is a smooth curve in
-$\C^2$, and let the mapping $\bm\Phi:\C^2\times \C \to \C^2$ be defined
-by $\bm\Phi(X_1,X_2,\Lambda) = (f(X_1,X_2), X_1-\Lambda)$. One checks
-that the Jacobian of $\bm\Phi$ with respect to $(X_1,X_2,\Lambda)$ has
-rank two at any point in $\bm\Phi^{-1}(\bm 0)$, so the assumptions of the
-proposition apply. We deduce that for a generic $\lambda$ in $\C$,
-that is, for all $\lambda$ in $\C$ except a finite number, the ideal
-$(f(X_1,X_2), X_1-\lambda)$ is radical in $\C[X_1,X_2]$; equivalently,
-$f(\lambda, X_2)$ is squarefree. We will revisit this example in
-Section~\td.
+$\C^2$, and let the mapping $\bm\Phi:\C^2\times \C \to \C^2$ be
+defined by $\bm\Phi(X_1,X_2,\Theta) = (f(X_1,X_2), X_1-\Theta)$. One
+checks that the Jacobian of $\bm\Phi$ with respect to
+$(X_1,X_2,\Theta)$ has rank two at any point in $\bm\Phi^{-1}(\bm 0)$,
+so the assumptions of the proposition apply. We deduce that for a
+generic $\vartheta$ in $\C$, that is, for all $\vartheta$ in $\C$
+except a finite number, the ideal $(f(X_1,X_2), X_1-\vartheta)$ is
+radical in $\C[X_1,X_2]$; equivalently, $f(\vartheta, X_2)$ is
+squarefree. We will revisit this example in Section~\ref{ssec:fiber}.
 
-The rest of the section is devoted to the proof of the proposition.
+The rest of the subsection is devoted to the proof of the proposition.
 The proof of \cite[Theorem B.3]{TWT} already shows the existence of
-$\Delta$; it is essentially the classical proof for smooth
+$\Gamma$; it is essentially the classical proof for smooth
 mappings~\cite[Section~3.7]{demazure2000bifurcations}, written in an
 algebraic context. In what follows, we revisit this proof,
-establishing a bound on the degree of $\Delta$.
+establishing a bound on the degree of $\Gamma$.
 
-We will reuse the following fact proved in~\cite{TWT}.  Put $V =
-\bm\Phi^{-1}(0)$ and consider the projection $\pi:(\xb, \thetab) \in
-\C^n \times \C^{\dt} \mapsto \thetab \in\C^{\dt}$.  If $V$ is empty,
-there is nothing to do, since all values $\thetab$ in $\C^\dt$ satisfy
-the conclusion of the theorem. Thus, we assume that $V$ is not
-empty. Then, the Jacobian criterion shows that $V$ is
-smooth and $(n+ \dt -m)$-equidimensional.
+Put $V = \bm\Phi^{-1}(\bm 0)$. If $V$ is empty, there is nothing to do,
+since all values $\thetab$ in $\C^\dt$ satisfy the conclusion of the
+proposition. Thus, we assume that $V$ is not empty. Then, the Jacobian
+criterion shows that $V$ is smooth and $(n+ \dt -m)$-equidimensional.
 
-Let $Z$ be the set of critical points of $\pi_{|V}$, and consider its
-projection $\pi(Z)$ in $\C^s$. This is the set of critical values of
-$\pi_{|V}$; hence, by the algebraic form of Sard's lemma (see
-\cite[Theorem~3.7]{Mumford76} for irreducible $V$
+We will reuse the following fact, proved in~\cite{TWT}.  Consider the
+projection $\pi:(\xb, \thetab) \in \C^n \times \C^{\dt} \mapsto
+\thetab \in\C^{\dt}$.  Let $Z$ be the set of critical points of
+$\pi_{|V}$, and consider its projection $\pi(Z)$ in $\C^s$. This is
+the set of critical values of $\pi_{|V}$; hence, by the algebraic form
+of Sard's lemma (see \cite[Theorem~3.7]{Mumford76} for irreducible $V$
 and~\cite[Proposition~B.2]{TWT} for general $V$), its Zariski closure
-$\overline{\pi(Z)}$ is a strict closed subset of $\C^s$. Now, the
-proof of \cite[Theorem B.3]{TWT} shows that if $\thetab \in \C^{\dt}$
-is not in $\overline{\pi(Z)}$, then $\bm 0$ is a critical value of
-$\bm\Phi_{\thetab}$. Hence, it suffices to prove that $Z$ has degree
-at most $d^{m+n}$; this will imply the same degree bound for
-$\overline{\pi(Z)}$, and prove our propositon.
+$\overline{\pi(Z)}$ is a strict closed subset of $\C^s$. As we will
+see below, if $\thetab \in \C^{\dt}$ is not in $\overline{\pi(Z)}$,
+then $\bm 0$ is a regular value of $\bm\Phi_{\thetab}$.
 
+% Now, the proof of \cite[Theorem B.3]{TWT} shows that if $\thetab \in
+% \C^{\dt}$ is not in $\overline{\pi(Z)}$, then $\bm 0$ is a regular
+% value of $\bm\Phi_{\thetab}$.
 
-We first describe the set $Z$ of critical points of $\pi_{|V}$.  Let
-$M$ denote the $(s+m) \times (s+n)$ matrix with entries in
-$\C[\Xb,\Thetab]$ given by $M = \jac_{\Xb,\Thetab}(\pi,\bm\Phi)$, that
-is,
+To describe the set $Z$ of critical points of $\pi_{|V}$, let $\bm M$
+denote the $(s+m) \times (s+n)$ Jacobian matrix with entries in
+$\C[\Xb,\Thetab]$ given by $\bm M = \jac_{\Xb,\Thetab}(\pi,\bm\Phi)$,
+that is,
 \begin{align*}
-M &= 
+\bm M &= 
 \bbm 
 \jac_{\Xb,\Thetab}(\pi)\\
 \jac_{\Xb,\Thetab}(\bm\Phi) 
@@ -612,44 +599,44 @@ M &=
 =
 \bbm 
 \textbf{0}_{\dt \times n}\hspace{5mm}\textbf{I}_{\dt} \\
-\jac_{(\Xb,\Thetab)}(\bm\Phi)
+\jac_{\Xb,\Thetab}(\bm\Phi)
 \ebm.
 \end{align*}
 
 \begin{lemma} 
-  For $(\xb,\thetab)$ in $V$, the matrix $M$ has full rank $\dt+m$ at
-  $(\xb,\thetab)$ if and only if $(\xb,\thetab)$ is a regular point of
-  $\pi_{|V}.$
+  For $(\xb,\thetab)$ in $V$, $(\xb,\thetab)$ is in $Z$ if and only if
+  the matrix $\bm M$ has rank less than $\dt+m$ at $(\xb,\thetab)$.
 \end{lemma}
 \begin{proof}
-  Take $(\xb,\thetab)$ on $V$, and let $K(\xb,\thetab)$ be the
-  Jacobian matrix $\jac_{(\Xb,\Thetab)}(\bm\Phi)$ at $(\xb,\thetab)$.
-  Then, the rank of $M(\xb,\thetab)$ can be written as
-  $\textup{rank}(K(\xb,\thetab)) + \textup{rank}([\textbf{0}_{\dt
-      \times n}~\textbf{I}_{\dt}] \mid \ker K(\xb,\thetab))$, where
+  Take $(\xb,\thetab)$ on $V$, and let $\bm K(\xb,\thetab)$ be the
+  Jacobian matrix $\jac_{\Xb,\Thetab}(\bm\Phi)$ taken at $(\xb,\thetab)$.
+  Then, the rank of $\bm M(\xb,\thetab)$ can be written as
+  $\textup{rank}(\bm K(\xb,\thetab)) + \textup{rank}([\textbf{0}_{\dt
+      \times n}~\textbf{I}_{\dt}] \mid \ker \bm K(\xb,\thetab))$, where
   the latter is the rank of the restriction of $[\textbf{0}_{\dt
       \times n}~\textbf{I}_{\dt}]$ to the nullspace of
-  $K(\xb,\thetab)$.
+  $\bm K(\xb,\thetab)$.
 
-  Since $V$ is smooth, $K(\xb,\thetab)$ has full rank ${\rm codim} (V)
-  = m$. On the other hand, the nullspace of $K(\xb,\thetab)$ is the
-  tangent space $T_{\xb,\thetab} V$, and
+  Since $V$ is smooth, $\bm K(\xb,\thetab)$ has full rank ${\rm codim}
+  (V) = m$. On the other hand, the nullspace of $\bm K(\xb,\thetab)$
+  is the tangent space $T_{\xb,\thetab} V$, and
   $\textup{rank}([\textbf{0}_{\dt \times n}~\textbf{I}_{\dt}] \mid
-  \ker K(\xb,\thetab))$ is the dimension of $\pi(T_{\xb,\thetab} V)$.
-  In other words, the rank of $M(\xb,\thetab)$ is equal to
-  $m+\dim(\pi(T_{\xb,\thetab} V))$; this implies the claim in the lemma.
+  \ker \bm K(\xb,\thetab))$ is the dimension of $\pi(T_{\xb,\thetab}
+  V)$.  In other words, the rank of $\bm M(\xb,\thetab)$ is equal to
+  $m+\dim(\pi(T_{\xb,\thetab} V))$; this implies the claim in the
+  lemma.
 \end{proof}
-
 
 Therefore, we can characterize the set $Z$ of critical points of
 $\pi_{|V}$ as those points satisfying $\bm\Phi(\xb,\thetab)=\bm 0$ and
-where all minors of $M$ of order $\dt+m$ vanish. We can describe this
-set using fewer equations, by discarding certain minors that are
-identically zero. Let indeed $J$ denote the $m \times n$ submatrix of
-the Jacobian of $\bm\Phi$ consisting of the first $n$ columns.
+where all minors of $\bm M$ of order $\dt+m$ vanish. We can actually
+describe this set using a smaller matrix, by discarding certain minors
+that are identically zero. Let indeed $\bm J$ denote the $m \times n$
+submatrix of the Jacobian of $\bm\Phi$ consisting of the first $n$
+columns. This is the Jacobian matrix of $\bm \Phi$ with respect to $\Xb$.
 \begin{lemma} 
   For $(\xb,\thetab)$ in $V$, $(\xb,\thetab)$ is in $Z$ if and only if
-  $J(\xb,\thetab)$ has rank less than $m$.
+  $\bm J(\xb,\thetab)$ has rank less than $m$.
 \end{lemma}
 \begin{proof}
 Notice 
@@ -658,37 +645,48 @@ Notice
 M(\xb,\thetab)&= 
 \bbm 
 \textbf{0}_{\dt \times n} &\textbf{I}_{\dt} \\
-J(\xb,\thetab)     &J'(\xb,\thetab)
+\bm J(\xb,\thetab)     &\bm J'(\xb,\thetab)
 \ebm,
 \end{align*}
-where $J'$ consists of the remaining columns of the Jacobian matrix of
+where $\bm J'$ consists of the remaining columns of the Jacobian matrix of
 $\bm\Phi$.  Then, the rank of the former matrix is equal to the rank
 of
 \begin{align*}
 M(\xb,\thetab)&= 
 \bbm 
 \textbf{0}_{\dt \times n} &\textbf{I}_{\dt} \\
-J(\xb,\thetab)     & \bm 0_{m \times s}
+\bm J(\xb,\thetab)     & \bm 0_{m \times s}
 \ebm,
 \end{align*}
 and the conclusion follows.
 \end{proof}
-Therefore, the set $Z$ can be defined as the set of all
-$(\xb,\thetab)$ in $\C^{n+\dt}$ satisfying $\bm\Phi(\xb,\thetab)=\bm
-0$ and where all minors of $J$ of order $m$ vanish. Our next step is
-to bound the degree of $Z$. For this, rather than considering minors
-of $J$, we will rewrite the condition that $J(\xb,\thetab)$ has rank
-less than $m$ as the existence of a non-trivial left kernel element.
+
+In particular, take $\thetab$ in $\C^\dt - \overline{\pi(Z)}$.
+Then for all $\xb$ in $\bm \Phi_{\thetab}^{-1}(\bm 0)$, $(\xb,\thetab)$
+is in $V$, so it is not in $Z$. The previous lemma then implies that
+the Jacobian matrix $\bm J$ of $\bm\Phi_{\thetab}$ has full rank $m$ at
+$(\xb,\thetab)$. In other words, $\bm 0$ is a regular value of $\bm
+\Phi_{\thetab}$, as claimed.
+
+Our next step is to bound the degree of $Z$.  In that, we use the
+definition of degree given in~\cite{H}: the degree of an irreducible
+algebraic set is the number of intersection points it has with a
+generic hyperplane of complementary dimension, and the degree of an
+arbitrary algebraic set is the sum of the degrees of its irreducible
+components.  To obtain an estimate on the degree of $Z$, rather than
+considering minors of $\bm J$, we will rewrite the condition that $\bm
+J(\xb,\thetab)$ has rank less than $m$ as the existence of a
+non-trivial left kernel element.
 
 For this, we let $\textit{\textbf{L}}=[L_1,\hdots,L_m]$ be new
 variables, thought of as Lagrange multipliers, and consider the
 ``Lagrange polynomials'' $\mathscr{L}_1,\dots,\mathscr{L}_{n}$, with
 \[
-[\mathscr{L}_1 \cdots \mathscr{L}_{n}]=\textit{\textbf{L}}\cdot J(\xb,\thetab).
+[\mathscr{L}_1 \cdots \mathscr{L}_{n}]=\textit{\textbf{L}}\cdot \bm J(\xb,\thetab).
 \] 
 Denote by $\frak{Z} \subset \C^{n+\dt+m}$ the algebraic set defined by
 the vanishing of $\mathscr{L}_1,\hdots,\mathscr{L}_{n},$ and
-$\bm\Psi$, and by $\frak{Z}'$ the algebraic set
+$\bm\Phi$, and by $\frak{Z}'$ the algebraic set
 \[
 \frak{Z}' := \overline{\frak{Z} - \{(\xb,\thetab,0,\hdots,0) \in \C^{n+\dt+m}~|~(\xb,\thetab,0\hdots,0) \in \frak{Z}\}},
 \]
@@ -714,15 +712,15 @@ equations). Finally, consider the projection
   \frak{Z}\}$, and thus in $\frak{Z}'$. This proves the inclusion
   $Z \subset \mu(\frak{Z}')$.
 
-  Conversely, take an irreducible component $Y$ of $\frak Z'$. We prove 
-  that $\mu(Y)$ is contained in $Z$.
-  By construction, there exists an open dense subset $Y^o \subset Y$
-  such that for any $(\xb,\thetab,\bm \ell)$ in $Y^o$, $\bm \ell$ is
-  not identically zero. As a result, $(\xb,\thetab)$ is in $Z$, that
-  is, $\mu(Y^o)$ is in $Z$. This implies that its Zariski closure
-  $\overline{\mu(Y^o)}$ is in $Z$. Since $\mu(Y)$ is contained in
-  $\overline{\mu(Y^o)}$, we have $\mu(Y) \subset Z$. Taking 
-  the union over all $Y$, we get $\mu(\frak Z') \subset Z$, as claimed.
+  Conversely, take an irreducible component $Y$ of $\frak Z'$. We
+  prove that $\mu(Y)$ is contained in $Z$.  By construction, there
+  exists an open dense subset $Y^o \subset Y$ such that for any
+  $(\xb,\thetab,\bm \ell)$ in $Y^o$, $\bm \ell$ is not identically
+  zero. As a result, $(\xb,\thetab)$ is in $Z$, that is, $\mu(Y^o)$ is
+  in $Z$. This implies that its Zariski closure $\overline{\mu(Y^o)}$
+  is in $Z$. Since $\mu(Y)$ is contained in $\overline{\mu(Y^o)}$, we
+  deduce $\mu(Y) \subset Z$. Taking the union over all $Y$, we get
+  $\mu(\frak Z') \subset Z$, as claimed.
 \end{proof}
 %
 \begin{corollary} 
@@ -732,18 +730,17 @@ equations). Finally, consider the projection
   The algebraic set $\frak Z$ is defined by $m+n$ equations, all of
   them having degree at most $d$. It follows from B\'ezout's
   Theorem~\cite{H} that $\deg(\frak{Z}) \leq d^{m+n}$, and the same
-  upper bound holds for $\deg(\frak{Z}')$. Applying the projection
-  $\mu$ yields the result.
+  upper bound holds for $\deg(\frak{Z}')$, since it consists of
+  certain irreducible components of $\frak Z$. Applying the projection
+  $\mu$ yields the result, since degree cannot increase through
+  projection.
 \end{proof}
 
-%% <<<<<<< HEAD
-%% =======
-%% Recall that we work with changes of variables with ``generic entries'' of new indeterminants $(\frak
-%% A_{i,j})_{1\le i,j \le n^2}$, and define the polynomial 
-%% $f^\fA:=f(\fA \Xb)$. Note that $f^\A$ satisfies $\textbf{H}_i(1).$ Indeed, otherwise it could not be that that the Jacobian of $f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$ has full rank at all $\xb \in V(f^A)$ for a generic $A \in \C^{n^2},$ which would contradict Popositon 3.1. The proof of this statement is routine and we omit details. We will rely on this
-%% fact in Section 8.
+In particular, we obtain the same degree bound for
+$\overline{\pi(Z)}$.  It then suffices to take for $\Gamma$ any
+non-zero polynomial of degree at most $d^{m+n}$ that vanishes on
+$\overline{\pi(Z)}$; this proves Proposition~\ref{prop:weak_t}.
 
-%% >>>>>>> 3c8b7c51e8e3a65e188ffd3ac7465da21bedb71e
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Application: property $\textbf{H}_i(1)$}\label{ssec:Hi1}
@@ -830,7 +827,7 @@ polynomial satisfies the rank property $\textbf{H}_i(1)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Application: property $\textbf{H}'_i$}
+\subsection{Application: property $\textbf{H}'_i$}\label{ssec:fiber}
 %
 Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
 %
@@ -936,7 +933,7 @@ $\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
 \begin{lemma} 
   For $j=i,\dots,n$, there exists $P_j$ in $
   \C(\A)[X_1,\dots,X_{i-1},X_j]$, monic in $X_j$, with $\pjb$ in
-  $\I^\A$, and such that $\deg(\pjb)\leq (2d)^{n-i+1}.$
+  $\I^\A$, and such that $\deg(\pjb)\leq (2d)^{n}.$
 \end{lemma} 
 \begin{proof}
   We let $\frak L^\A$ denote the extension of $\I^\A$ given by $\frak
@@ -975,267 +972,118 @@ $\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
   implies that $\pjb$ has degree at most $\deg(\frak W)$. Since all
   polynomials defining $\frak W$, seen in $\C[\A,X_1,\dots,X_n]$, have
   degree at most $2d$, the B\'ezout inequality of~\cite{H} gives
-  $\deg(\pjb) \le (2d)^{n-i+1}$.
+  $\deg(\pjb) \le (2d)^{n-i+1} \le (2d)^n$.
 \end{proof}
-
-
 
 Our next step is to give degree bounds on the coefficients appearing
 in the membership equality $\pjb \in\I^\A$. This is done using
 Rabinovicz's trick. Let $T$ be a new variable; applying the
 Nullstellensatz in $\C(\A)[X_1,\dots,X_n,T]$, and clearing
 denominators, we obtain the existence of $\alpha_j$ in
-$\C[\A]\setminus\{0\}$ and $ A_{j,\ell},B_j$ in
+$\C[\A]-\{0\}$ and $ C_{j,\ell},B_j$ in
 $\C[\A][X_1,\dots,X_n][T]$, such that
 \begin{align}\label{eq:nullst}
-\alpha_j = \sum_{\ell=1}^{n-i+1} A_{j,\ell} g_\ell + B_j (1-\pjb T),\ \  g_\ell \in 
+\alpha_j = \sum_{\ell=1}^{n-i+1} C_{j,\ell} G_\ell + B_j (1-\pjb T),\ \  G_\ell \in 
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
 \right\}.
 \end{align}
 
-%% =======
-%% %
-%% Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 4.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
-%%  we can write
-%% \[
-%% P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
-%% \]
-%% For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $\mA \in \Gamma_j$,
-%% then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $\mA \in \C^{n^2}-V(h_j)$ then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
-%% \[
-%% \Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
-%% \]
-%% and we obtain a bound on the degree of $\Xi_i$ by observing that
-%% \[
-%% \deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
-%% \]
-%% Hence, if $\mA\in \Q^{n^2}-\Xi_i$ then
-%% \[
-%% P_j(X_j) \in \I^A,  
-%% \]
-%% for each $j \in \{i,\hdots,n\},$ and therefore the extension 
-%% \[
-%% \mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{\mA})
-%% \]
-%% is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A]$. Put 
-%% \[
-%% \overline{P_{j}} := d_jP_{j}\in \Q[\A][\Xb],
-%% \]
-%% and note that $\pjb(X_j) \in \I^{\A}$ with 
-%% \[
-%% \pjb(X_j) = \ajb f^{\A} + \sum_{l=1}^{n-i}\bjb \frac{\partial f^\A}{\partial X_{i+l}}, ~\ajb,\bjb \in \mathbb{Q}[\A][\textbf{X}].
-%% \]
-%% %
-%% \begin{proposition} 
-%% $\deg \pjb\leq (d+1)^{n-i+1}.$ 
-%% \end{proposition} 
-%% %
-%% \begin{proof}
-%% \textbf{Eric and Mark}: I am unsure of how to do this part correctly, so I will assume 
-%% \[
-%% \deg \pjb\leq \Dt_j.
-%% \]
-%% Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I^{\A}$ in  $\Q[\A,\Xb],$ and consider the finite field extension
-%% %
-%% \begin{align*}
-%%     \Q(\A,\Xb_{i-1}) &\rightarrow \Q(\A,\Xb_{i-1})[X_i,\hdots,X_n]/\Is.
-%% \end{align*}
-%% %
-%% The minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is \textbf{almost}(?) equal to $\pjb$ (the leading coefficient of $\pjb$ is $d_j$). It therefore follows by \cite[Proposition 1]{CGR} that
-%% %
-%% \begin{align*}
-%% &\deg \pjb \leq (d+1)^{n-i+1}.&(2d)^{n-i+1}\textrm{?} 
-%% >>>>>>> 3c8b7c51e8e3a65e188ffd3ac7465da21bedb71e
-%% \end{align*}
-
-
-
-%% \[
-%% \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
-%% \]
-%% injective and  integral.
-
-
-
-%%  Since $P_{j}(X_j) \in\I^{\A}= \langle
-%% f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial
-%%   f^\A}{\partial X_n} \rangle,$ we can write
-%% \[
-%% P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
-%% \]
-%% For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset
-%% \C^{n^2}$ such that if $A \in \Gamma_j$, then $A$ cancels none of the
-%% denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be
-%% the product of the denominators of the coefficients of $a_j$ and
-%% $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of
-%% the denominators of $a_{j}$ or $b_{j,l},$ which are providing the
-%% integral dependence relation. Now we define
-%% \[
-%% \Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
-%% \]
-%% and we obtain a bound on the degree of $\Xi_i$ by observing that
-%% \[
-%% \deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
-%% \]
-%% Hence, if $A\in \Q^{n^2}-\Xi_i$ then
-%% \[
-%% P_j(X_j) \in \I^A,  
-%% \]
-%% for each $j \in \{i,\hdots,n\},$ and therefore the extension 
-%% \[
-%% \mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{A})
-%% \]
-%% is integral. We can obtain bounds for $h_j$ by applying an effective
-%% Nullstellensatz theorem. 
-
-%% %
-%% Note that 
-%% \[
-%% \deg d_j \leq \deg \pjb \leq \Dt_j.
-%% \]
-%% %
-%% \subsection{Applying the effective Nullstellensatz}
-%% %
-
-Let us then define $\D_{3,i}:=\D_{2,i} \alpha_i \cdots \alpha_n$.
-This is a non-zero polynomial in $\C[\A]$; we will 
-estimate its degree below.
+Let us then define 
+$$\D_{3,i}:=\D_{2,i} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$
+where, for all $j$, $\alpha_j$ is as above and $D_j$ is the leading
+coefficient of $\pjb$ with respect to $X_j$. Thus, $\D_{3,i}$ is a
+non-zero polynomial in $\C[\A]$; we will estimate its degree below.
 
 \begin{lemma}
   Suppose that $\mA \in \C^{n\times n}$ does not cancel
   $\D_{3,i}$. Then $f^\mA$ satisfies ${\bf H}_i$.
 \end{lemma}
 \begin{proof}
-  By assumption, $\D_{2,i}(\mA)$ is non-zero, so that $\mA$ is invertible
-  and satisfies ${\bf H}_i(1)$.
+  By assumption, $\D_{2,i}(\mA)$ is non-zero, so that $\mA$ is
+  invertible and $f^\mA$ satisfies ${\bf H}_i(1)$. In particular, the
+  ideal $\I(i, f^\mA)$ is radical, and its zero-set
+  $W(\pi_i,V(f^\mA))$ is either empty or $(i-1)$-equidimensional. If it is 
+  empty, we are done. 
+
+  Otherwise, for $j=i,\dots,n$, evaluate all indeterminates in $\A$ at the
+  corresponding entries of $\mA$ in~\eqref{eq:nullst}. This gives us
+  an equality in $\C[X_1,\dots,X_n,T]$ of the form
+  \begin{align*}
+    a_j = \sum_{\ell=1}^{n-i+1} c_{j,\ell} g_\ell + b_j (1-p_j T),\ \  g_\ell \in 
+    \left\{ 
+      f^\mA,\frac{\partial f^\mA}{\partial X_{i+1}},\hdots,\frac{\partial f^\mA}{\partial X_n}
+    \right\},
+  \end{align*}
+  for $a_j$ in $\C$, polynomials $c_{j,\ell}$ and $b_j$ in
+  $\C[X_1,\dots,X_n,T]$ and $p_j$ in
+  $\C[X_1,\dots,X_{i-1},X_j]$. Since neither $\alpha_j$ nor $D_j$
+  vanish at $\mA$, $a_j$ is non-zero and the leading coefficient of
+  $p_j$ in $X_j$ is a non-zero constant.
+
+  The conclusion is now routine. Replace $T$ by $1/p_j$ in the
+  previous equality; after clearing denominators, this gives a
+  membership equality of the form $p_j{}^k \in \I(i, f^\mA)$, for some
+  integer $k \ge 1$ (we cannot have $k=0$, since we assumed that
+  $W(\pi_i,V(f^\mA))$ is not empty). Since $\I(i, f^\mA)$ is radical,
+  $p_j$ is in $\I(i, f^\mA)$. Repeating this for all $j$ proves that 
+  $\C[X_1,\dots,X_{i-1}]\rightarrow\C[X_1,\dots,X_n]/\I(i, f^\mA)$
+  is integral.
 \end{proof}
 
-
-To apply the effective Nullstellensatz theorem, we first need to
-determine degree bounds, separately in $\Xb$ and $\A,$ of the
-polynomials in the membership relationship. We have
-\[
-\deg_{\Xb}\left\{ 
+To estimate the degree of $\D_{3,i}$, what remains is to give an upper
+bound on the degree of $\alpha_i,\dots,\alpha_n$. This will come as an
+application of the effective Nullstellensatz given in~\cite{EN}, for
+which we first need to determine degree bounds, separately in $\Xb,T$
+and $\A,$ of the polynomials in the membership relationship. We have
+\begin{align*}
+\deg_{\Xb,T}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\}\leq d,
-\]
-\[
+\right\}&\leq d\\
 \deg_{\A}  
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\} \leq d,
-\]
-\[
-\deg_{\Xb,T}(1-T\pjb) \leq \Dt_j +1 
-\]
-and
-\[
-\deg_{\A}(1-T\pjb) \leq \Dt_j.
-\]
-For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, 
-%
-and with the degree of $\alpha_j$ upper bounded by
-%
-\begin{align*}
-    &\left(\prod_{k=1}^{n-i+1} d\right)\Dt_j 
-    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}d \right)d\\
-    = &\left(d^{n-i+1}\right)\Dt_j+
-    (n-i+1)\left(\Dt_j+1\right)\left(d^{n-i+1} \right)\\
-    &\leq d^{n}\Dt_j + n\left(\Dt_j+1\right)d^{n}\\
-    &=d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
+\right\}& \leq d\\
+\deg_{\Xb,T}(1-T\pjb) &\leq (2d)^n +1 \\
+\deg_{\A}(1-T\pjb)& \leq (2d)^n.
 \end{align*}
-%
-Now we will show that $\alpha_j$ is the only remaining denominator whose degree we need to bound. Substitute $T \leftarrow 1/\pjb$ so that 
-\[
-\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,1/\pjb)g_l + 0
-\]
-and
-%
-\begin{align*}
-A_{j,l}(\A,\Xb,1/\pjb) 
-&= \sum_{i=1}^{n_l} A_{j,l,i}(\A,\Xb,1/\pjb)\\
-&= \sum_{i=1}^{n_l} \left(\frac{1}{P_j^{k_i}}\right)\At_{j,l,i}(\A,\Xb), ~k_i \in \mathbb{Z}.
-\end{align*}
-%
-Let $K := \max\{k_l\}$ so that 
-%
-\begin{align*}
-    \pjb^K \alpha_j &= \pjb^K\left(\sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,1/\pjb)g_l\right)\\
-    &= \sum_{l=1}^{n-i+1}\left( \sum_{i=1}^{n_l}\left(\pjb^{K-k_{i}}\right)\At_{j,l,i}(\A,\Xb) \right)g_l \in \Q[\A][\Xb].
-\end{align*}
-%
-which shows that $\alpha_j$ is the only remaining denominator whose degree we need to bound other than $d_j$. Note as well that
-\[
-\pjb^K \in \I^{\A}.
-\]
-Therefore 
-%
-\begin{align*}
-\deg h_j &\leq \left(\deg \alpha_j\right)\left(\deg d_j\right)\\
-    &\leq \left(d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
-    &=d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
-\end{align*}
-%
-\subsection{Proof of Theorem 7.1}
-%
-Now we obtain
-%
-\begin{align*}
-    \deg \Xi_i 
-    &\leq \sum_{j=i}^n \deg h_j\\
-    &\leq  \sum_{j=i}^n \left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
-    &=  (n-i+1)\left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
-    &\leq  n d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
-\end{align*}
-%
-And therefore,  
-%
-\begin{align*}
-    \deg& \Delta_3 \leq \sum_{i=1}^n \deg \Xi_i\\
-    &\leq n^2 d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
-\end{align*}
-%
-where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 
-\[
-\C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V^A)
-\]
+For each $j \in \{i,\hdots,n\},$ a direct application of \cite[Theorem
+0.5]{EN}, gives $\deg(\alpha_j) \le (n+1)d^n((2d)^n+1)$; we will use
+the slightly less precise bound $\deg(\alpha_j) \le 2n(2d)^{2n}$.
 
-is integral.
-%
-%
-%
-%
-\section{Proof of Theorem 2.1}
-%
-Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
-%
-\begin{proof}
-Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
-\[
-A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
-\]
-then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
-\[
-\Delta = \bigcup_{i=1}^3 \D_i,
-\]
-and note that 
-\[
-\deg \D \leq  \sum_{i=1}^3 \deg \D_i.
-\]
-\end{proof}
-%
-Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
-%
-\begin{proof}
-\[
-Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
-\]
-\end{proof}
-%
-%
-%
-%
+
+\td finish the degree bound.
+
+% \section{Proof of Theorem 2.1}
+% %
+% Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
+% %
+% \begin{proof}
+% Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
+% \[
+% A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
+% \]
+% then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
+% \[
+% \Delta = \bigcup_{i=1}^3 \D_i,
+% \]
+% and note that 
+% \[
+% \deg \D \leq  \sum_{i=1}^3 \deg \D_i.
+% \]
+% \end{proof}
+% %
+% Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
+% %
+% \begin{proof}
+% \[
+% Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
+% \]
+% \end{proof}
+% %
+% %
+% %
+% %
 \section{Bit complexity}
 %
 Recall Theorem 1.1: Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies

@@ -968,6 +968,22 @@ $\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
 \end{proof}
 
 
+Our next step is to give degree bounds on the coefficients appearing
+in the membership equality $\pjb \in\I^\A$. This is done using
+Rabinovicz's trick. Let $T$ be a new variable; applying the
+Nullstellensatz in $\C(\A)[X_1,\dots,X_n,T]$, and clearing
+denominators, we obtain the existence of $\alpha_j$ in
+$\C[\A]\setminus\{0\}$ and $ A_{j,\ell},B_j$ in
+$\C[\A][X_1,\dots,X_n][T]$, such that
+\begin{align*}
+\alpha_j = \sum_{\ell=1}^{n-i+1} A_{j,\ell} g_\ell + B_j (1-\pjb T),\ \  g_\ell \in 
+\left\{ 
+f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
+\right\}.
+\end{align*}
+
+
+
 %% \[
 %% \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
 %% \]
@@ -1037,14 +1053,7 @@ and
 \[
 \deg_{\A}(1-T\pjb) \leq \Dt_j.
 \]
-For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, there exists $\alpha_j \in \mathbb{Q}[\A]\setminus\{0\}$ with 
-%
-\begin{align*}
-\alpha_j = \sum_{l=1}^{n-i+1} A_{j,l}(\A,\Xb,T)g_l + B_j(\A,\Xb,T)(1-\pjb T), \\ g_l \in 
-\left\{ 
-f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\},~ A_{j,l},B_j \in \mathbb{Q}[\A][\Xb][T],
-\end{align*}
+For each $j \in \{i,\hdots,n\},$ by \cite[Theorem 0.5]{EN}, 
 %
 and with the degree of $\alpha_j$ upper bounded by
 %

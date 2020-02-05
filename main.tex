@@ -45,6 +45,7 @@
 \def\jt{\widetilde{J}}
 \def\At{\widetilde{A}}
 \def\Yt{\widetilde{Y}}
+\def\dtt{\widetilde{d}}
 \def\kt{\widetilde{k}}
 \def\dt{s}
 \def\bI{\textbf{I}}
@@ -492,10 +493,10 @@ $g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
 %%   \in \{1,\hdots,n\}$ is at least $1-\epsilon.$
 %% \end{corollary}
 
-We will also work with change of variables with ``generic entries''.
+We will also work with changes of variables with ``generic entries''.
 For this, we will introduce $n^2$ new indeterminates $(\frak
 A_{i,j})_{1\le i,j \le n^2}$, we will let $\K$ be the field $\C(\frak
-A_{i,j})_{1\le i,j \le n^2})$, and use the corresponding matrix $ \fA$
+A_{i,j})_{1\le i,j \le n^2}$, and use the corresponding matrix $ \fA$
 over $\K$. For $g$ as above, we will then define the polynomial 
 $g^\fA:=g(\fA \Xb) \in \K[X_1,\dots,X_n]$.
 
@@ -734,28 +735,9 @@ equations). Finally, consider the projection
   $\mu$ yields the result.
 \end{proof}
 
-
-
-It will sometimes be useful for us use in replace of the matrix $A$, a
-matrix representing indeterminants: let $\A$ be an $n \times n$ matrix
-of new indeterminates $(\A_{i,j})_{1 \leq i , j \leq n}.$ Define
-$f^{\A} \in \mathbb{Q}(\A_{i,j})[\textbf{X}]$ as $f(\A\textbf{X})$ and
-$V^\A=V(f^\A).$ It follows from Proposition 5.1, that for a generic $A
-\in \C^{n^2},$ $0$ is a regular value of $\Phi_{A}$.  The proof of
-\cite[Theorem B.3]{TWT}, which establishes the existence of $\Delta
-\subset \C^{n^2},$ applies \textit{Sard's lemma}, which shows that the
-critical values of a polynomial mapping are contained in a
-hypersurface. It follows from Sard's lemma that, for the matrix of
-indeterminants $\A,$ $0$ is a regular value of $\Phi_{\A}.$ Otherwise
-it could not be that $0$ is a regular value of $\Phi_A,$ for a generic
-$A\in \C^{n^2}.$ The proof is routine and we omit details. It then
-follows that
-\[
-\jac_{\xb}(\Phi_{\A}) = \jac_{\xb}\left(f^{\A}(\xb),\frac{\pa f^{\A}(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^{\A}(\xb)}{\pa X_n}\right)
-\]
-has full rank for all $\xb \in V(f^{\A})$, and thus $f^{\A}$satisfies
-$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by
-the Jacobian criterion \cite[Theorem 16.19]{ECA}. We will rely on this
+Recall that we work with changes of variables with ``generic entries'' of new indeterminants $(\frak
+A_{i,j})_{1\le i,j \le n^2}$, and define the polynomial 
+$f^\fA:=f(\fA \Xb)$. Note that $f^\A$ satisfies $\textbf{H}_i(1).$ Indeed, otherwise it could not be that that the Jacobian of $f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$ has full rank at all $\xb \in V(f^A)$ for a generic $A \in \C^{n^2},$ which would contradict Popositon 3.1. The proof of this statement is routine and we omit details. We will rely on this
 fact in Section 8.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -897,35 +879,29 @@ where we have the following bound on the degree which proves the claim:
 
 \section{Property ${\bf H}_i(2)$ -- Noether position}
 
-Throughout this section, we consider that $i \in \{1,\hdots,n\}$ is
-fixed. We prove that there exists a hypersurface $\D_{3,i} \subset
+Fix $i \in \{1,\hdots,n\}$. Throughout this section, we will avoid writing $i$ where the context is clear. Let $\I^{\A}$ denote $\I(i,V^{\A}).$ 
+
+We prove that there exists a hypersurface $\D_{3,i} \subset
 \C^{n^2}$ such that if $\mA$ is not in $\D_{3,i}$, then $\mA$ is
 invertible and satisfies $\textbf{H}_i(1)$ and $\textbf{H}_i(2)$.
 
-
-Let $\A$ be an $n \times n$ matrix of new indeterminates
-$(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in
-\mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$
-Recall from Section 4.1.4 that $f^\A$ satisfies
-$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$
-, to simplify notation, let $\I^\A$ denote
-$\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore,
-throughout this section, We will avoid writing $i$ where the context is clear.
+Recall that we work with changes of variables with ``generic entries'' of new indeterminants $(\frak
+A_{i,j})_{1\le i,j \le n^2}$, and define the polynomial 
+$f^\fA:=f(\fA \Xb)$. Recall as well that $f^\A$ satisfies $\textbf{H}_i(1),$ as was stated at the end of Section 3.1. 
 %
 \subsection{Sketch of the proof}
 %
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfies \textbf{H}, so that $f$ is squarefree with $V(f)$ smooth. Recall $\textbf{H}_i^{'}(7):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
-
+Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. Recall $\textbf{H}_i(2):$ \textit{$W(\pi_i,V(f))$ is either empty or in Noether position for
+  $\pi_{i-1}$}, which is equivalent to having the extension  
 \[
 \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
 \]
 injective and  integral.
 %
 \begin{theorem}
-There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
+There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, \mA$ is
+invertible and satisfies $\textbf{H}_i(1)$ and $\textbf{H}_i(2)$.
 \end{theorem}
-%
-Section 7 is devoted to proving Theorem 7.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}(7)$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
 %
 \begin{proposition} 
 The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
@@ -949,13 +925,13 @@ for each $j \in \{i,\hdots,n\},$ and therefore
 is integral.
 \end{proof}
 %
-Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 7.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
+Let $P_{j} \in \mathbb{Q}(\frak{A})[\Xb_{\leq i-1}][T]$ be as in the proof of Proposition 4.2. Since $P_{j}(X_j) \in\I^{\A}= \langle f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n} \rangle,$
  we can write
 \[
 P_{j}(X_j) = a_j f^{\A} + \sum_{l=1}^{n-i}b_{j,l} \frac{\partial f^\A}{\partial X_{i+l}}, ~a_j,b_{j,l} \in \mathbb{Q}(\A)[\textbf{X}].
 \]
-For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $A \in \Gamma_j$,
-then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $A \in \Q^{n^2}-V(h_j)$ then $A$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
+For each $P_j,$ there exists a Zariski open set $\Gamma_j \subset \C^{n^2}$ such that if $\mA \in \Gamma_j$,
+then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l}$. Define $h_j \in \Q[\A]$ to be the product of the denominators of the coefficients of $a_j$ and $b_{j,l}$. Hence, if $\mA \in \C^{n^2}-V(h_j)$ then $\mA$ cancels none of the denominators of $a_{j}$ or $b_{j,l},$ which are providing the integral dependence relation. Now we define 
 \[
 \Xi_i := \bigcup_{j=i}^n V(h_j) =V\left(\prod_{j=i}^n h_j \right), 
 \]
@@ -963,15 +939,15 @@ and we obtain a bound on the degree of $\Xi_i$ by observing that
 \[
 \deg \Xi_i \leq \sum_{j=i}^n \deg h_j.
 \]
-Hence, if $A\in \Q^{n^2}-\Xi_i$ then
+Hence, if $\mA\in \Q^{n^2}-\Xi_i$ then
 \[
 P_j(X_j) \in \I^A,  
 \]
 for each $j \in \{i,\hdots,n\},$ and therefore the extension 
 \[
-\mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{A})
+\mathbb{C}[{\Xb}_{\leq i-1}]\rightarrow\mathbb{C}[\Xb]/\I(\pi_i,V^{\mA})
 \]
-is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A_{i,j}]$. Put 
+is integral. We can obtain bounds for $h_j$ by applying an effective Nullstellensatz theorem. However, the theorem requires $P_{j}$ to be a polynomial. We can obtain a polynomial from $P_{j}$ by clearing denominators. We can multiply $P_{j}$ by the least common multiple of its denominators, which we will denote by $d_j \in \Q[\A]$. Put 
 \[
 \overline{P_{j}} := d_jP_{j}\in \Q[\A][\Xb],
 \]
@@ -981,7 +957,7 @@ and note that $\pjb(X_j) \in \I^{\A}$ with
 \]
 %
 \begin{proposition} 
-$\deg \pjb\leq (D+1)^{n-i+1}.$ 
+$\deg \pjb\leq (d+1)^{n-i+1}.$ 
 \end{proposition} 
 %
 \begin{proof}
@@ -998,7 +974,7 @@ Let $\Is \subset \Q[\A,\Xb]$ be the extension of $\I^{\A}$ in  $\Q[\A,\Xb],$ and
 The minimal polynomial of the linear mapping defined by multiplication by $X_j$ in $\Q(\A,\Xb_{i-1})$ is \textbf{almost}(?) equal to $\pjb$ (the leading coefficient of $\pjb$ is $d_j$). It therefore follows by \cite[Proposition 1]{CGR} that
 %
 \begin{align*}
-&\deg \pjb \leq (D+1)^{n-i+1}.&(2D)^{n-i+1}\textrm{?} 
+&\deg \pjb \leq (d+1)^{n-i+1}.&(2d)^{n-i+1}\textrm{?} 
 \end{align*}
 %
 \end{proof}
@@ -1014,13 +990,13 @@ To apply the effective Nullstellensatz theorem, we first need to determine degre
 \[
 \deg_{\Xb}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\}\leq D,
+\right\}\leq d,
 \]
 \[
 \deg_{\A}  
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\} \leq D,
+\right\} \leq d,
 \]
 \[
 \deg_{\Xb,T}(1-T\pjb) \leq \Dt_j +1 
@@ -1041,12 +1017,12 @@ f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial
 and with the degree of $\alpha_j$ upper bounded by
 %
 \begin{align*}
-    &\left(\prod_{k=1}^{n-i+1} D\right)\Dt_j 
-    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}D \right)D\\
-    = &\left(D^{n-i+1}\right)\Dt_j+
-    (n-i+1)\left(\Dt_j+1\right)\left(D^{n-i+1} \right)\\
-    &\leq D^{n}\Dt_j + n\left(\Dt_j+1\right)D^{n}\\
-    &=D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
+    &\left(\prod_{k=1}^{n-i+1} d\right)\Dt_j 
+    + (n-i+1)\left(\Dt_j+1\right)\left(\prod_{k=1}^{n-i}d \right)d\\
+    = &\left(d^{n-i+1}\right)\Dt_j+
+    (n-i+1)\left(\Dt_j+1\right)\left(d^{n-i+1} \right)\\
+    &\leq d^{n}\Dt_j + n\left(\Dt_j+1\right)d^{n}\\
+    &=d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
 Now we will show that $\alpha_j$ is the only remaining denominator whose degree we need to bound. Substitute $T \leftarrow 1/\pjb$ so that 
@@ -1076,8 +1052,8 @@ Therefore
 %
 \begin{align*}
 \deg h_j &\leq \left(\deg \alpha_j\right)\left(\deg d_j\right)\\
-    &\leq \left(D^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
-    &=D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
+    &\leq \left(d^n\left(\Dt_j + n\left(\Dt_j+1\right) \right)\right)\Dt_j\\
+    &=d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right).
 \end{align*}
 %
 \subsection{Proof of Theorem 7.1}
@@ -1087,16 +1063,16 @@ Now we obtain
 \begin{align*}
     \deg \Xi_i 
     &\leq \sum_{j=i}^n \deg h_j\\
-    &\leq  \sum_{j=i}^n \left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
-    &=  (n-i+1)\left( D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
-    &\leq  n D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
+    &\leq  \sum_{j=i}^n \left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right) \\
+    &=  (n-i+1)\left( d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) \right)\\
+    &\leq  n d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right) .
 \end{align*}
 %
 And therefore,  
 %
 \begin{align*}
     \deg& \Delta_3 \leq \sum_{i=1}^n \deg \Xi_i\\
-    &\leq n^2 D^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
+    &\leq n^2 d^n\Dt_j\left(\Dt_j + n\left(\Dt_j+1\right) \right),
 \end{align*}
 %
 where if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in \{1,\hdots,n\},$ the extension 

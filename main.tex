@@ -925,39 +925,37 @@ where we have the following bound on the degree which proves the claim:
 
 \section{Property ${\bf H}_i(2)$ -- Noether position}
 
-Throughout this section, we consider that $i \in \{1,\hdots,n\}$ is
+Throughout this section,  $i \in \{1,\hdots,n\}$ is
 fixed. We prove that there exists a hypersurface $\D_{3,i} \subset
 \C^{n^2}$ such that if $\mA$ is not in $\D_{3,i}$, then $\mA$ is
-invertible and satisfies $\textbf{H}_i(1)$ and $\textbf{H}_i(2)$.
+invertible and satisfies $\textbf{H}_i$ and $\textbf{H}_i$.
 
+Since $i$ is fixed, to simplify notation, let $\I^\A$ denote
+$\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$
 
-Let $\A$ be an $n \times n$ matrix of new indeterminates
-$(\A_{i,j})_{1 \leq i , j \leq n}.$ Define $f^{\A} \in
+Consider again the matrix of indeterminates $\A$.  Define $f^{\A} \in
 \mathbb{Q}(\A)[\textbf{X}]$ as $f(\A\textbf{X})$ and $V^\A=V(f^\A).$
-Recall from Section 4.1.4 that $f^\A$ satisfies
-$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$
-, to simplify notation, let $\I^\A$ denote
-$\I(\pi_i,V^\A)$ and let $W^\A$ denote $W(\pi_i,V^\A).$ Furthermore,
-throughout this section, We will avoid writing $i$ where the context is clear.
-%
-\subsection{Sketch of the proof}
-%
-Let $f \in \mathbb{Q}[X_1,\hdots,X_n]$ have total degree $D$. Assume $f$ satisfies \textbf{H}, so that $f$ is squarefree with $V(f)$ smooth. Recall $\textbf{H}_i^{'}(7):$ \textit{$W(\pi_i,V)$ is in Noether position for $\pi_{i-1}$}, which is equivalent to having the extension  
+Recall from Section~\ref{xxx} that $f^\A$ satisfies
+$\textbf{H}_i^{'}(1)$, that is, \td.
+
+
+
 
 \[
 \C[\textbf{X}_{\leq i-1}]\rightarrow\C[\textbf{X}]/\frak{I}(\pi_i,V)
 \]
 injective and  integral.
 %
-\begin{theorem}
-There exists a hypersurface $\Delta_3 \subset \C^{n^2}$ of degree at most $\td$ with the property that, if $A \in \C^{n^2} - \Delta_3$ then, for each $i \in\{1,\hdots,n\}, f^A$ satisfies $\textbf{H}_i'(7)$.
-\end{theorem}
-%
-Section 7 is devoted to proving Theorem 7.1. It has already been shown in \cite{EMP} that $f^A$ satisfies $\textbf{H}_i^{'}(7)$ for a generic change of variables. The new contribution is in upper bounding the degree of $\Delta_3.$
-%
-\begin{proposition} 
-The ring extension \[\mathbb{Q}(\frak{A})[\textbf{X}_{\leq i-1}]\rightarrow\mathbb{Q}(\frak{A})[\textbf{X}]/\I^{\A}\] is integral.
-\end{proposition}
+
+It has already been shown in \cite{EMP} that $f^A$ satisfies
+$\textbf{H}_i^{'}(7)$ for a generic change of variables. The new
+contribution is in upper bounding the degree of $\Delta_3.$
+
+\begin{lemma} 
+The ring
+extension \[\mathbb{Q}(\frak{A})[X_1,\dots,X_{i-1}]\rightarrow\mathbb{Q}(\frak{A})[X_1,\dots,X_n]/\I^{\A}\]
+is integral.
+\end{lemma}
 %
 \begin{proof}
 Let $(\frak{P}_l)_{l \leq L}$ be the prime components of the radical ideal $\I^\A$. By \cite[Proposition 1]{EMP}, 

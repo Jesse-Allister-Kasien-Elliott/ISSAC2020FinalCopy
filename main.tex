@@ -195,7 +195,7 @@
 \newcommand{\pref}[1]{{\bf\ref{#1}}}
 
 \keywords{Real algebraic geometry, transversality, Noether
-  normalization, bit complexity}
+  position, bit complexity}
 
 \maketitle
 
@@ -751,7 +751,7 @@ equations). Finally, consider the projection
 Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
 %
 \begin{theorem}
-There exists a hypersurface $\Delta_1 \subset \C^{n^2}$ of degree at most $d^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then, for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i(1)$.
+There exists a hypersurface $\Delta_1 \subset \C^{n^2}$ of degree at most $nd^{2n}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then, for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i(1)$.
 \end{theorem}
 
 For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
@@ -820,7 +820,7 @@ has full rank at all $\xb \in V(f^A)$, and therefore $f^A$ satisfies $\textbf{H}
 \]
 where we have the following bound on the degree which proves the claim:
 \[
-\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
+\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq nd^{2n}.
 \] 
 
 In Section~\ref{sec:Hi2}, we will need the following alternative form
@@ -836,7 +836,7 @@ Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ s
 %
 \begin{theorem}
   There exists a Zariski closed set $\Delta_2 \subset \C^{n-1}$ of
-  degree at most $d^{2n^2}$ with the property that, if $\bm\alpha \in \C^{n-1} - \Delta_2$, then, for each $i \in \{1,\hdots,n\},$ if $f$ satisfies $\textbf{H}_i$ then $f$ and $\bm \alpha$ satisfy
+  degree at most $nd^{2n}$ with the property that, if $\bm\alpha \in \C^{n-1} - \Delta_2$, then, for each $i \in \{1,\hdots,n\},$ if $f$ satisfies $\textbf{H}_i$ then $f$ and $\bm \alpha$ satisfy
   $\textbf{H}_i'$.
 \end{theorem}
 %
@@ -879,7 +879,7 @@ has full rank at all $\xb \in V(f)$, and therefore $f$ and $\bm \alpha_{i-1}$ sa
 \]
 where we have the following bound on the degree which proves the claim:
 \[
-\deg \Delta_2 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
+\deg \Delta_2 \leq \sum_{i=1}^n \deg \Xi_i \leq n d^{2n}.
 \] 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1206,7 +1206,7 @@ is integral.
 %
 %
 %
-\section{Proof of Theorem 3.1}
+\section{Proof of Theorem 2.1}
 %
 Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
 %

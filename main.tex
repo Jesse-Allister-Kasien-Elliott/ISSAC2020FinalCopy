@@ -47,6 +47,7 @@
 \def\Yt{\widetilde{Y}}
 \def\kt{\widetilde{k}}
 \def\dt{s}
+\def\bI{\textbf{I}}
 %% \def\dt{\widetilde{d}}
 \def\Dt{\widetilde{D}}
 \def\rk{\textrm{rank }}
@@ -320,7 +321,7 @@ and of the absolute values of the coefficients of $vf$.
   algorithm either produces a subset of the points or FAIL. In any
   case, the algorithm uses
   \[
-  O^{\sim}(k(Lb+d^{2n}(s+d)(L+d)))
+  O^{\sim}(nk(Lb+d^{2n}(s+d)(L+d)))
   \]
   bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in
   the output have degree at most $d^n,$ and height $
@@ -439,10 +440,10 @@ dimension zero (so it is finite and not empty).
 For $i$ in $\{1,\dots,n-1\}$ and $f$ as above, we will let $\I(i, f)$
 denote the sequence of $n-(i-1)$ polynomials $(f, {\pa f}/{\pa
   X_{i+1}},\dots,{\pa f}/{\pa X_n})$. As we pointed out in the
-introduction, their zero-set is the $i$th polar variety $W(\pi,V(f))$.
+introduction, their zero-set is the $i$th polar variety $W(\pi_i,V(f))$.
 Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \begin{enumerate}
-\item For any $\xb$ in $W(\pi,V(f))$, the Jacobian matrix
+\item For any $\xb$ in $W(\pi_i,V(f))$, the Jacobian matrix
   $\jac(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
 
   {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
@@ -761,38 +762,17 @@ fact in Section 8.
 
 \subsection{Application: property $\textbf{H}_i(1)$}
 
-We assume our input polynomial $f$ satisfies \textbf{H} so that $f$ is
-squarefree with $V(f) \cap \mathbb{R}^n$ smooth. Thus, by Proposition
-2.4, $W(\pi_i,V(f))$ is defined by the vanishing of $f,\frac{\pa
-  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.$ If the Jacobian of
-this set of polynomials has full rank at all $\xb \in V(f) \cap
-\mathbb{R}^n,$ then it follows by the Jacobian criterion \cite[Theorem
-  16.19]{ECA} that $f$ satisfies
-$\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
 %
 \begin{theorem}
-There exists a Zariski closed set $\Delta_1 \subset \C^{n^2}$ of degree at most $d^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$.
+There exists a hypersurface $\Delta_1 \subset \C^{n^2}$ of degree at most $d^{2n^2}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then, for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i(1)$.
 \end{theorem}
 
 For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
 \[
 \Phi_i : (\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
 \] 
-so that $\Phi_{i,A}^{-1}(0)= W(\pi_i,V^A).$ We want to apply Theorem 5.1, and thus we show that $\bz$ is a regular value of $\Phi_i$, where then it follows that $\Xi_i \subset \C^{n^2}$ exists with the property that if $A \in \C^{n^2}-\Xi_i$ then  
-\[
-\jac_{\xb}(\Phi_{i,A}) = \jac_{\xb}\left(f^A(\xb),\frac{\pa f^A(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f^A(\xb)}{\pa X_n}\right)
-\]
-has full rank at all $\xb \in V(f^A)~(\cap\R^n$?). Then, by the Jacobian criterion \cite[Theorem 16.19]{ECA}, $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$. To obtain the result for all $i \in \{1,\hdots,n\}$, we take 
-\[
-\Delta_1 = \bigcup_{i=1}^n \Xi_i 
-\]
-where we can bound the degree by observing that 
-\[
-\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i.
-\]
-
-
-Fix $i \in \{1,\hdots,n\}$, and let $\Phi_i$ be as stated above.
+so that $\Phi_{i,A}^{-1}(0)= W(\pi_i,V^A).$
 %
 \begin{proposition} 
 $\bz$ is a regular value of $\Phi_i$.
@@ -843,12 +823,12 @@ T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
 Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
 \end{proof}
 %
-Since $\deg \Phi_i \leq d,$ it follows by Theorem 5.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $d^{n+(n-i+1)}=d^{2n-i+1}\leq d^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
+Since $\deg \Phi_i \leq d,$ it follows by Proposition 3.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $d^{n+(n-i+1)}=d^{2n-i+1}\leq d^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
 %
 \[
- \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+ \jac_{\xb} (\Phi_{i,A})=\jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?), so that  $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
+has full rank at all $\xb \in V(f^A)$, and therefore $f^A$ satisfies $\textbf{H}_i(1)$. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
 \[
 \Delta_1 := \bigcup_{i=1}^n \Xi_i,
 \]
@@ -860,21 +840,16 @@ where we have the following bound on the degree which proves the claim:
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Application: property $\textbf{H}'_i$}
-
+%
+Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
+%
 \begin{theorem}
-  There exists a Zariski closed set $\Delta_2 \subset \C^{n^2}$ of
-  degree at most $\td$ with the property that, if $A \in \C^{n^2} -
-  \Delta_2$ then for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies
-  $\textbf{H}_i'(4),\textbf{H}_i'(5)$ and $\textbf{H}_i'(6)$.
+  There exists a Zariski closed set $\Delta_2 \subset \C^{n-1}$ of
+  degree at most $d^{2n^2}$ with the property that, if $\bm\alpha \in \C^{n-1} - \Delta_2$, then, for each $i \in \{1,\hdots,n\},$ if $f$ satisfies $\textbf{H}_i$ then $f$ and $\bm \alpha$ satisfy
+  $\textbf{H}_i'$.
 \end{theorem}
-
-Let $p_{n-1} = (\alpha_1,\hdots,\alpha_{n-1}) \in \Q^{n-1}$ be a randomly chosen point. For $i \in \{1,\hdots,n\}$, we want to show that the Jacobian of the system of polynomials
-\[
-X_1(\xb)-\alpha_1,\hdots,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),  \frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n}
-\]
-has full rank, at all points $(\xb,A) \in \C^n \times \C^{n^2}$ in the zero set of this system. It would then follow from Theorem 5.1 that a hypersurface  exists with the desired properties. 
-
-Let $\Phi_i$ be the mapping 
+%
+Fix $i \in \{1,\hdots,n\}$ and let $\Phi_i$ be the mapping 
 %
 \begin{align*}
     \Phi_i: \C^n \times \C^{i-1} &\rightarrow \C^{n} \\
@@ -887,36 +862,33 @@ Let $\Phi_i$ be the mapping
 $\bz$ is a regular value of $\Phi_i.$
 \end{proposition} 
 \begin{proof}
-For all $(\xb,A) \in \Phi_i^{-1}(0),$ the Jacobian matrix of $\Phi_i$ at $(\xb,A)$ has full rank $\td$. Indeed, the Jacobian is equal to
-%% \[
-%% \left[ 
-%% \begin{array}{cccccc}
-%% \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
-%% \frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
-%% \ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
-%% \frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
-%% \end{array}
-%% \right]. 
-%% \] 
-Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
+At all $(\xb,\alpha_1,\hdots,\alpha_{i-1}) \in \Phi_i^{-1}(0),$ the Jacobian matrix of $\Phi_i$ has full rank. Indeed, the Jacobian is equal to
 \[
-T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
-\]
-Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
+\left[ 
+\begin{array}{cc}
+\hspace{-9mm}\bI_n\hspace{10mm}\hdots \hdots&\hspace{-10mm}-\bI_{i-1}\\
+\jac_{\xb}\left(f,\frac{\pa
+  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right)&\bz_{n-i+1\times i-1}
+\end{array}
+\right], 
+\] 
+and the Jacobian of $f,\frac{\pa
+  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}$ at $\xb$ is never singular because we are assuming that $f$ satisfies $\textbf{H}_i$. Therefore the entire matrix must have full rank, and $\bz$ is a regular value of $\Phi_i.$
 \end{proof}
 %
-Since $\deg \Phi_i \leq D,$ it follows by Theorem 5.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $D^{n+(n-i+1)}=D^{2n-i+1}\leq D^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
+Since $\deg \Phi_i \leq d,$ it follows by Proposition 3.1 that a hypersurface $\Xi_i \subset \C^{i-1}$ exists, of degree at most $d^{2n},$ with the property that, if $\bm \alpha_{i-1} \in \C^{i-1}-\Xi_i,$ then the Jacobian of $\Phi_{i,\alpha_{i-1}}$:
 %
 \[
- \jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
+ \jac_{\xb} \left(X_1(\xb)-\alpha_1,\hdots 
+       ,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),\frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n}\right)
 \]
-has full rank for all $\xb \in V(f^A)$ ($\cap \R^n$?), so that  $f^A$ satisfies $\textbf{H}_i^{'}(1),\textbf{H}_i^{'}(2)$ and $\textbf{H}_i^{'}(3)$ by the Jacobian criterion \cite[Theorem 16.19]{ECA}. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
+has full rank at all $\xb \in V(f)$, and therefore $f$ and $\bm \alpha_{i-1}$ satisfy $\textbf{H}_i^{'}$. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
 \[
-\Delta_1 := \bigcup_{i=1}^n \Xi_i,
+\Delta_2 := \bigcup_{i=1}^n \Xi_i,
 \]
 where we have the following bound on the degree which proves the claim:
 \[
-\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq D^{2n^2}.
+\deg \Delta_2 \leq \sum_{i=1}^n \deg \Xi_i  \leq d^{2n^2}.
 \] 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

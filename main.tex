@@ -482,7 +482,7 @@ $g^\mA:=g(\mA \Xb) \in \C[X_1,\dots,X_n]$.
 \begin{theorem}
   There exists a hypersurface $\D \subset \mathbb{C}^{n^2}$ of degree
   at most $\td$ such that, if $\mA$ is chosen from $\C^{n^2}-\Delta$
-  then $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for
+  then $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$ for
   all $i \in \{1,\hdots,n-1\}.$
 \end{theorem}
 %% %
@@ -1193,9 +1193,56 @@ is integral.
 %
 %
 %
-\section{Proof of Theorem 2.1}
+\section{Bit complexity}
 %
-Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
+Recall Theorem 1.1: Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
+  $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
+  smooth.  Assume also that $f$ is given by a straight-line program
+  $\Gamma$ of size $L$ with integer constants of height at most $b.$
+
+  There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
+  as input and produces a zero-dimensional parameterization of a set
+  that contains at least one point in each connected component of
+  $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the
+  algorithm either produces a subset of the points or FAIL. In any
+  case, the algorithm uses
+  \[
+  O^{\sim}(nk(Lb+d^{2n}(s+d)(L+d)))
+  \]
+  bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in
+  the output have degree at most $d^n,$ and height $
+  O^{\sim}((s+d)d^n).$
+  
+Recall as well that the algorithm can error on one side by producing a proper subset of the points. Running the algorithm $\kt$ times gives a list of $n$ zero-dimensional parameterizations, among which the highest cardinality output includes at least one point in each connected component with probability at least $1-(1/2)^{\kt}.$
+%
+\subsection{The Algorithm}
+%
+For a matrix $A \in \GL(n,\Q),$ let 
+\[
+Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
+\]
+where $b_i$ is the i-th row of $A^{-1}$.
+%
+\begin{algorithm}[hbt!]
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
+\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
+\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \epsilon^{-1}d^{\td}$, where $\epsilon < 5/21$\;
+\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
+\nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
+    \caption{{Main Algorithm} \label{}}
+\nl Choose $T \subset \mathbb{Q}$ and $\alpha_{n-1}=(\alpha_1,\hdots,\alpha_{n-1}) \in T^{n-1}$ with $|T| \geq \epsilon^{-1}d^{\td}$\; 
+\nl \For{$i\gets1$ \KwTo $n$}{
+\nl Run \cite[Algorithm 2]{SH} $k > -\lg(1-2^{(-1/n)})$ times with input 
+$\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
+\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
+} 
+\nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
+\end{algorithm}
+\clearpage 
+%
+\subsection{Proof of Theorem 1.1}
+%
+Recall Theorem 2.1: \textit{  There exists a hypersurface $\D \subset \mathbb{C}^{n^2}$ of degree at most $\td$ such that, if $\mA$ is chosen from $\C^{n^2}-\Delta$ then $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n-1\}.$} 
 %
 \begin{proof}
 Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
@@ -1219,63 +1266,10 @@ Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon
 Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
 \]
 \end{proof}
-%
-%
-%
-%
-\section{Bit complexity}
-%
-Recall Theorem 1.1: Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
-  $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
-  smooth.  Assume also that $f$ is given by a straight-line program
-  $\Gamma$ of size $L$ with integer constants of height at most $b.$
-
-  There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
-  as input and produces a zero-dimensional parameterization of a set
-  that contains at least one point in each connected component of
-  $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the
-  algorithm either produces a subset of the points or FAIL. In any
-  case, the algorithm uses
-  \[
-  O^{\sim}(k(Lb+d^{2n}(s+d)(L+d)))
-  \]
-  bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in
-  the output have degree at most $d^n,$ and height $
-  O^{\sim}((s+d)d^n).$
-  
-Recall as well that the algorithm can error on one side by producing a proper subset of the points. Running the algorithm $\kt$ times gives a list of $n$ zero-dimensional parameterizations, among which the highest cardinality output includes at least one point in each connected component with probability at least $1-(1/2)^{\kt}.$
-%
-\subsection{The Algorithm}
-%
-For a matrix $A \in \GL(n,\Q),$ let 
-\[
-Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
-\]
-where $b_i$ is the i-th row of $A^{-1}$.
-%
-\begin{algorithm}[hbt!]
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
-\KwOut{$n$ zero-dimensional parameterizations, whose reunion includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Choose $S \subset \mathbb{Q}$ and $A \in S^{n^2}$ with $|S|\geq \epsilon^{-1}d^{\td}$, where $\epsilon < 5/21$\;
-\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
-    \caption{{Main Algorithm} \label{}}
-\nl Randomly choose a point $p_{n-1}=(\alpha_1,\hdots,\alpha_{n-1}) \in \Q^{n-1}~(p_0$?)\; 
-\nl \For{$i\gets1$ \KwTo $n$}{
-\nl Run \cite[Algorithm 2]{SH} $k > -\lg(1-2^{(-1/n)})$ times with input 
-$\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
-\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
-} 
-\nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
-\end{algorithm}
-
-%
-\subsection{Proof of Theorem 1.1}
-%
 \textbf{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 %
 \begin{enumerate}
-    \item By our assumption on the size of $S$ we know that $|S| = \log (\epsilon^{-1}D^{\td}) \leq \td.$ Thus for $a_{ij} \in S$ we know that $|a_{ij}| \leq \td.$
+    \item We assume that $S=\{1,2,\hdots,\epsilon^{-1}\td\}$. Therefore, the height of $a_{ij} \in S$ is bounded by $\log \td -\log \epsilon.$
     \item 
     \begin{enumerate}[label=\roman*.]
         \item $O(L)$ operations are required to compute $f$ from its straight line program $\Gamma.$
@@ -1284,7 +1278,7 @@ $\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
         \log(n!\cdot \max_{\frac{1\leq i\leq n}{1\leq j\leq n}}\{a_{ij}\}) &= 
         O(n\log n + n\log(d+1)) \\
         &= 
-        O^\sim(\log(d+1)).
+        O^\sim(n\log(d)- \log \epsilon).
         \end{align*}
     \end{enumerate}
     \item After computing the partial derivatives the height grows by at most another factor of $\log d$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.

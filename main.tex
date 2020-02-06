@@ -319,16 +319,40 @@ and of the absolute values of the coefficients of $vf$.
   There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
   as input and produces a zero-dimensional parameterization of a set
   that contains at least one point in each connected component of
-  $V(f) \cap \R^n$ with probability at least $1/2$. Otherwise the
-  algorithm either produces a subset of the points or FAIL. In any
-  case, the algorithm uses
+  $V(f) \cap \R^n$. 
+  
+  As part of the randomization, the algorithm chooses a set 
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s+d)(L+d)))
+  S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{2n}\}
   \]
-  bit operations, with $k \geq -\lg(1-2^{(-1/n)})$. The polynomials in
-  the output have degree at most $d^n,$ and height $
-  O^{\sim}((s+d)d^n).$
+  from which to sample from. 
+  
+  With probability at least $1-\epsilon$, the output is correct. Otherwise, either a proper subset of the points is produced, or FAIL.  In any case, the algorithm uses
+  \[
+  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))
+  \]
+  bit operations, with $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$. The polynomials in
+  the output have degree at most $d^n,$ and height 
+  \[
+  O^{\sim}((s+\lg 1/\epsilon^2 + d)d^n)
+  =O^{\sim}((s+\lg 1/\epsilon^2)d^{n+1}).
+  \]
 \end{theorem}
+
+The runtime for cases without a strait-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a strait-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
+\begin{align*}
+      &O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))\\
+      &= 
+O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon^2+d)(d^n+d)\log(s + \log 1/\epsilon^2)))\\
+      &= 
+O^{\sim}(nk(d^ns+(d^{3n}+d^{2n+1})(s + \log 1/\epsilon^2+d)\log(s + \log 1/\epsilon^2)))\\
+     &= 
+O^{\sim}(nk(d^{3n}(s + \log 1/\epsilon^2+d)\log(s + \log 1/\epsilon^2)))\\
+     &= 
+O^{\sim}(nk(d^{3n+1}(s + \log 1/\epsilon^2)\log(s + \log 1/\epsilon^2))),
+\end{align*}
+and the degree and height of the output does not change.
+
 The algorithm itself is rather simple. To describe it, we need to
 define {\em polar varieties}, which will play a crucial role in this
 paper. Let $V=V(f)$, for $f$ as in the theorem. For $i \in

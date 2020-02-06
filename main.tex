@@ -40,7 +40,7 @@
 \def\codim{ \textrm{codim}}
 \def\jac{ \textbf{jac}}
 \def\exp{\textrm{exp}}
-\def\grad{\textrm{grad}}
+\def\grad{\textbf{grad}}
 \def\rank{\textrm{rank}}
 \def\reg{\textrm{reg}}
 \def\jt{\widetilde{J}}
@@ -447,7 +447,7 @@ introduction, their zero-set is the $i$th polar variety
 $W(\pi_i,V(f))$.  Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \begin{enumerate}
 \item For any $\xb$ in $W(\pi_i,V(f))$, the Jacobian matrix
-  $\jac(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
+  $\jac_\Xb(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
 
   {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
   implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional,
@@ -458,13 +458,13 @@ $W(\pi_i,V(f))$.  Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \item $W(\pi_i,V(f))$ is either empty or in Noether position for
   $\pi_{i-1}$.
 \end{enumerate}
-When this holds, given $\bm \alpha = (\alpha_1,\hdots,\alpha_{i-1})$
-in $\C^{i-1}$, we further say that $f$ and $\bm \alpha$ satisfy
+When this holds, given $\bm \sigma = (\sigma_1,\hdots,\sigma_{i-1})$
+in $\C^{i-1}$, we further say that $f$ and $\bm \sigma$ satisfy
 $\textbf{H}'_i$ if
 \begin{enumerate}
-\item The $n$ polynomials
-  $(X_1-\alpha_1,\dots,X_{i-1}-\alpha_{i-1},\I(i, f))$ generate a
-  radical ideal.
+\item The ideal  $(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
+  X_{i+1}},\dots,{\pa f}/{\pa X_n})$ is
+  radical.
 
   {\em By point (2) above, we know that there are finitely many solutions 
     to these equations.}
@@ -485,16 +485,27 @@ A_{j,k})_{1\le j,k \le n}$, $\C(\A)$ will denote the rational function
 field $\C((\frak A_{j,k})_{1\le j,k \le n})$ and $\C[\A]$ the
 polynomial ring $\C[(\frak A_{j,k})_{1\le j,k \le n}]$.  For $f$ as
 above, we will then define the polynomial $f^\A:=f(\A \Xb)$, 
-which we will consider in either
+which we may consider in either
 $\C(\A)[X_1,\dots,X_n]$ or $\C[\A,X_1,\dots,X_n]$.
 
+\smallskip
+
+This being said, our two key results are the following.
 \begin{theorem}\label{theo:gen}
   For $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in
   $\C[\A]$ of degree at most $\td$ such that if $\mA \in \C^{n\times
     n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$
   satisfies $\textbf{H}_i$.
 \end{theorem}
-\noindent The proof of this theorem occupies the next two sections.
+
+\begin{theorem}
+  Suppose that $f$ satisfies $\textbf{H}_i$. There exists a non-zero
+  polynomial $\Xi_{i} \in \C[S_1,\dots,S_{i-1}]$ of degree at most
+  $d^{2n}$ such that if $\bm \sigma \in \C^{i-1}$ does not
+  cancel $\Xi_{i}$, then $f$ and $\bm \sigma$ satisfy $\textbf{H}_i'$.
+\end{theorem}
+\noindent 
+The proof of these theorems occupies the next two sections.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -581,10 +592,6 @@ and~\cite[Proposition~B.2]{TWT} for general $V$), its Zariski closure
 $\overline{\pi(Z)}$ is a strict closed subset of $\C^s$. As we will
 see below, if $\thetab \in \C^{\dt}$ is not in $\overline{\pi(Z)}$,
 then $\bm 0$ is a regular value of $\bm\Phi_{\thetab}$.
-
-% Now, the proof of \cite[Theorem B.3]{TWT} shows that if $\thetab \in
-% \C^{\dt}$ is not in $\overline{\pi(Z)}$, then $\bm 0$ is a regular
-% value of $\bm\Phi_{\thetab}$.
 
 To describe the set $Z$ of critical points of $\pi_{|V}$, let $\bm M$
 denote the $(s+m) \times (s+n)$ Jacobian matrix with entries in
@@ -745,149 +752,135 @@ $\overline{\pi(Z)}$; this proves Proposition~\ref{prop:weak_t}.
 
 \subsection{Application: property $\textbf{H}_i(1)$}\label{ssec:Hi1}
 
-Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
-%
-\begin{theorem}
-There exists a hypersurface $\Delta_1 \subset \C^{n^2}$ of degree at most $nd^{2n}$ with the property that, if $A \in \C^{n^2} - \Delta_1$ then, for each $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i(1)$.
-\end{theorem}
+Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$, with $V(f)
+\subset \C^n$ smooth. In what follows, we fix $i$ in $1,\dots,n$, and
+we prove the following: {\em there exists a non-zero polynomial
+  $\D_{i,1} \in \C[\A]$ of degree at most $2nd^{2n}$ such that if $\mA
+  \in \C^{n\times n}$ does not cancel $\D_{i,1}$, then $\mA$ is
+  invertible and $f^\mA$ satisfies $\textbf{H}_i(1)$.}
 
-For each $i \in \{1,\hdots,n\}$, let $\Phi_i$ be the polynomial mapping 
+The following construction is already in~\cite{BaGiHeMb97}; our
+contribution is the degree estimate. We let $\bm\Phi: \C^n \times
+\C^{n\times n} \to \C^{n-i+1}$ be the mapping defined by the
+polynomials 
 \[
-\Phi_i : (\xb,A) \mapsto \left(f^A(\xb), \frac{\partial f^A}{\partial X_{i+1}}(\xb),\hdots,\frac{\partial f^A}{\partial X_n}(\xb)\right),
+  \big( f,\,\grad(f)\cdot \A_{i+1},\,\hdots,\, \grad(f)\cdot \A_n \big ),
 \] 
-so that $\Phi_{i,A}^{-1}(0)= W(\pi_i,V^A).$
-%
-\begin{proposition} 
-$\bz$ is a regular value of $\Phi_i$.
-\end{proposition}
-%
+where $\A_1,\hdots,\A_n$ denote the columns of $\A$ and $\cdot$ is the dot-product.
+\begin{lemma} 
+  $\bz$ is a regular value of $\bm\Phi$.
+\end{lemma}
 \begin{proof}
-Let $A_1,\hdots,A_n$ denote the columns of $A,$ and let $(\xb,A) \in \C^n \times \C^{n^2}$ be such that 
-$f^A(\xb) = \frac{\partial f^A(\xb)}{\partial X_{i+1}}=\hdots= \frac{\partial f^A(\xb)}{\partial X_n}=\bz.$
-We want to show that the Jacobian of the system of polynomials 
+Let $(\xb,\mA) \in \C^n \times \C^{n\times n}$ be a zero of $\bm\Phi$.
+We have to show that the Jacobian matrix of the equations defining
+$\bm \Phi$, taken with respect to $\Xb$ and $\A$, has full rank
+$n-i+1$ at $(\xb,\mA)$.
+If we set 
 \[
-f(A\xb),(\grad(f)\cdot A_{i+1})(A\xb),\hdots, (\grad(f)\cdot A_n)(A\xb)
+F_j = \frac{\pa f}{\pa X_1} A_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}A_{i+j,n}, ~1 \leq j \leq n-i,
 \]
-at $(\xb,A)$ has full rank, which holds if and only if the Jacobian of the system of polynomials 
-\[
-f,\grad(f)\cdot A_{i+1},\hdots, \grad(f)\cdot A_n
-\]
-at $(\xb,A)$ has full rank. Let $\Psi_i$ be the mapping
-%
-\begin{align*}
-    \Psi_i: \C^n \times \C^{n^2} &\rightarrow \C^{n-i+1} \\
-       (\xb,A) &\mapsto 
-       \left(f(\xb),\grad(f(\xb))\cdot 
-A_{i+1},\hdots
-\grad(f(\xb))\cdot 
-A_{n}
-\right).
-\end{align*}
-%
-For all $(\xb,A) \in \Psi_i^{-1}(0),$ the Jacobian matrix of $\Psi_i$ at $(\xb,A)$ has full rank $n-i+1$. Indeed, set 
-\[
-F_j = \frac{\pa f}{\pa X_1} a_{i+j,1} + \hdots + \frac{\pa f}{\pa X_n}a_{i+j,n}, ~1 \leq j \leq n-i,
-\]
-so that the Jacobian is equal to
-\[
+this Jacobian matrix is equal to
+{\small \[
 \left[ 
 \begin{array}{cccccc}
-\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}            &0\hdots 0&\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
-\frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}     &0\hdots 0&\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
-\ddots                                                        &0\hdots 0&\ddots&\ddots                                              & \ddots & \ddots \\
-\frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n} &0\hdots 0&\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
+\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}             &\hdots& 0 \hdots 0                                         & \hdots & 0\hdots 0 \\ 
+\frac{\pa F_{1}}{\pa X_1}\hdots \frac{\pa F_{1}}{\pa X_n}      &\hdots& \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n} & \hdots & 0\hdots 0 \\
+\ddots                                                         &\ddots&\ddots                                              & \ddots & \ddots \\
+\frac{\pa F_{n-i}}{\pa X_1}\hdots \frac{\pa F_{n-i}}{\pa X_n}  &\hdots&0 \hdots 0&  \hdots & \frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}  
 \end{array}
-\right]. 
-\] 
-Since $f$ is square-free, $I(V(f)) = \langle f \rangle.$ Therefore, for all $\xb \in V(f)$, 
-\[
-T_{\xb} V(f) = \textrm{Nullspace}(\grad_{\xb} f).
-\]
-Since $V(f)$ is smooth, $T_{\xb} V(f)$ has dimension $n-1$ and one partial vanishes. At least one partial of $f$ must be non-zero. Since  $\frac{\pa f}{\pa X_1} \hdots \frac{\pa f}{\pa X_n}$ appears in $n-i+1$ rows, the matrix has full rank $n-i+1$.
+\right],
+\]}
+where the first columns are indexed by $X_1,\dots,X_n$ and the further
+ones by $\A_{1,i+1},\dots,\A_{n,i+1},\dots,\A_{1,n},\dots,\A_{n,n}$.
+Since $f(\xb)=0$, our assumption on $f$ implies that at least one of
+its partial derivatives is non-zero at $\xb$, and the conclusion
+follows.
 \end{proof}
-%
-Since $\deg \Phi_i \leq d,$ it follows by Proposition 3.1 that a hypersurface $\Xi_i \subset \C^{n^2}$ exists, of degree at most $d^{n+(n-i+1)}=d^{2n-i+1}\leq d^{2n},$ with the property that, if $A \in \C^{n^2}-\Xi_i,$ then 
-%
-\[
- \jac_{\xb} (\Phi_{i,A})=\jac_\xb \left(f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}\right)
-\]
-has full rank at all $\xb \in V(f^A)$, and therefore $f^A$ satisfies $\textbf{H}_i(1)$. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
-\[
-\Delta_1 := \bigcup_{i=1}^n \Xi_i,
-\]
-where we have the following bound on the degree which proves the claim:
-\[
-\deg \Delta_1 \leq \sum_{i=1}^n \deg \Xi_i  \leq nd^{2n}.
-\] 
+Since all equations defining $\bm \Phi$ have degree at most $d,$ it
+follows by Proposition~\ref{prop:weak_t} that there exists a non-zero
+polynomial $\Gamma_i \in \C[\A]$ of degree at most $d^{2n-i+1}\leq
+d^{2n},$ with the property that, if $\mA \in \C^{n\times n}$ does not
+cancel $\Gamma_i$, then the Jacobian matrix of $$\bm\Phi_\mA=\big(
+f,\,\grad(f)\cdot \mA_{i+1},\,\hdots,\, \grad(f)\cdot \mA_n \big ),$$
+taken with respect to $\Xb$, has full rank $n-i+1$ at all $\xb$ that
+cancels equations. We then define $\Delta_{i,i}:=\Gamma_i
+\det(\A)$; this is a non-zero polynomial of degree at most $d^{2n}+n
+\le 2nd^{2n}$.
 
-In Section~\ref{sec:Hi2}, we will need the following alternative form
-of this result: if we consider $f^\A \in \C(\frak
+Let us verify that $\Delta_{i,1}$ satisfies the claim in the preamble.
+Take $\mA$ in $\C^{n\times n}$, such that $\Delta_{i,i}(\mA)$ is
+non-zero. Clearly, $\mA$ is invertible; it remains to check that
+$f^\mA$ satisfies $\textbf{H}_i(1)$. Thus, we take $\xb$ that cancels
+$(f^\mA, {\pa f^\mA}/{\pa X_{i+1}},\dots,{\pa f^\mA}/{\pa X_n})$, and
+we prove that the Jacobian matrix of these equations, taken with
+respect to $\Xb$, has full rank $n-i+1$ at $\xb$. Using the chain
+rule, the equations above can be rewritten as $\bm\Phi_\mA(\mA \xb)$,
+so their Jacobian matrix at $\xb$ has the same rank as that of
+$\bm\Phi_\mA$ at $\mA \xb$, that is, $n-i+1$. Our claim is proved.
+
+In Section~\ref{sec:Hi2}, we will need the following by-product of
+this result: if we consider $f^\A \in \C(\frak
 A_{j,k})[X_1,\dots,X_n]$ as defined Section~\ref{sec:gen}, this
 polynomial satisfies the rank property $\textbf{H}_i(1)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Application: property $\textbf{H}'_i$}\label{ssec:fiber}
+
+Let $f \in \ZZ[X_1,\hdots,X_n]$ and $i$ be as before. We now assume
+that $f$ satisfies $\textbf{H}_i(1)$, and we prove the following: {\em
+  there exists a non-zero polynomial $\Xi_{i} \in
+  \C[S_1,\dots,S_{i-1}]$ of degree at most $d^{2n}$ such that if $\bm
+  \sigma =(\sigma_1,\dots,\sigma_{i-1})\in \C^{i-1}$ does not cancel
+  $\Xi_{i}$, the ideal
+  $$(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
+    X_{i+1}},\dots,{\pa f}/{\pa X_n})$$ is radical.}
+
+\smallskip
+
+Let $\bm\Psi: \C^n \times \C^{i-1} \rightarrow \C^{n}$ be the mapping defined by the polynomials
+\[
+  (X_1-S_1,\hdots,X_{i-1}-S_{i-1}, f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n} ).
+\]
 %
-Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$ with $V(f) \subset \C^n$ smooth. 
-%
-\begin{theorem}
-  There exists a Zariski closed set $\Delta_2 \subset \C^{n-1}$ of
-  degree at most $nd^{2n}$ with the property that, if $\bm\alpha \in \C^{n-1} - \Delta_2$, then, for each $i \in \{1,\hdots,n\},$ if $f$ satisfies $\textbf{H}_i$ then $f$ and $\bm \alpha$ satisfy
-  $\textbf{H}_i'$.
-\end{theorem}
-%
-Fix $i \in \{1,\hdots,n\}$ and let $\Phi_i$ be the mapping 
-%
-\begin{align*}
-    \Phi_i: \C^n \times \C^{i-1} &\rightarrow \C^{n} \\
-           (\xb,\alpha_1,\hdots,\alpha_{i-1}) &\mapsto 
-       (X_1(\xb)-\alpha_1,\hdots \\
-       \hdots &,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),\frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n} ).
-\end{align*}
-%
-\begin{proposition}
-$\bz$ is a regular value of $\Phi_i.$
-\end{proposition} 
+\begin{lemma}
+  $\bz$ is a regular value of $\bm\Psi.$
+\end{lemma}
 \begin{proof}
-At all $(\xb,\alpha_1,\hdots,\alpha_{i-1}) \in \Phi_i^{-1}(0),$ the Jacobian matrix of $\Phi_i$ has full rank. Indeed, the Jacobian is equal to
+At all $(\xb,\bm\sigma)$ zeros of $\bm\Psi,$ the Jacobian matrix of
+$\bm\Psi$ has full rank $n$. Indeed, indexing columns 
+by $X_1,\dots,X_n,S_1,\dots,S_{i-1}$, this matrix is equal to
 \[
 \left[ 
 \begin{array}{cc}
-\hspace{-9mm}\bI_n\hspace{10mm}\hdots \hdots&\hspace{-10mm}-\bI_{i-1}\\
+\bI_{i-1}\hspace{7mm} \bz_{(i-1)\times (n-i+1)}&\hspace{-10mm}-\bI_{i-1}\\
 \jac_{\xb}\left(f,\frac{\pa
-  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right)&\bz_{n-i+1\times i-1}
+  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}\right)&\bz_{(n-i+1)\times (i-1)}
 \end{array}
-\right], 
+\right].
 \] 
-and the Jacobian of $f,\frac{\pa
-  f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}$ at $\xb$ is never singular because we are assuming that $f$ satisfies $\textbf{H}_i$. Therefore the entire matrix must have full rank, and $\bz$ is a regular value of $\Phi_i.$
+Since the Jacobian of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa
+  f}{\pa X_n}$ at $\xb$ is non-zero (by $\textbf{H}_i$), the entire
+matrix must have full rank $n$. Thus,  $\bz$ is a regular value of $\bm\Phi.$
 \end{proof}
 %
-Since $\deg \Phi_i \leq d,$ it follows by Proposition 3.1 that a hypersurface $\Xi_i \subset \C^{i-1}$ exists, of degree at most $d^{2n},$ with the property that, if $\bm \alpha_{i-1} \in \C^{i-1}-\Xi_i,$ then the Jacobian of $\Phi_{i,\alpha_{i-1}}$:
-%
-\[
- \jac_{\xb} \left(X_1(\xb)-\alpha_1,\hdots 
-       ,X_{i-1}(\xb)-\alpha_{i-1}, f(\xb),\frac{\pa f(\xb)}{\pa X_{i+1}},\hdots,\frac{\pa f(\xb)}{\pa X_n}\right)
-\]
-has full rank at all $\xb \in V(f)$, and therefore $f$ and $\bm \alpha_{i-1}$ satisfy $\textbf{H}_i^{'}$. Now, to prove the claim for all $i \in \{1,\hdots,n\},$ we take
-\[
-\Delta_2 := \bigcup_{i=1}^n \Xi_i,
-\]
-where we have the following bound on the degree which proves the claim:
-\[
-\deg \Delta_2 \leq \sum_{i=1}^n \deg \Xi_i \leq n d^{2n}.
-\] 
+Since all polynomials defining $\bm\Psi$ have degree at most $d$, it
+follows by Proposition~\ref{prop:weak_t} that there exists a non-zero
+polynomial $\Xi_i$ in $\C[S_1,\dots,S_{i-1}]$ of degree at most
+$d^{2n},$ with the following property: at any root $\xb$ of
+$(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
+  X_{i+1}},\dots,{\pa f}/{\pa X_n})$, the Jacobian matrix of these
+equations has rank $n$. The conclusion follows.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Property ${\bf H}_i(2)$ -- Noether position}\label{sec:Hi2}
+\section{Property ${\bf H}_i(2)$: Noether position}\label{sec:Hi2}
 
 Throughout this section, $f$ and $i \in \{1,\hdots,n\}$ are fixed. We
-prove that there exists a hypersurface $\D_{3,i} \subset \C^{n\times
-  n}$ of degree at most \td{} such that if $\mA$ is not in $\D_{3,i}$,
+prove that there exists a hypersurface $\D_{i} \subset \C^{n\times
+  n}$ of degree at most \td{} such that if $\mA$ is not in $\D_{i}$,
 then $\mA$ is invertible and satisfies both conditions in
 $\textbf{H}_i$.
 
@@ -905,8 +898,8 @@ now point out that $f^\A$ also satisfies $\textbf{H}_i(2)$.
 
 
 \begin{lemma} 
- The extension $\C(\A)[X_1,\dots,X_{i-1}]\rightarrow
- \C(\A)[X_1,\dots,X_n]/\I^{\A}$ is integral.
+ The extension $$\C(\A)[X_1,\dots,X_{i-1}]\rightarrow
+ \C(\A)[X_1,\dots,X_n]/\I^{\A}$$ is integral.
 \end{lemma}
 \begin{proof}
   Let $(\fp_\ell)_{1 \le \ell \leq L}$ be the prime components of
@@ -990,14 +983,14 @@ f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial
 \end{align}
 
 Let us then define 
-$$\D_{3,i}:=\D_{2,i} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$
+$$\D_{i}:=\D_{1,i} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$
 where, for all $j$, $\alpha_j$ is as above and $D_j$ is the leading
-coefficient of $\pjb$ with respect to $X_j$. Thus, $\D_{3,i}$ is a
+coefficient of $\pjb$ with respect to $X_j$. Thus, $\D_{i}$ is a
 non-zero polynomial in $\C[\A]$; we will estimate its degree below.
 
 \begin{lemma}
   Suppose that $\mA \in \C^{n\times n}$ does not cancel
-  $\D_{3,i}$. Then $f^\mA$ satisfies ${\bf H}_i$.
+  $\D_{i}$. Then $f^\mA$ satisfies ${\bf H}_i$.
 \end{lemma}
 \begin{proof}
   By assumption, $\D_{2,i}(\mA)$ is non-zero, so that $\mA$ is
@@ -1031,7 +1024,7 @@ non-zero polynomial in $\C[\A]$; we will estimate its degree below.
   is integral.
 \end{proof}
 
-To estimate the degree of $\D_{3,i}$, what remains is to give an upper
+To estimate the degree of $\D_{i}$, what remains is to give an upper
 bound on the degree of $\alpha_i,\dots,\alpha_n$. This will come as an
 application of the effective Nullstellensatz given in~\cite{EN}, for
 which we first need to determine degree bounds, separately in $\Xb,T$

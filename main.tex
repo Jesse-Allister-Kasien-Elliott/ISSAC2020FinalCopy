@@ -152,7 +152,7 @@
     component of a smooth real algebraic set}, ISSAC'03). This
   algorithm uses random changes of variables, that are proved to
   generically ensure certain desirable geometric properties. The
-  complexity of the algorithm was given in an algebraic complexity
+  cost of the algorithm was given in an algebraic complexity
   model; the analysis of the bit complexity and the error probability
   were left for future work.
 
@@ -228,7 +228,7 @@ to~\cite{GrVo88}: sample points are found through the computation of
 critical points of well-chosen functions on $V(f)$.
 
 The number of connected components of $V(f)$ admits the lower bound
-$d^{\Omega(n)}$, so up to polynomial factors, this result is
+$d^{\Omega(n)}$, so up to polynomial factors this result is
 optimal. However, due to the generality of the algorithm, the constant
 hidden in the exponent $O(n)$ in its runtime turns out to be rather
 large: the algorithm relies on infinitesimal deformations, that affect
@@ -272,7 +272,7 @@ straight-line program of length $O\big ({{d+n} \choose n}\big)$:
 evaluate all monomials of degree up to $d$ in $n$ variables, multiply
 them by their respective coefficients and sum the result. However,
 some inputs may be given by shorter straight-line program, and the
-algorithm is able to benefit from it.
+algorithm is able to benefit from this.
 
 The output of the algorithm is a finite set in $\overline{\Q}{}^n$. To
 represent it, we rely on a widely used data structure based on
@@ -325,7 +325,7 @@ and of the absolute values of the coefficients of $vf$.
   \[
   S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{2n}\}
   \]
-  from which to sample from. 
+  from which to sample. 
   
   With probability at least $1-\epsilon$, the output is correct. Otherwise, either a proper subset of the points is produced, or FAIL.  In any case, the algorithm uses
   \[
@@ -339,7 +339,7 @@ and of the absolute values of the coefficients of $vf$.
   \]
 \end{theorem}
 
-The runtime for cases without a strait-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a strait-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
+The runtime for cases without a straight-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a straight-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
 \begin{align*}
 &O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon+d)(d^n+d)\log(s + \log 1/\epsilon)))\\
       &= 
@@ -381,7 +381,7 @@ contains one point on each connected component of $V \cap \R^n$.
 Our main contribution is to analyse precisely what conditions on our
 change of coordinates $\mA$ guarantee success. This is done by
 revisiting the key ingredients in the proofs given
-in~\cite{BaGiHeMb97} and~\cite{EMP} and giving quantitative versions
+in~\cite{BaGiHeMb97} and~\cite{EMP}, and giving quantitative versions
 of these results, bounding the degree of the hypersurfaces we have to
 avoid.  To solve the equations~\eqref{eq:syst}, we use the algorithm
 in~\cite{SH}, for which a complete bit complexity analysis is
@@ -391,8 +391,8 @@ This work should be seen as a first step toward the analysis of
 further randomized algorithms in real algebraic geometry. An immediate
 follow-up question would be to handle the case of algebraic sets
 defined by {\em regular sequences}: the algorithm in~\cite{EMP} still
-applies, but the modifications needed would take us to far for the
-current format. Further yet, randomized algorithms for deciding {\em
+applies, but the modifications needed are beyond the scope of this
+publication. Further still, randomized algorithms for deciding {\em
   connectivity queries} on smooth, compact algebraic sets have been
 developed in a series of papers
 \cite{SchostMohabBabySteps2011,SchostMohabBabySteps2014}, and could be
@@ -1116,7 +1116,7 @@ Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm,
 where $b_i$ is the i-th row of $A^{-1}$.
 %
 \begin{algorithm}[hbt!]
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
+\KwIn{a straight line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
 \nl Take  $S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$
  and randomly choose $A \in S^{n^2}$, and  $\sigma_{n-1}=(\sigma_1,\hdots,\sigma_{n-1}) \in S^{n-1}$\;
@@ -1204,4 +1204,8 @@ by Bernoulli's inequality. Therefore,
 \bibliography{sample-base}
 %%
 \end{document}
-\endinput
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

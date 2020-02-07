@@ -323,31 +323,31 @@ and of the absolute values of the coefficients of $vf$.
   
   As part of the randomization, the algorithm chooses a set 
   \[
-  S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{2n}\}
+  S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{2n}\}
   \]
   from which to sample from. 
   
   With probability at least $1-\epsilon$, the output is correct. Otherwise, either a proper subset of the points is produced, or FAIL.  In any case, the algorithm uses
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))
+  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
   \]
-  bit operations, with $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$. The polynomials in
+  bit operations, with $k \geq 1 + \lg n + \lg(1/\epsilon)$. The polynomials in
   the output have degree at most $d^n,$ and height 
   \[
-  O^{\sim}((s+\lg 1/\epsilon^2 + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon^2)d^{n+1}).
+  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
+  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
   \]
 \end{theorem}
 
 The runtime for cases without a strait-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a strait-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
 \begin{align*}
-&O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon^2+d)(d^n+d)\log(s + \log 1/\epsilon^2)))\\
+&O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon+d)(d^n+d)\log(s + \log 1/\epsilon)))\\
       &= 
-O^{\sim}(nk(d^ns+(d^{3n}+d^{2n+1})(s + \log 1/\epsilon^2+d)\log(s + \log 1/\epsilon^2)))\\
+O^{\sim}(nk(d^ns+(d^{3n}+d^{2n+1})(s + \log 1/\epsilon+d)\log(s + \log 1/\epsilon)))\\
      &= 
-O^{\sim}(nk(d^{3n}(s + \log 1/\epsilon^2+d)\log(s + \log 1/\epsilon^2)))\\
+O^{\sim}(nk(d^{3n}(s + \log 1/\epsilon+d)\log(s + \log 1/\epsilon)))\\
      &= 
-O^{\sim}(nk(d^{3n+1}(s + \log 1/\epsilon^2)\log(s + \log 1/\epsilon^2))),
+O^{\sim}(nk(d^{3n+1}(s + \log 1/\epsilon)\log(s + \log 1/\epsilon))),
 \end{align*}
 and the degree and height of the output does not change.
 
@@ -1112,19 +1112,19 @@ Recall Theorem 1.1:   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satis
   
   As part of the randomization, the algorithm chooses a set 
   \[
-  S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}
+  S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}
   \]
   from which to sample from. 
   
   With probability at least $1-\epsilon$, the output is correct. Otherwise, the algorithm either returns a proper subset of the points or FAIL. In any case, the algorithm uses
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))
+  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
   \]
-  bit operations, with $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$. The polynomials in
+  bit operations, with $k \geq 1+\lg n + \lg(1/\epsilon)$. The polynomials in
   the output have degree at most $d^n,$ and height 
   \[
-  O^{\sim}((s+\lg 1/\epsilon^2 + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon^2)d^{n+1}).
+  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
+  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
   \]
 %
 \subsection{The Algorithm}
@@ -1138,13 +1138,13 @@ where $b_i$ is the i-th row of $A^{-1}$.
 \begin{algorithm}[hbt!]
 \KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Take  $S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}$
+\nl Take  $S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$
  and randomly choose $A \in S^{n^2}$, and  $\sigma_{n-1}=(\sigma_1,\hdots,\sigma_{n-1}) \in S^{n-1}$\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
 \nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-\nl Run \cite[Algorithm 2]{SH} $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$ times with input (state this in terms of straight line programs?)
+\nl Run \cite[Algorithm 2]{SH} $k \geq 1+\lg n + \lg(1/\epsilon)$ times with input (state this in terms of straight line programs?)
 $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
 \nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 5 \;
 } 
@@ -1157,9 +1157,9 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
 \textbf{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 %
 \begin{enumerate}
-    \item We defined $S = \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}$ and therefore the height of $a_{i,j} \in S$ is at most 
+    \item We defined $S = \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$ and therefore the height of $a_{i,j} \in S$ is at most 
     \[
-    \log 1/{\epsilon^2} + \log(3n^2(2d)^{2n}) = O^{\sim}(\log 1/{\epsilon^2}).
+    \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) = O^{\sim}(\log 1/{\epsilon}).
     \]
     \item 
     \begin{enumerate}[label=\roman*.]
@@ -1167,8 +1167,8 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
         \item After applying the change of variables obtaining $f(A x)=f^A(x)$ the height grows at most by a factor of
         \begin{align*}
         \log(n!\cdot \max_{\frac{1\leq i\leq n}{1\leq j\leq n}}\{a_{ij}\}) &= 
-        O^{\sim}(n\log n + \log 1/{\epsilon^2})\\
-        &= O^{\sim}(\log 1/{\epsilon^2}).
+        O^{\sim}(n\log n + \log 1/{\epsilon})\\
+        &= O^{\sim}(\log 1/{\epsilon}).
         \end{align*}
     \end{enumerate}
     \item After computing the partial derivatives the height grows by at most another factor of $\log d$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
@@ -1176,12 +1176,12 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
     After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the
     following upper bound on the total number of bit operations required by the algorithm:
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))
+  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
   \]
     where it also follows from \cite[Algorithm 2]{SH} that the polynomials in the output have degree at most $d^n,$ and height at most
   \[
-  O^{\sim}((s+\lg 1/\epsilon^2 + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon^2)d^{n+1}).
+  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
+  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
   \]
 \end{enumerate}
 %
@@ -1203,22 +1203,20 @@ Let $\mathscr{E}$ be the event that, the parameterizations $[\mathscr{Q}_1,\hdot
 By construction of $S$,
 \[
 \pr[A \not\in \Delta] = 1-\pr[A \in \Delta] \geq
-1-\epsilon^2.
+1-\epsilon/2.
 \]
-Thus, 
+Now set $k = \lg(2n/\epsilon)$ so that 
+\[
+(1-2^{-k})^n = (1 - \epsilon/(2n))^n \geq 1 - \epsilon/2,
+\]
+by Bernoulli's inequality. Therefore, 
 \begin{align*}
-\pr[\textrm{success}] &\geq  (1-\epsilon^2)\pr[\mathscr{E}~|~A \not\in \Delta]\\
-&\geq (1-\epsilon^2)(1-(11/32)^k)^n\\
-& \geq (1-\epsilon^2)(1-2^{-k})^n= 1-\epsilon
+\pr[\textrm{success}] &\geq  (1-\epsilon/2)\pr[\mathscr{E}~|~A \not\in \Delta]\\
+&\geq (1-\epsilon/2)(1-(11/32)^k)^n\\
+& \geq (1-\epsilon/2)(1-2^{-k})^n \\
+& \geq (1-\epsilon/2)(1-\epsilon/2)\\
+& = 1 - \epsilon + \epsilon^2/4 \geq 1- \epsilon.
 \end{align*}
-if and only if 
-\[
-(1+\epsilon)(1-2^{-k})^n= 1,
-\]
-if and only if 
-\[
-k \geq -\lg\left ( 1 - (1+\epsilon)^{(-1/n)} \right ).
-\]
 %%
 %% The next two lines define the bibliography style to be used, and
 %% the bibliography file.
@@ -1227,4 +1225,3 @@ k \geq -\lg\left ( 1 - (1+\epsilon)^{(-1/n)} \right ).
 %%
 \end{document}
 \endinput
-%%

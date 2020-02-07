@@ -312,45 +312,43 @@ and of the absolute values of the coefficients of $vf$.
 
 \begin{theorem}\label{theo:main}
   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
-  $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
-  smooth.  Assume also that $f$ is given by a straight-line program
-  $\Gamma$ of size $L$ with integer constants of height at most $b.$
+  $\deg(f) \leq d, \htt(f) \leq b$, and that $V(f) \subset \C^n$ is
+  smooth. 
 
-  There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
+  There exists a randomized algorithm that takes $f$
   as input and produces a zero-dimensional parameterization of a set
   that contains at least one point in each connected component of
   $V(f) \cap \R^n$. 
   
-  As part of the randomization, the algorithm chooses a set 
+  As part of the randomization, the algorithm chooses sets 
   \[
-  S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{2n}\}
+  S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}
   \]
-  from which to sample. 
+  and
+  \[
+  T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\}
+  \]
+  from which to sample from. 
   
-  With probability at least $1-\epsilon$, the output is correct. Otherwise, either a proper subset of the points is produced, or FAIL.  In any case, the algorithm uses
+  With probability at least $1-\epsilon$, the output is correct. Otherwise, 
+  the algorithm either returns a proper subset of the points, or FAIL.  In
+  any case, the algorithm uses
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
+O^{\sim}(d^{3n+1}(\log1/\epsilon)(b + \log1/\epsilon))
   \]
-  bit operations, with $k \geq 1 + \lg n + \lg(1/\epsilon)$. The polynomials in
+  bit operations. The polynomials in
   the output have degree at most $d^n,$ and height 
-  \[
-  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
-  \]
+  \begin{align*}
+  &O^{\sim}(d^{n+1}(b + \log 1 / \epsilon)). 
+  \end{align*}
 \end{theorem}
 
-The runtime for cases without a straight-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a straight-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
-\begin{align*}
-&O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon+d)(d^n+d)\log(s + \log 1/\epsilon)))\\
-      &= 
-O^{\sim}(nk(d^ns+(d^{3n}+d^{2n+1})(s + \log 1/\epsilon+d)\log(s + \log 1/\epsilon)))\\
-     &= 
-O^{\sim}(nk(d^{3n}(s + \log 1/\epsilon+d)\log(s + \log 1/\epsilon)))\\
-     &= 
-O^{\sim}(nk(d^{3n+1}(s + \log 1/\epsilon)\log(s + \log 1/\epsilon))),
-\end{align*}
-and the degree and height of the output does not change.
-
+Here we assume that $f$ is given as a dense polynomial. However, it 
+would be possible to take into account the runtime if $f$ was given 
+by a straight-line program $\Gamma,$ where the length of $\Gamma$ would
+be bounded by $d^n$ and would have integer constants of height at most
+$b$. Here, $\Gamma$ could be computed in the trivial way, by 
+computing the terms and summing them. 
 The algorithm itself is rather simple. To describe it, we need to
 define {\em polar varieties}, which will play a crucial role in this
 paper. Let $V=V(f)$, for $f$ as in the theorem. For $i \in

@@ -341,9 +341,7 @@ and of the absolute values of the coefficients of $vf$.
 
 The runtime for cases without a strait-line program in the input are as follows. In these cases a polynomial $f$ of degree $d$ is given in the input, and a strait-line program is built for it by computing all the terms. In this case, $L \geq d^n$ and $b \geq \htt(f) = s,$ so that the number of bit operations becomes
 \begin{align*}
-      &O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))\\
-      &= 
-O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon^2+d)(d^n+d)\log(s + \log 1/\epsilon^2)))\\
+&O^{\sim}(nk(d^ns+d^{2n}(s + \log 1/\epsilon^2+d)(d^n+d)\log(s + \log 1/\epsilon^2)))\\
       &= 
 O^{\sim}(nk(d^ns+(d^{3n}+d^{2n+1})(s + \log 1/\epsilon^2+d)\log(s + \log 1/\epsilon^2)))\\
      &= 
@@ -1114,11 +1112,11 @@ Recall Theorem 1.1:   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satis
   
   As part of the randomization, the algorithm chooses a set 
   \[
-  S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{2n}\}
+  S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}
   \]
   from which to sample from. 
   
-  With probability at least $1-\epsilon$, the output is correct. Otherwise, either a proper subset of the points is produced, or FAIL.  In any case, the algorithm uses
+  With probability at least $1-\epsilon$, the output is correct. Otherwise, the algorithm either returns a proper subset of the points or FAIL. In any case, the algorithm uses
   \[
   O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon^2+d)(L+d)\log(s + \log 1/\epsilon^2)))
   \]
@@ -1140,15 +1138,15 @@ where $b_i$ is the i-th row of $A^{-1}$.
 \begin{algorithm}[hbt!]
 \KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Take  $S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{2n}\}$
- and randomly choose $A \in S^{n^2}$, and  $\alpha_{n-1}=(\alpha_1,\hdots,\alpha_{n-1}) \in S^{n-1}$\;
+\nl Take  $S := \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}$
+ and randomly choose $A \in S^{n^2}$, and  $\sigma_{n-1}=(\sigma_1,\hdots,\sigma_{n-1}) \in S^{n-1}$\;
 \nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
 \nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-\nl Run \cite[Algorithm 2]{SH} $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$ times with input 
-$\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
-\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 6 \;
+\nl Run \cite[Algorithm 2]{SH} $k \geq -\lg(1-(1+\epsilon)^{(-1/n)})$ times with input (state this in terms of straight line programs?)
+$\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
+\nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 5 \;
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
 \end{algorithm}
@@ -1159,7 +1157,7 @@ $\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
 \textbf{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 %
 \begin{enumerate}
-    \item We defined $S = \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{2n}\}$ and therefore the height of $a_{i,j} \in S$ is at most 
+    \item We defined $S = \{1,2,\hdots,\epsilon^{-2}3n^2(2d)^{3n}\}$ and therefore the height of $a_{i,j} \in S$ is at most 
     \[
     \log 1/{\epsilon^2} + \log(3n^2(2d)^{2n}) = O^{\sim}(\log 1/{\epsilon^2}).
     \]
@@ -1188,22 +1186,19 @@ $\{Y_1-\alpha_1,\hdots,Y_{i-1}-\alpha_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
 \end{enumerate}
 %
 \par \noindent 
-\textbf{Probability of success:} Recall Theorem 2.1:   \textit{For $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in
-  $\C[\A]$ of degree at most $3n(2d)^{2n}$ such that if $\mA \in \C^{n\times
-    n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$
-  satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$.} 
- Now, if we set
-\[
- \Delta := \bigcup_{i=1}^n \Delta_i,
-\]
-then
-\[
-\deg \Delta \leq \sum_{i=1}^n \deg \Delta_i  \leq 3n^2(2d)^{2n},
-\] 
-and for $A \in \C^{n \times n}$ that does not cancel $\Delta,$  $\mA$ is invertible and $f^\mA$
-  satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Let $\mathscr{E}$ denote the event that, with $k$ repetitions of \cite[Algorithm 2]{SH}, for each $i \in \{1,\hdots,n\}$, the result contains all points and is correct.  Then, 
+\textbf{Probability of success:} By Theorem 2.1, there exists $\Delta_i \in \C[\A]$ with $\deg \Delta_i \leq 2n^2(2d)^{3n}.$ By Theorem 2.2, there exists $\Xi_i \subset \C[\A]$ with $\deg \Xi_i \leq d^{2n}.$ Take $\Delta =  \prod_{i=1}^n\Delta_i  \Xi_i $ so that 
+%
 \begin{align*}
-\pr[\textrm{success}] = \pr[A \not\in \Delta] \times \pr[\mathscr{E}].  
+    \deg \Delta &\leq \sum_{i=1}^n (\deg \Delta_i + \deg \Xi_i)\\
+    &\leq 2n^2(2d)^{3n} + nd^{2n}\\
+    &\leq 3n^2(2d)^{3n}, 
+\end{align*}
+%
+and note that, for $A \in \C^{n \times n}$ that does not cancel $\Delta,$  $\mA$ is then invertible and $f^\mA$ satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
+  
+Let $\mathscr{E}$ be the event that, the parameterizations $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$ returned in step 7 of Algorithm 1 contain all points and are correct. Then, 
+\begin{align*}
+\pr[\textrm{success}] = \pr[A \not\in \Delta] \times \pr[\mathscr{E}~|~A \not\in \Delta].  
 \end{align*}
 By construction of $S$,
 \[
@@ -1212,7 +1207,7 @@ By construction of $S$,
 \]
 Thus, 
 \begin{align*}
-\pr[\textrm{success}] &\geq  (1-\epsilon^2)\pr[\mathscr{E}]\\
+\pr[\textrm{success}] &\geq  (1-\epsilon^2)\pr[\mathscr{E}~|~A \not\in \Delta]\\
 &\geq (1-\epsilon^2)(1-(11/32)^k)^n\\
 & \geq (1-\epsilon^2)(1-2^{-k})^n= 1-\epsilon
 \end{align*}
@@ -1233,9 +1228,3 @@ k \geq -\lg\left ( 1 - (1+\epsilon)^{(-1/n)} \right ).
 \end{document}
 \endinput
 %%
-%% End of file `sample-xelatex.tex'.
-
-%%% Local Variables:
-%%% mode: latex
-%%% TeX-master: t
-%%% End:

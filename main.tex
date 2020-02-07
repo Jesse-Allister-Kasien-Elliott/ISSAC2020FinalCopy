@@ -1059,29 +1059,27 @@ This completes the proof of Theorem~\ref{theo:gen}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Bit complexity}%
+\section{Bit complexity}
+%
 \subsection{The Algorithm}
 %
-For a matrix $A \in \GL(n,\Q),$ let 
-\[
-Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm, 
-\]
-where $b_i$ is the i-th row of $A^{-1}$.
+The following is our main algorithm. In step 5, we use  \cite[Algorithm 2]{SH} to solve a square system. This subroutine is randomized. In order to guarantee a higher probability of success, we repeat the calculation $k$ times. This subroutine also requires a straight-line program as input, which we compute from $f^\mA$ and its partial derivatives. 
 %
 \begin{algorithm}[hbt!]
-\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
+\KwIn{$f \in \Q[X_1,\hdots,X_n]$ of degree $d$ and $0 < \epsilon < 1$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Take $S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}$ and $T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},$ and randomly choose $A \in S^{n^2}$, and  $\sigma \in T^{n-1}$\;
-\nl Apply the change of variables to obtain $f(A x)=f^A(x)$\;
-\nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
+\nl Construct $S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}$ and $T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},$ and randomly choose $\mA \in S^{n^2}$, and  $\bm \sigma \in T^{n-1}$\;
+\nl Apply the change of variables to obtain $f(\mA x)=f^{\mA}(x)$\;
+\nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
 \nl Run \cite[Algorithm 2]{SH} $k \geq \lg(3n/\epsilon)$ times with a straight-line program computed from 
-$\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$\;
+$\{X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1},f^{\mA},\frac{\pa f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n} \}$\;
 \nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 5 \;
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
 \end{algorithm}
+\clearpage 
 %
 %
 \subsection{Proof of Theorem 1.1}
@@ -1093,8 +1091,8 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
     \[
     \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) = O^{\sim}(n\log d + \log 1/{\epsilon}).
     \]
-    \item  We can prepare a straight-line program $\Gamma$ for $f^A$ with length at most $d^n$, and 
-    by \cite[Lemma 1.2(1)(c)]{SharpEstimatesForTheEffectiveN}, height of at most 
+    \item  We can prepare a straight-line program $\Gamma$ for $f^{\mA}$ with length at most $d^n$, and 
+    by \cite[Lemma 1.2(1)(c)]{SharpEstimatesForTheEffectiveN}, height at most 
     \[
         O^{\sim}(b + d\log 1 / \epsilon + dn).
     \]
@@ -1112,37 +1110,45 @@ O^{\sim}(d^{3n+1}(\log1/\epsilon)(b + \log1/\epsilon))
 \end{enumerate}
 %
 \par \noindent 
-\textbf{Probability of success:} Let $\Delta_i \in \C[\A]$ be the polynomials from Theorem 2.1. Denote by $\Delta$ the product $\Delta := \prod_{i=1}^n \D_i.$ Note that 
+\textbf{Probability of success:} Let $\Delta_i \in \C[\A]$ be the polynomials from Theorem 2.1. Denote by $\Delta := \prod_{i=1}^n \D_i,$ and note that 
 \begin{align}
     \deg \Delta \leq \sum_{i=1}^n \deg \Delta_i \leq 6n^3(2d)^{2n},
 \end{align}
-where then, if $\mA \in \C^{n \times n}$ does not cancel $\Delta,$ then  $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for all $i \in \{1,\hdots,n\}.$ Now, assuming that $\mA$ is such a matrix, let $\Xi_i\in \C[\A]$ be the polynomials from Theorem 2.2 and denote by $\Xi$ the product $\Xi := \prod_{i=1}^n \Xi_i.$ Note that 
+where then, if $\mA \in \C^{n \times n}$ does not cancel $\Delta,$ then  $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for all $i \in \{1,\hdots,n\}.$ Now, assuming that $\mA$ is such a matrix, let $\Xi_i\in \C[\A]$ be the polynomials from Theorem 2.2 applied to $f^{\mA}.$ Denote by $\Xi := \prod_{i=1}^n \Xi_i,$ and note that 
 \begin{align}
     \deg \Xi \leq \sum_{i=1}^n \deg \Xi_i \leq nd^{2n},
 \end{align}
-where then, if $\sigma \in \C^{i-1}$ does not cancel $\Xi$ then $f^{\mA}$ and $\sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ 
-Now, by construction of \[S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}\] and \[T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},\] where $A \in S^{n^2}$ and  $\sigma \in T^{n-1}$ are randomly chosen, we have 
+where then, if $\bm \sigma \in \C^{i-1}$ does not cancel $\Xi$ then $f^{\mA}$ and $\bm \sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ 
+Now, by construction of 
+\[
+S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}
+\] 
+and 
+\[
+T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},
+\] 
+where $\mA \in S^{n^2}$ and  $\bm \sigma \in T^{n-1}$ are randomly chosen, we have 
 %
 \[
-\pr[A \in \Delta] \leq  \frac{\deg\Delta}{|S|} = \epsilon/3
+\pr[\mA \in \Delta] \leq  \frac{\deg\Delta}{|S|} = \epsilon/3
 \]
 and
 \[
-\pr[\sigma \in \Xi] \leq \deg \frac{\deg\Xi}{|S|} = \epsilon/3.
+\pr[\bm \sigma \in \Xi] \leq \deg \frac{\deg\Xi}{|S|} = \epsilon/3.
 \]
 %
 Let $\mathscr{E}$ be the event that, the parameterizations $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$ returned in step 7 of Algorithm 1 contain all points and are correct. Then, the probability of success is equal to
 \begin{align*}
- \pr[A \not\in \Delta] \times \pr[\sigma \not \in \Xi ~|~A \not\in \Delta] \times \pr[\mathscr{E}~|~A \not\in \Delta \textrm{ and } \sigma \not \in \Xi].
+ \pr[\mA \not\in \Delta] \times \pr[\bm \sigma \not \in \Xi ~|~\mA \not\in \Delta] \times \pr[\mathscr{E}~|~\mA \not\in \Delta \textrm{ and } \bm\sigma \not \in \Xi].
 \end{align*}
 %
-Set $k = \lg(3n/\epsilon)$, with $\epsilon>0,$ so that 
+Set $k = \lg(3n/\epsilon)$ so that 
 \[
 (1-2^{-k})^n = (1 - \epsilon/(3n))^n \geq 1 - \epsilon/3,
 \]
 by Bernoulli's inequality. Therefore, 
 \begin{align*}
-\pr[\textrm{success}] &\geq  (1- \epsilon/3)(1- \epsilon/3)\pr[\mathscr{E}~|~A \not\in \Delta \textrm{ and } \sigma \not \in \Xi]\\
+\pr[\textrm{success}] &\geq  (1- \epsilon/3)(1- \epsilon/3)\pr[\mathscr{E}~|~\mA \not\in \Delta \textrm{ and } \bm \sigma \not \in \Xi]\\
 &\geq (1- \epsilon/3)(1- \epsilon/3)(1-(11/32)^k)^n\\
 & \geq (1- \epsilon/3)(1- \epsilon/3)(1-2^{-k})^n \\
 & \geq (1- \epsilon/3)(1- \epsilon/3)(1- \epsilon/3)\\

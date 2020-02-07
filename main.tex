@@ -515,12 +515,12 @@ $\C(\A)[X_1,\dots,X_n]$ or $\C[\A,X_1,\dots,X_n]$.
 This being said, our two key results are the following.
 \begin{theorem}\label{theo:gen}
   For $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in
-  $\C[\A]$ of degree at most $\td$ such that if $\mA \in \C^{n\times
-    n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$
-  satisfies $\textbf{H}_i$.
+  $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in
+  \C^{n\times n}$ does not cancel $\D_i$, then $\mA$ is invertible and
+  $f^\mA$ satisfies $\textbf{H}_i$.
 \end{theorem}
 
-\begin{theorem}
+\begin{theorem}\label{theo:Hp}
   Suppose that $f$ satisfies $\textbf{H}_i$. There exists a non-zero
   polynomial $\Xi_{i} \in \C[S_1,\dots,S_{i-1}]$ of degree at most
   $d^{2n}$ such that if $\bm \sigma \in \C^{i-1}$ does not
@@ -885,14 +885,14 @@ Since the Jacobian of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa
   f}{\pa X_n}$ at $\xb$ is non-zero (by $\textbf{H}_i$), the entire
 matrix must have full rank $n$. Thus,  $\bz$ is a regular value of $\bm\Phi.$
 \end{proof}
-%
+
 Since all polynomials defining $\bm\Psi$ have degree at most $d$, it
 follows by Proposition~\ref{prop:weak_t} that there exists a non-zero
 polynomial $\Xi_i$ in $\C[S_1,\dots,S_{i-1}]$ of degree at most
 $d^{2n},$ with the following property: at any root $\xb$ of
 $(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
   X_{i+1}},\dots,{\pa f}/{\pa X_n})$, the Jacobian matrix of these
-equations has rank $n$. The conclusion follows.
+equations has rank $n$. Theorem~\ref{theo:Hp} is proved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1005,21 +1005,22 @@ f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial
 \end{align}
 
 Let us then define 
-$$\D_{i}:=\D_{1,i} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$
-where, for all $j$, $\alpha_j$ is as above and $D_j$ is the leading
-coefficient of $\pjb$ with respect to $X_j$. Thus, $\D_{i}$ is a
-non-zero polynomial in $\C[\A]$; we will estimate its degree below.
+$$\D_{i}:=\D_{i,1} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$ where
+$\D_{i,1}$ was defined in Section~\ref{ssec:Hi1} and for all $j$,
+$\alpha_j$ is as above and $D_j$ is the leading coefficient of $\pjb$
+with respect to $X_j$. Thus, $\D_{i}$ is a non-zero polynomial in
+$\C[\A]$; we will estimate its degree below.
 
 \begin{lemma}
-  Suppose that $\mA \in \C^{n\times n}$ does not cancel
-  $\D_{i}$. Then $f^\mA$ satisfies ${\bf H}_i$.
+  Suppose that $\mA \in \C^{n\times n}$ does not cancel $\D_{i}$. Then
+  $f^\mA$ satisfies ${\bf H}_i$.
 \end{lemma}
 \begin{proof}
-  By assumption, $\D_{2,i}(\mA)$ is non-zero, so that $\mA$ is
+  By assumption, $\D_{i,1}(\mA)$ is non-zero, so that $\mA$ is
   invertible and $f^\mA$ satisfies ${\bf H}_i(1)$. In particular, the
   ideal $\I(i, f^\mA)$ is radical, and its zero-set
-  $W(\pi_i,V(f^\mA))$ is either empty or $(i-1)$-equidimensional. If it is 
-  empty, we are done. 
+  $W(\pi_i,V(f^\mA))$ is either empty or $(i-1)$-equidimensional. If
+  it is empty, we are done.
 
   Otherwise, for $j=i,\dots,n$, evaluate all indeterminates in $\A$ at the
   corresponding entries of $\mA$ in~\eqref{eq:nullst}. This gives us
@@ -1067,38 +1068,17 @@ For each $j \in \{i,\hdots,n\},$ a direct application of \cite[Theorem
 the slightly less precise bound $\deg(\alpha_j) \le 2n(2d)^{2n}$.
 
 
-\td finish the degree bound.
+We saw in Section~\ref{ssec:Hi1} that $\D_{i,1}$ has degree at most
+$2nd^{2n}$, and all $D_j$'s have degree at most $(2d)^n$. This gives
+the upper bound
+$$\deg(\D_i) \le 2nd^{2n} + 2n^2(2d)^{2n} + n(2d)^n \le 6n^2 (2d)^{2n}.$$
+This finishes the proof of Theorem~\ref{theo:gen}.
 
-% \section{Proof of Theorem 2.1}
-% %
-% Recall Theorem 3.1: \textit{Suppose that $f \in \Q[X_1,\hdots,X_n]$ satisfies \textbf{H}. Then there exists a Zariski closed set $\D \subset \mathbb{C}^{n^2}$ of degree at most $D^{\textrm{\td}}$ such that, if $\textbf{A}$ is chosen from  $\C^{n^2}-\Delta$ ( $\Q^{n^2}-\Delta$?) then $f^A$ satisfies $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$} 
-% %
-% \begin{proof}
-% Assume that $f\in \Q[X_1,\hdots,X_n]$ has degree at most $D$ and satisfies $\textbf{H}.$ By Theorem 5.1, there exists a Zariski closed set $\D_1\subset \C^{n^2}$ with the property that, if $A \in \C^{n^2}-\D_1$ then, for $i \in \{1,\hdots,n\},$ $f^A$ satisfies $\textbf{H}_i^{'}(1), \textbf{H}_i^{'}(2),$ and $\textbf{H}_i^{'}(3).$ Likewise, by Theorem 6.1, we obtain $\D_2 \subset \C^{n^2}$ with the property that if $A \in \C^{n^2}-\D_2$ then $f^A$ satisfies $\textbf{H}_i^{'}(4), \textbf{H}_i^{'}(5),$ and $\textbf{H}_i^{'}(6).$ By Theorem 7.1, $\D_3 \subset \C^{n^2}$ exists with $f^A$ satisfying $\textbf{H}_i^{'}(7)$ when $A \in \C^{n^2}-\D_3$. Clearly then, if 
-% \[
-% A \in \C^{n^2} - \bigcup_{i=1}^3 \D_i
-% \]
-% then $f^A$ satisfies  $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ Take 
-% \[
-% \Delta = \bigcup_{i=1}^3 \D_i,
-% \]
-% and note that 
-% \[
-% \deg \D \leq  \sum_{i=1}^3 \deg \D_i.
-% \]
-% \end{proof}
-% %
-% Recall Corollary 3.2: \textit{Fix $S \subset \mathbb{Q}$ with $|S| \geq \epsilon^{-1} D^{\textrm{\td}}$ and $\epsilon > 0$. Then for $A\in S^{n^2}$ chosen randomly, the probability that $f^A$ satisfies $H_i^{'}$ for all $i \in \{1,\hdots,n\}$ is at least $1-\epsilon.$}
-% %
-% \begin{proof}
-% \[
-% Pr[A \in \Delta] \leq \frac{\deg \Delta}{|S|} \leq \frac{D^{\td}}{\epsilon^{-1}D^{\td}} = \epsilon.
-% \]
-% \end{proof}
-% %
-% %
-% %
-% %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 \section{Bit complexity}
 Recall Theorem 1.1:   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
   $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
@@ -1150,7 +1130,7 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
 \end{algorithm}
-\clearpage
+
 %
 \subsection{Proof of Theorem 1.1}
 %

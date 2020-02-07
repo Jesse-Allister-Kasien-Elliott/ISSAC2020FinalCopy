@@ -1078,34 +1078,7 @@ This completes the proof of Theorem~\ref{theo:gen}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\section{Bit complexity}
-Recall Theorem 1.1:   Suppose that $f\in\ZZ[X_1\hdots,X_n]$ is squarefree, satisfies
-  $\deg(f) \leq d, \htt(f) \leq s$, and that $V(f) \subset \C^n$ is
-  smooth.  Assume also that $f$ is given by a straight-line program
-  $\Gamma$ of size $L$ with integer constants of height at most $b.$
-
-  There exists a randomized algorithm that takes $\Gamma, d,$ and $s$
-  as input and produces a zero-dimensional parameterization of a set
-  that contains at least one point in each connected component of
-  $V(f) \cap \R^n$. 
-  
-  As part of the randomization, the algorithm chooses a set 
-  \[
-  S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}
-  \]
-  from which to sample from. 
-  
-  With probability at least $1-\epsilon$, the output is correct. Otherwise, the algorithm either returns a proper subset of the points or FAIL. In any case, the algorithm uses
-  \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
-  \]
-  bit operations, with $k \geq 1+\lg n + \lg(1/\epsilon)$. The polynomials in
-  the output have degree at most $d^n,$ and height 
-  \[
-  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
-  \]
-%
+\section{Bit complexity}%
 \subsection{The Algorithm}
 %
 For a matrix $A \in \GL(n,\Q),$ let 
@@ -1115,21 +1088,20 @@ Y_i = X_i^{A} = [b_i] \cdot \bbm X_1\\ \vdots \\ X_n \ebm,
 where $b_i$ is the i-th row of $A^{-1}$.
 %
 \begin{algorithm}[hbt!]
-\KwIn{a straight line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
+\KwIn{a strait line program $\Gamma$ that computes $f \in \Q[X_1,\hdots,X_n],$ and $d=\deg(f)$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Take  $S := \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$
- and randomly choose $A \in S^{n^2}$, and  $\sigma_{n-1}=(\sigma_1,\hdots,\sigma_{n-1}) \in S^{n-1}$\;
-\nl Compute $f$ and apply the change of variables to obtain $f(A x)=f^A(x)$\;
+\nl Take $S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}$ and $T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},$ and randomly choose $A \in S^{n^2}$, and  $\sigma \in T^{n-1}$\;
+\nl Apply the change of variables to obtain $f(A x)=f^A(x)$\;
 \nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-\nl Run \cite[Algorithm 2]{SH} $k \geq 1+\lg n + \lg(1/\epsilon)$ times with input (state this in terms of straight line programs?)
-$\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \} \textrm{ and } d$\;
+\nl Run \cite[Algorithm 2]{SH} $k \geq \lg(3n/\epsilon)$ times with a straight-line program computed from 
+$\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdots,\frac{\pa f^A}{\pa X_n} \}$\;
 \nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 5 \;
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
 \end{algorithm}
-
+%
 %
 \subsection{Proof of Theorem 1.1}
 %
@@ -1138,63 +1110,62 @@ $\{Y_1-\sigma_1,\hdots,Y_{i-1}-\sigma_{i-1},f^A,\frac{\pa f^A}{\pa X_{i+1}},\hdo
 \begin{enumerate}
     \item We defined $S = \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$ and therefore the height of $a_{i,j} \in S$ is at most 
     \[
-    \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) = O^{\sim}(\log 1/{\epsilon}).
+    \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) = O^{\sim}(n\log d + \log 1/{\epsilon}).
+    \]
+    \item  We can prepare a straight-line program $\Gamma$ for $f^A$ with length at most $d^n$, and 
+    by \cite[Lemma 1.2(1)(c)]{SharpEstimatesForTheEffectiveN}, height of at most 
+    \[
+        O^{\sim}(b + d\log 1 / \epsilon + dn).
     \]
     \item 
-    \begin{enumerate}[label=\roman*.]
-        \item $O(L)$ operations are required to compute $f$ from its straight line program $\Gamma.$
-        \item After applying the change of variables obtaining $f(A x)=f^A(x)$ the height grows at most by a factor of
-        \begin{align*}
-        \log(n!\cdot \max_{\frac{1\leq i\leq n}{1\leq j\leq n}}\{a_{ij}\}) &= 
-        O^{\sim}(n\log n + \log 1/{\epsilon})\\
-        &= O^{\sim}(\log 1/{\epsilon}).
-        \end{align*}
-    \end{enumerate}
-    \item After computing the partial derivatives the height grows by at most another factor of $\log d$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
+    After computing the partial derivatives the height grows by at most another factor of $\log d$. Furthermore, preparing the straight line program for the gradient of $f$ does not introduce large integers. The integers in $\grad (f)$ are of the same magnitude as in $\Gamma$.
     \item 
-    After applying \cite[Algorithm 2]{SH} $kn$ times, we obtain the
-    following upper bound on the total number of bit operations required by the algorithm:
+    After applying \cite[Algorithm 2]{SH} $kn$ times with $k = O(\log n + \log 1 / \epsilon)$, the total boolean cost of the algorithm is
   \[
-  O^{\sim}(nk(Lb+d^{2n}(s + \log 1/\epsilon+d)(L+d)\log(s + \log 1/\epsilon)))
+O^{\sim}(d^{3n+1}(\log1/\epsilon)(b + \log1/\epsilon))
   \]
-    where it also follows from \cite[Algorithm 2]{SH} that the polynomials in the output have degree at most $d^n,$ and height at most
+    where the polynomials in the output have degree at most $d^n,$ and height at most
   \[
-  O^{\sim}((s+\lg 1/\epsilon + d)d^n)
-  =O^{\sim}((s+\lg 1/\epsilon)d^{n+1}).
+  O^{\sim}(d^{n+1}(b + \log 1 / \epsilon)).
   \]
 \end{enumerate}
 %
 \par \noindent 
-\textbf{Probability of success:} By Theorem 2.1, there exists $\Delta_i \in \C[\A]$ with $\deg \Delta_i \leq 2n^2(2d)^{3n}.$ By Theorem 2.2, there exists $\Xi_i \subset \C[\A]$ with $\deg \Xi_i \leq d^{2n}.$ Take $\Delta =  \prod_{i=1}^n\Delta_i  \Xi_i $ so that 
+\textbf{Probability of success:} Let $\Delta_i \in \C[\A]$ be the polynomials from Theorem 2.1. Denote by $\Delta$ the product $\Delta := \prod_{i=1}^n \D_i.$ Note that 
+\begin{align}
+    \deg \Delta \leq \sum_{i=1}^n \deg \Delta_i \leq 6n^3(2d)^{2n},
+\end{align}
+where then, if $\mA \in \C^{n \times n}$ does not cancel $\Delta,$ then  $\mA$ is invertible and $f^\mA$ satisfies $\textbf{H}_i$ for all $i \in \{1,\hdots,n\}.$ Now, assuming that $\mA$ is such a matrix, let $\Xi_i\in \C[\A]$ be the polynomials from Theorem 2.2 and denote by $\Xi$ the product $\Xi := \prod_{i=1}^n \Xi_i.$ Note that 
+\begin{align}
+    \deg \Xi \leq \sum_{i=1}^n \deg \Xi_i \leq nd^{2n},
+\end{align}
+where then, if $\sigma \in \C^{i-1}$ does not cancel $\Xi$ then $f^{\mA}$ and $\sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$ 
+Now, by construction of \[S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}\] and \[T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},\] where $A \in S^{n^2}$ and  $\sigma \in T^{n-1}$ are randomly chosen, we have 
 %
-\begin{align*}
-    \deg \Delta &\leq \sum_{i=1}^n (\deg \Delta_i + \deg \Xi_i)\\
-    &\leq 2n^2(2d)^{3n} + nd^{2n}\\
-    &\leq 3n^2(2d)^{3n}, 
-\end{align*}
-%
-and note that, for $A \in \C^{n \times n}$ that does not cancel $\Delta,$  $\mA$ is then invertible and $f^\mA$ satisfies $\textbf{H}_i$ and $\textbf{H}_i^{'}$ for all $i \in \{1,\hdots,n\}.$
-  
-Let $\mathscr{E}$ be the event that, the parameterizations $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$ returned in step 7 of Algorithm 1 contain all points and are correct. Then, 
-\begin{align*}
-\pr[\textrm{success}] = \pr[A \not\in \Delta] \times \pr[\mathscr{E}~|~A \not\in \Delta].  
-\end{align*}
-By construction of $S$,
 \[
-\pr[A \not\in \Delta] = 1-\pr[A \in \Delta] \geq
-1-\epsilon/2.
+\pr[A \in \Delta] \leq  \frac{\deg\Delta}{|S|} = \epsilon/3
 \]
-Now set $k = \lg(2n/\epsilon)$ so that 
+and
 \[
-(1-2^{-k})^n = (1 - \epsilon/(2n))^n \geq 1 - \epsilon/2,
+\pr[\sigma \in \Xi] \leq \deg \frac{\deg\Xi}{|S|} = \epsilon/3.
+\]
+%
+Let $\mathscr{E}$ be the event that, the parameterizations $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$ returned in step 7 of Algorithm 1 contain all points and are correct. Then, the probability of success is equal to
+\begin{align*}
+ \pr[A \not\in \Delta] \times \pr[\sigma \not \in \Xi ~|~A \not\in \Delta] \times \pr[\mathscr{E}~|~A \not\in \Delta \textrm{ and } \sigma \not \in \Xi].
+\end{align*}
+%
+Set $k = \lg(3n/\epsilon)$, with $\epsilon>0,$ so that 
+\[
+(1-2^{-k})^n = (1 - \epsilon/(3n))^n \geq 1 - \epsilon/3,
 \]
 by Bernoulli's inequality. Therefore, 
 \begin{align*}
-\pr[\textrm{success}] &\geq  (1-\epsilon/2)\pr[\mathscr{E}~|~A \not\in \Delta]\\
-&\geq (1-\epsilon/2)(1-(11/32)^k)^n\\
-& \geq (1-\epsilon/2)(1-2^{-k})^n \\
-& \geq (1-\epsilon/2)(1-\epsilon/2)\\
-& = 1 - \epsilon + \epsilon^2/4 \geq 1- \epsilon.
+\pr[\textrm{success}] &\geq  (1- \epsilon/3)(1- \epsilon/3)\pr[\mathscr{E}~|~A \not\in \Delta \textrm{ and } \sigma \not \in \Xi]\\
+&\geq (1- \epsilon/3)(1- \epsilon/3)(1-(11/32)^k)^n\\
+& \geq (1- \epsilon/3)(1- \epsilon/3)(1-2^{-k})^n \\
+& \geq (1- \epsilon/3)(1- \epsilon/3)(1- \epsilon/3)\\
+& \geq 1 - \epsilon.
 \end{align*}
 %%
 %% The next two lines define the bibliography style to be used, and

@@ -1063,18 +1063,18 @@ This completes the proof of Theorem~\ref{theo:gen}.
 %
 \subsection{The Algorithm}
 %
-The following is our main algorithm. In step 5, we use  \cite[Algorithm 2]{SH} to solve a square system. This subroutine is randomized. In order to guarantee a higher probability of success, we repeat the calculation $k$ times. This subroutine also requires a straight-line program as input, which we compute from $f^\mA$ and its partial derivatives. 
+The following is our main algorithm. In step 5, we use  \cite[Algorithm 2]{SH} to solve a square system, where this subroutine is randomized. In order to guarantee a higher probability of success, we repeat the calculation $k$ times. This subroutine requires the input to be in the form of a straight-line program, which we compute from $f^\mA$ and its partial derivatives. 
 %
 \begin{algorithm}[hbt!]
 \KwIn{$f \in \Q[X_1,\hdots,X_n]$ of degree $d$ and $0 < \epsilon < 1$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of which includes at least one point in each connected component of $V(f) \cap \R^n$}
-\nl Construct $S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}$ and $T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},$ and randomly choose $\mA \in S^{n^2}$, and  $\bm \sigma \in T^{n-1}$\;
+\nl Construct $S := \{1,2,\hdots,\lceil(3\epsilon^{-1})6n^3(2d)^{2n}\}\rceil$ and $T := \{1,2,\hdots,\lceil (3\epsilon^{-1})nd^{2n}\rceil\},$ and randomly choose $\mA \in S^{n^2}$, and  $\bm \sigma \in T^{n-1}$\;
 \nl Apply the change of variables to obtain $f(\mA x)=f^{\mA}(x)$\;
 \nl Use \cite{partialDerComputation} to compute the partial derivatives $\frac{\pa f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n}$\;
     \caption{{Main Algorithm} \label{}}
 \nl \For{$i\gets1$ \KwTo $n$}{
-\nl Run \cite[Algorithm 2]{SH} $k \geq \lg(3n/\epsilon)$ times with a straight-line program computed from 
-$\{X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1},f^{\mA},\frac{\pa f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n} \}$\;
+\nl Prepare a straight-line program $\Gamma$ that computes the system of polynomials
+$\{X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1},f^{\mA},\frac{\pa f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n} \}$ and run \cite[Algorithm 2]{SH}, with input $\Gamma,$ and with $ k \geq \lg(3n/\epsilon)$ repetitions\; 
 \nl Let $\mathscr{Q}_i$ be the highest cardinality zero-dimensional parameterization returned in step 5 \;
 } 
 \nl \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.

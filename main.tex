@@ -1086,8 +1086,8 @@ $X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1}$; this gives $\Gamma_i$.
   includes at least one point in each connected component of $V(f)
   \cap \R^n$} 
 
-\nl Construct $S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}$ and $T :=
-\{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},$ and randomly choose $\mA \in
+\nl Construct $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil\}$ and $T :=
+\{1,2,\hdots,\lceil 3\epsilon^{-1}nd^{2n}\rceil\},$ and randomly choose $\mA \in
 S^{n^2}$, and $\bm \sigma \in T^{n-1}$\; 
 
 \caption{{Main Algorithm} \label{}} 
@@ -1103,7 +1103,7 @@ S^{n^2}$, and $\bm \sigma \in T^{n-1}$\;
   with input $\Gamma_i$\;
 
   \nl Let $\mathscr{Q}_i$ be the highest cardinality
-  zero-dimensional parameterization returned in step 5 \; 
+  zero-dimensional parameterization returned in step 4 \; 
 } 
 \nl  \Return $[\mathscr{Q}_1,\hdots,\mathscr{Q}_n]$.
 \end{algorithm}
@@ -1114,13 +1114,11 @@ Theorem~2 in~\cite{EMP} establishes correctness.
 
 \paragraph*{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 \begin{enumerate}
-    \item We defined $S = \{1,2,\hdots,2\epsilon^{-1}3n^2(2d)^{3n}\}$
+    \item We defined $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil \}$
       and therefore the height of any $a_{i,j} \in S$ is at most
     \[
-    \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) \in O^{\sim}(n\log d + \log 1/{\epsilon}).
+    \log 3/{\epsilon} + \log(6n^3(2d)^{2n}) \in O^{\sim}(\log 1/{\epsilon} + n\log d).
     \]
-    \item As a result, by \cite[Lemma 1.2(1)(c)]{SharpEstimatesForTheEffectiveN}, all coefficients in 
-      $f^\mA$ have height $ O^{\sim}(b + d\log 1 / \epsilon + dn)$.
     \item 
     After computing the partial derivatives, the height grows by at
     most another factor of $\log d$. Thus, all polynomials in the
@@ -1171,11 +1169,11 @@ results, we succeed with probability at least $1-(1/2)^k$.
 
 Now, by construction of
 \[
-S := \{1,2,\hdots,3\epsilon^{-1}6n^3(2d)^{2n}\}
+S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n}\rceil \}
 \] 
 and 
 \[
-T := \{1,2,\hdots,3\epsilon^{-1}nd^{2n}\},
+T := \{1,2,\hdots,\lceil 3\epsilon^{-1}nd^{2n} \rceil \},
 \] 
 where $\mA \in S^{n^2}$ and  $\bm \sigma \in T^{n-1}$ are randomly chosen, we have 
 %

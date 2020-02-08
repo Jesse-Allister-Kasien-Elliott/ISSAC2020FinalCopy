@@ -1114,13 +1114,11 @@ Theorem~2 in~\cite{EMP} establishes correctness.
 
 \paragraph*{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 \begin{enumerate}
-    \item We defined $S = \{1,2,\hdots,\lceil 3\epsilon^{-1}3n^2(2d)^{3n} \rceil \}$
+    \item We defined $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil \}$
       and therefore the height of any $a_{i,j} \in S$ is at most
     \[
-    \log 1/{\epsilon} + \log(3n^2(2d)^{2n}) \in O^{\sim}(n\log d + \log 1/{\epsilon}).
+    \log 3/{\epsilon} + \log(6n^3(2d)^{2n}) \in O^{\sim}(\log 1/{\epsilon} + n\log d).
     \]
-    \item As a result, by \cite[Lemma 1.2(1)(c)]{SharpEstimatesForTheEffectiveN}, all coefficients in 
-      $f^\mA$ have height $ O^{\sim}(b + d\log 1 / \epsilon + dn)$.
     \item 
     After computing the partial derivatives, the height grows by at
     most another factor of $\log d$. Thus, all polynomials in the

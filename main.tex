@@ -150,13 +150,13 @@
   Our starting point is an algorithm by Safey El Din and Schost ({\em
     Polar varieties and computation of one point in each connected
     component of a smooth real algebraic set}, ISSAC'03). This
-  algorithm uses random changes of variables, that are proved to
+  algorithm uses random changes of variables that are proved to
   generically ensure certain desirable geometric properties. The
   cost of the algorithm was given in an algebraic complexity
   model; the analysis of the bit complexity and the error probability
   were left for future work.
 
-  Our paper answer these questions. Our main contribution is a
+  Our paper answers these questions. Our main contribution is a
   quantitative analysis of several genericity statements, such as
   Thom's weak transversality theorem or Noether normalization
   properties for polar varieties.
@@ -347,7 +347,7 @@ then known to be equidimensional of dimension $(i-1)$ or
 empty~\cite{BaGiHeMb97}, and to be in so-called {\em Noether
   position}~\cite{EMP} (background notions in algebraic geometry are
 in~\cite{Mumford76,Shafarevich77,ECA}; we will recall key
-definitions). If this is case, it suffices to choose arbitrary
+definitions). If this is the case, it suffices to choose arbitrary
 $\sigma_1,\dots,\sigma_{n-1}$ in $\Q$, and solve the systems defined
 by
 \begin{equation}\label{eq:syst}
@@ -804,12 +804,12 @@ d^{2n},$ with the property that, if $\mA \in \C^{n\times n}$ does not
 cancel $\Gamma_i$, then the Jacobian matrix of $$\bm\Phi_\mA=\big(
 f,\,\grad(f)\cdot \mA_{i+1},\,\hdots,\, \grad(f)\cdot \mA_n \big ),$$
 taken with respect to $\Xb$, has full rank $n-i+1$ at all $\xb$ that
-cancels equations. We then define $\Delta_{i,i}:=\Gamma_i
+cancels equations. We then define $\Delta_{i,1}:=\Gamma_i
 \det(\A)$; this is a non-zero polynomial of degree at most $d^{2n}+n
 \le 2nd^{2n}$.
 
 Let us verify that $\Delta_{i,1}$ satisfies the claim in the preamble.
-Take $\mA$ in $\C^{n\times n}$, such that $\Delta_{i,i}(\mA)$ is
+Take $\mA$ in $\C^{n\times n}$, such that $\Delta_{i,1}(\mA)$ is
 non-zero. Clearly, $\mA$ is invertible; it remains to check that
 $f^\mA$ satisfies $\textbf{H}_i(1)$. Thus, we take $\xb$ that cancels
 $(f^\mA, {\pa f^\mA}/{\pa X_{i+1}},\dots,{\pa f^\mA}/{\pa X_n})$, and
@@ -862,15 +862,15 @@ by $X_1,\dots,X_n,S_1,\dots,S_{i-1}$, this matrix is equal to
 \] 
 Since the Jacobian of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa
   f}{\pa X_n}$ at $\xb$ is non-zero (by $\textbf{H}_i$), the entire
-matrix must have full rank $n$. Thus,  $\bz$ is a regular value of $\bm\Phi.$
+matrix must have full rank $n$. Thus,  $\bz$ is a regular value of $\bm\Psi.$
 \end{proof}
 
 Since all polynomials defining $\bm\Psi$ have degree at most $d$, it
 follows by Proposition~\ref{prop:weak_t} that there exists a non-zero
 polynomial $\Xi_i$ in $\C[S_1,\dots,S_{i-1}]$ of degree at most
-$d^{2n},$ with the following property: at any root $\xb$ of
-$(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
-  X_{i+1}},\dots,{\pa f}/{\pa X_n})$, the Jacobian matrix of these
+$d^{2n},$ with the following property:  if $\Xi_i(\bm \sigma)\neq 0$ then at any root $\xb$ of
+\[(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
+  X_{i+1}},\dots,{\pa f}/{\pa X_n}),\] the Jacobian matrix of these
 equations has rank $n$. Theorem~\ref{theo:Hp} is proved.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1083,8 +1083,7 @@ $X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1}$; this gives $\Gamma_i$.
 \begin{algorithm}[!h]
 \KwIn{$f \in \ZZ[X_1,\hdots,X_n]$ of degree at most $d$ and height at most $b$, and $0 < \epsilon < 1$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of whose zeros
-  includes at least one point in each connected component of $V(f)
-  \cap \R^n$} 
+  includes at least one point in each connected component of $V(f)\cap \R^n$, with probability of success at least $1-\epsilon$} 
 
 \nl Construct $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil\}$ and $T :=
 \{1,2,\hdots,\lceil 3\epsilon^{-1}nd^{2n}\rceil\},$ and randomly choose $\mA \in
@@ -1165,7 +1164,7 @@ $\bm \sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in
 succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds.
 That latter reference establishes that by repeating the calculation 
 $k$ times, and keeping the output of highest degree among those $k$
-results, we succeed with probability at least $1-(1/2)^k$.
+results, we succeed with probability at least $1-(1/2)^k$. In ~\cite{SH} the algorithm is shown to succeed in a single run with  probability at least $1-21/32$. We bound the probability of success with $1-1/2$ for simplicity.
 
 Now, by construction of
 \[

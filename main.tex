@@ -1083,7 +1083,7 @@ $X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1}$; this gives $\Gamma_i$.
 \begin{algorithm}[!h]
 \KwIn{$f \in \ZZ[X_1,\hdots,X_n]$ of degree at most $d$ and height at most $b$, and $0 < \epsilon < 1$}
 \KwOut{$n$ zero-dimensional parameterizations, the union of whose zeros
-  includes at least one point in each connected component of $V(f)\cap \R^n$, with probability of success at least $1-\epsilon$} 
+  includes at least one point in each connected component of $V(f)\cap \R^n$, with probability of success at least $1-\epsilon$. } 
 
 \nl Construct $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil\}$ and $T :=
 \{1,2,\hdots,\lceil 3\epsilon^{-1}nd^{2n}\rceil\},$ and randomly choose $\mA \in
@@ -1161,7 +1161,7 @@ $f^{\mA}.$ Denote by $\Xi := \prod_{i=1}^n \Xi_i,$ and note that
 If $\bm \sigma \in \C^{i-1}$ does not cancel $\Xi$, then $f^{\mA}$ and
 $\bm \sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in
 \{1,\hdots,n\};$ as we argued above, the algorithm is guaranteed to
-succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. Hence, the algorithm is Monte Carlo because it can error on one side by possibly missing solutions. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
+succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. When Algorithm 2 does not succeed, it either returns a proper subset of the solutions, or FAIL. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
 Now, by construction of
 \[
 S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n}\rceil \}

@@ -449,7 +449,7 @@ introduction, their zero-set is the $i$-th polar variety
 $W(\pi_i,V(f))$.  Then, we say that $f$ satisfies $\textbf{H}_i$ if
 \begin{enumerate}
 \item For any $\xb$ in $W(\pi_i,V(f))$, the Jacobian matrix
-  $\jac_\Xb(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
+  $\jac_\xb(\I(i, f))$ has full rank $n-(i-1)$ at $\xb$.
 
   {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
   implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional,
@@ -1161,11 +1161,7 @@ $f^{\mA}.$ Denote by $\Xi := \prod_{i=1}^n \Xi_i,$ and note that
 If $\bm \sigma \in \C^{i-1}$ does not cancel $\Xi$, then $f^{\mA}$ and
 $\bm \sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in
 \{1,\hdots,n\};$ as we argued above, the algorithm is guaranteed to
-succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds.
-That latter reference establishes that by repeating the calculation 
-$k$ times, and keeping the output of highest degree among those $k$
-results, we succeed with probability at least $1-(1/2)^k$. In ~\cite{SH} the algorithm is shown to succeed in a single run with  probability at least $1-21/32$. We bound the probability of success with $1-1/2$ for simplicity.
-
+succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. Hence, the algorithm is Monte Carlo because it can error on one side by possibly missing solutions. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
 Now, by construction of
 \[
 S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n}\rceil \}

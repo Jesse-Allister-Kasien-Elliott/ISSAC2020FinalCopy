@@ -1,0 +1,196 @@
+%\documentclass{acmart}
+%\documentclass{amsart}
+\documentclass{article}
+%\documentclass{acmart}
+\usepackage[utf8]{inputenc}
+
+
+% packages 
+\usepackage[ruled,vlined]{algorithm2e}
+\usepackage[titles]{tocloft}%----------------------------------------
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{enumerate}
+\usepackage{chngcntr}
+\usepackage{titlesec}
+\usepackage{mathrsfs}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+% new commands and shortcuts
+
+
+\def\sO{\mathscr{O}}
+\def\gip{\Gamma_i^{'}}
+\def\gi{\Gamma_i}
+\def\td{{\bf todo}}
+\def\bs{\textit{\textbf{s}}}
+\def\ub{\textit{\textbf{u}}}
+\def\bz{\textit{\textbf{0}}}
+\def\Lb{\textit{\textbf{L}}}
+\def\Ls{\mathscr{L}}
+\def\Xb{\textit{\textbf{X}}}
+\def\lb{\textit{\textbf{l}}}
+\def\Lambdab{\bm{\Lambda}}
+\def\Thetab{\bm{\Theta}}
+\def\thetab{\bm{\vartheta}}
+\def\mA{{\bm A}}
+\def\fA{{\frak A}}
+\def\xb{\textit{\textbf{x}}}
+\def\fb{\textit{\textbf{f}}}
+\def\ab{\textit{\textbf{a}}}
+\def\pb{\textit{\textbf{p}}}
+\def\ajb{\overline{a_j}}
+\def\bjb{\overline{b_{j,l}}}
+\def\pjb{\overline{P_{j}}}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\crit}{crit}
+\DeclareMathOperator{\htt}{ht}
+\def\C{\mathbb{C}}
+\def\pr{\mathbb{P}}
+\def\vt{\vartheta}
+\def\Q{\mathbb{Q}}
+\def\N{\mathbb{N}}
+\def\R{\mathbb{R}}
+\def\K{\mathbb{K}}
+\def\rs{\mathscr{R}}
+\def\P{\mathscr{P}}
+\def\d{\delta}
+\def\sing{ \textrm{sing}}
+\def\codim{ \textrm{codim}}
+\DeclareMathOperator{\jac}{jac}
+\def\exp{\textrm{exp}}
+\def\grad{\textbf{grad}}
+\def\rank{\textrm{rank}}
+\def\reg{\textrm{reg}}
+\def\jt{\widetilde{J}}
+\def\At{\widetilde{A}}
+\def\Yt{\widetilde{Y}}
+\def\dtt{\widetilde{d}}
+\def\kt{\widetilde{k}}
+\def\dt{s}
+\def\bI{\textbf{I}}
+%% \def\dt{\widetilde{d}}
+\def\Dt{\widetilde{D}}
+\def\rk{\textrm{rank }}
+\def\pa{\partial}
+\def\D{\Delta}
+\def\Z{\frak{Z}}
+\newcommand{\ZZ}{{\mathbb{Z}}}
+\newcommand{\softO}{{O^{\sim}}}
+\def\I{\frak{I}}
+\def\Is{\frak{I}^{\star}}
+\def\A{\frak{A}}
+\def\fp{\frak{P}}
+\def\sp{\mathscr{P}}
+\def\la{\langle}
+\def\ra{\rangle}
+% matrices 
+\def\scrQ{\ensuremath{\mathscr{Q}}}
+\def\bbm{\begin{bmatrix}}
+\def\ebm{\end{bmatrix}}
+%%
+% Theorems 
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}{Question}
+%\newtheorem*{ex}{Example}
+\newtheorem{cor}[theorem]{Corollary}
+
+
+
+
+
+
+
+\begin{document}
+\title{Rebuttal, Submission 98: On the Bit Complexity of Finding Points in Connected Components of a Smooth Real Hypersurface}
+\author{}
+\date{}
+
+
+\maketitle
+\noindent \textbf{Brief  review of notation.} 
+Recall some of the notation from our paper, where we have $f\in\ZZ[X_1\hdots,X_n]$ squarefree, satisfying $\deg(f) \leq d$ and $\htt(f) \leq b$,
+and $V=V(f) \subset \C^n$ smooth (note that we do not assume $V(f)$ is compact). Recall the notion of polar varieties, which are defined as follows. For $i \in
+\{1,\hdots,n-1\},$ denote by $\pi_i:\C^n \rightarrow \C^i$ the
+projection $(x_1,\hdots,x_n) \mapsto (x_1,\hdots,x_i)$.  The $i$-th
+\textit{polar variety} \[W(\pi_i,V) := \{\xb \in V~|~\dim \pi_i(T_\xb
+V) < i\}\] is the set of critical points of $\pi_i$ on $V$, which is
+thus defined by the vanishing of 
+\[
+f,\frac{\pa f}{\pa
+  X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.
+\]
+Consider again the $n\times n$ matrix of indeterminates $\A=(\A_{j,k})_{1 \le j,k \le n}$ where we define $f^\A := f(\A\xb).$ For a matrix $\mA \in \C^{n \times n}$ we define $f^\mA := f(\mA\xb),$ and for a variety $Y \subset \C^n,$  $Y^{\mA}$ is the image of $Y$ by the map $\phi_{\mA} : \xb \mapsto \mA^{-1}\xb.$
+\vspace{2mm}
+\par 
+\noindent \textbf{Responding to questions.} 
+In what follows, we address the main questions posed in the three reviews of our paper. There is some overlap between the ideas given in each review. To avoid repetition, we do not respond to each review individually. 
+
+
+
+
+
+\begin{enumerate}
+    \item \textit{Can we replace each upper degree bound $d^n$ by $\deg W(\pi_i,V)$? }
+    
+    It is not straightforward to replace $d^n$ with degree bounds of polar varieties; we are not sure how to do it. In any case, we do not expect that it would improve our degree bounds.  
+    
+    \item \textit{Can you explain the FAIL output in the main algorithm?}
+    
+    The main algorithm is guaranteed to succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. When Algorithm 2 does not succeed, it either returns a proper subset of the solutions, or FAIL. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
+        
+        
+    \item\textit{ Is the quantitative Noether position statement a new result? }
+    
+    In Theorem 2.1, we show that, for $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in \C^{n\times n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$ satisfies:
+%
+\begin{enumerate}[(i)]
+\item For any $\xb$ in $W(\pi_i,V(f^{\mA}))$, the Jacobian matrix
+  $\jac_\xb(f^{\mA},\frac{\pa f^{\mA}}{\pa
+  X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n})$ has full rank $n-(i-1)$.
+
+\smallskip
+
+\item $W(\pi_i,V(f^{\mA}))$ is either empty or in Noether position for
+  $\pi_{i-1}$.
+\end{enumerate}
+
+In the second review, it was pointed out that \cite[Lemma 5]{JeSa10} and \cite[Proposition 4.5]{SharpEstimatesForTheEffectiveN} are similar quantitative Noether position statements. Although the authors proceed in a way that is different from our approach, each of these statements show that a non-zero polynomial $g \in \C[\A]$ exists, with $\deg g \leq D,$ for some explicit degree bound $D \in \mathbb{N}-\{0\},$
+such that if $\mA \in \C^{n \times n}$ does not cancel $g$, then $W(\pi_i,V(f))^A$ is in Noether position for $\pi_{i-1}.$ However, (ii) does not follow from these statements. Indeed, it is not necessarily the case that $W(\pi_i,V(f))^A$ is equal to $W(\pi_i,V(f^A))$. For instance, their dimensions may not be equal. This can be seen already for simple polynomials such as $f = x^2 + 2y^2-1$. 
+\end{enumerate}
+
+
+\newpage 
+
+
+
+
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{sample-base}
+\end{document}

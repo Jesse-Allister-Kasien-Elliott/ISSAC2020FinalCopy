@@ -87,7 +87,7 @@
 
 %% These commands are for a PROCEEDINGS abstract or paper.
 %\acmConference[ Kalamata, Messinia, Greece '20]{ Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation}{July 20--23, 2020}{ Kalamata, Messinia, Greece}
-\acmBooktitle{ Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation,  July 20--23, 2020,  Kalamata, Messinia, Greece}
+\acmBooktitle{Kalamata, Messinia, Greece '20: ACM International Symposium on Symbolic and Algebraic Computation,  July 20--23, 2020,  Kalamata, Messinia, Greece}
 \acmPrice{15.00}
 \acmISBN{978-1-4503-XXXX-X/18/06}
 
@@ -195,8 +195,8 @@
 \titlespacing*{\paragraph}{0em}{1ex}{1em}
 \newcommand{\pref}[1]{{\bf\ref{#1}}}
 
-\keywords{Real algebraic geometry, transversality, Noether
-  position, bit complexity}
+\keywords{Real algebraic geometry; weak transversality; Noether
+  position; complexity }
 
 \maketitle
 
@@ -342,8 +342,8 @@ thus defined by the vanishing of \[f,\frac{\pa f}{\pa
   X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.\]
 
 In general, we cannot say much about the geometry of $W(\pi_i,V)$, but
-if we apply a generic change of coordinates $\mA$, $W(\pi_i,V)$ is
-then known to be equidimensional of dimension $(i-1)$ or
+if we apply a generic change of coordinates $\mA$ to $f$, then $W(\pi_i,V)$ is
+known to be equidimensional of dimension $(i-1)$ or
 empty~\cite{BaGiHeMb97}, and to be in so-called {\em Noether
   position}~\cite{EMP} (background notions in algebraic geometry are
 in~\cite{Mumford76,Shafarevich77,ECA}; we will recall key
@@ -356,7 +356,7 @@ X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1}, f, \frac{\pa f}{\pa
 \end{equation}
 for $i=1,\dots,n$.  They all admit finitely many solutions, and
 Theorem~2 in~\cite{EMP} proves that the union of their solution sets
-contains one point on each connected component of $V \cap \R^n$.
+contains one point on each connected component of $V \cap \R^n$. 
 
 Our main contribution is to analyse precisely what conditions on our
 change of coordinates $\mA$ guarantee success. This is done by
@@ -477,7 +477,9 @@ statement is as follows, for which we use the following
 notation. For a matrix $\mA$ in $\C^{n\times n}$ and $g$ in
 $\C[X_1,\hdots,X_n]$ we write $g^\mA:=g(\mA \Xb) \in
 \C[X_1,\dots,X_n]$, where $\Xb$ is the column vector with entries
-$X_1,\dots,X_n$.
+$X_1,\dots,X_n$. 
+
+Note that for a variety $Y \subset \C^n,$ we can define $Y^{\mA}$ as the image of $Y$ by the map $\phi_{\mA} : \xb \mapsto \mA^{-1}\xb.$ Note that $W(\pi_i,V(f^\mA))$ may not equal $W(\pi_i,V(f))^\mA$, as, for instance, their dimensions may vary. 
 
 We will also have to consider matrices with generic entries. For this,
 we introduce $n^2$ new indeterminates $(\frak A_{j,k})_{1\le j,k \le
@@ -488,6 +490,8 @@ polynomial ring $\C[(\frak A_{j,k})_{1\le j,k \le n}]$.  For $f$ as
 above, we will then define the polynomial $f^\A:=f(\A \Xb)$, 
 which we may consider in either
 $\C(\A)[X_1,\dots,X_n]$ or $\C[\A,X_1,\dots,X_n]$.
+
+
 
 \smallskip
 

@@ -1213,7 +1213,7 @@
   \global\@ACM@journal@bibstripfalse
 }
 \if@ACM@journal\else
-\acmConference[ISSAC' 20]{ACM Conference}{July 20-23, 2020}{Kalamata, Messinia, Greece}%
+\acmConference[ISSAC' 20]{ACM Conference}{July 20-23, 2020}{Kalamata, Greece}%
 \fi
 \def\acmBooktitle#1{\gdef\@acmBooktitle{#1}}
 \acmBooktitle{Proceedings of \acmConference@name

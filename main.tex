@@ -757,8 +757,7 @@ $\overline{\pi(Z)}$; this proves Proposition~\ref{prop:weak_t}.
 
 \subsection{Application: property $\textbf{H}_i(1)$}\label{ssec:Hi1}
 
-Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$, with $V(f)
-\subset \C^n$ smooth. In what follows, we fix $i$ in $1,\dots,n$, and
+Let $f \in \ZZ[X_1,\hdots,X_n]$ have total degree $d$, with $V(f)\subset \C^n$ smooth. In what follows, we fix $i$ in $\{1,\dots,n\}$, and
 we prove the following: {\em there exists a non-zero polynomial
   $\D_{i,1} \in \C[\A]$ of degree at most $2nd^{2n}$ such that if $\mA
   \in \C^{n\times n}$ does not cancel $\D_{i,1}$, then $\mA$ is
@@ -832,12 +831,12 @@ polynomial satisfies the rank property $\textbf{H}_i(1)$.
 
 \subsection{Application: property $\textbf{H}'_i$}\label{ssec:fiber}
 
-Let $f \in \ZZ[X_1,\hdots,X_n]$ and $i$ be as before. We now assume
+Let $f \in \ZZ[X_1,\hdots,X_n]$ and $i \in \{1,\hdots,n\}$ be as before. We now assume
 that $f$ satisfies $\textbf{H}_i(1)$, and we prove the following: {\em
   there exists a non-zero polynomial $\Xi_{i} \in
   \C[S_1,\dots,S_{i-1}]$ of degree at most $d^{2n}$ such that if $\bm
   \sigma =(\sigma_1,\dots,\sigma_{i-1})\in \C^{i-1}$ does not cancel
-  $\Xi_{i}$, the ideal
+  $\Xi_{i}$, then the ideal
   $$(X_1-\sigma_1,\dots,X_{i-1}-\sigma_{i-1},f, {\pa f}/{\pa
     X_{i+1}},\dots,{\pa f}/{\pa X_n})$$ is radical.}
 
@@ -882,16 +881,14 @@ equations has rank $n$. Theorem~\ref{theo:Hp} is proved.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Property ${\bf H}_i(2)$: Noether position}\label{sec:Hi2}
-
-Throughout this section, $f$ and $i \in \{1,\hdots,n\}$ are fixed. We
-prove that there exists a hypersurface $\D_{i} \subset \C^{n\times
-  n}$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA$ is not in $\D_{i}$,
-then $\mA$ is invertible and satisfies both conditions in
+Let $f\in \ZZ[X_1,\hdots,X_n]$, with total degree $d$ and $V(f)\subset \C^n$ smooth, and $i \in \{1,\hdots,n\}$ be fixed throughout this section. We
+prove that there exists a non-zero polynomial $\D_{i}$ in $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in \C^{n \times n}$ does not cancel $\D_{i}$,
+then $\mA$ is invertible and $f^{\mA}$ satisfies both conditions in
 $\textbf{H}_i$.
 
 Consider again the $n\times n$ matrix of indeterminates
 $\A=(\A_{j,k})_{1 \le j,k \le n}$ and the field $\C(\A)$,
-and define $f^{\A} \in \C(\A)[X_1,\dots,X_n]$.  Since $i$ is fixed, to
+and define $f^{\A} \in \C(\A)[X_1,\dots,X_n]$.  Since $f$ and $i$ are fixed, to
 simplify notation, let $\I^\A$ denote the following polynomials in
 $\C(\A)[X_1,\dots,X_n]$:
 $$\I(i,f^\A)= \big (f^\A, {\pa f^\A}/{\pa X_{i+1}},\dots,{\pa
@@ -925,7 +922,7 @@ now point out that $f^\A$ also satisfies $\textbf{H}_i(2)$.
 If $P$ is any polynomial in $\C(\frak A)[X_1,\dots,X_n]$, we will let
 $D \in \C[\frak A]$ be the minimal common denominator of all its
 coefficients, and we will write $\overline P := D P$, so that
-$\overline P$ is in $\C[\A,X_1,\dots,X_{i-1},X_n]$.
+$\overline P$ is in $\C[\A,X_1,\dots,X_n]$.
 
 
 \begin{lemma} 

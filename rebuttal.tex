@@ -11,7 +11,7 @@
 \usepackage{mathrsfs}
 \usepackage{bm}
 \usepackage{enumitem}
-\usepackage{enumerate}
+%% \usepackage{enumerate}
 \usepackage{chngcntr}
 \usepackage{titlesec}
 \usepackage{mathrsfs}
@@ -123,66 +123,80 @@
 
 
 \begin{document}
-\title{Rebuttal, Submission 98: On the Bit Complexity of Finding Points in Connected Components of a Smooth Real Hypersurface}
+
+\title{Answer to the reviews for Submission 98}
+
 \author{}
 \date{}
 
 
 \maketitle
-\noindent \textbf{Brief  review of notation.} 
-Recall some of the notation from our paper, where we have $f\in\ZZ[X_1\hdots,X_n]$ squarefree, satisfying $\deg(f) \leq d$ and $\htt(f) \leq b$,
-and $V=V(f) \subset \C^n$ smooth (note that we do not assume $V(f)$ is compact). Recall the notion of polar varieties, which are defined as follows. For $i \in
-\{1,\hdots,n-1\},$ denote by $\pi_i:\C^n \rightarrow \C^i$ the
-projection $(x_1,\hdots,x_n) \mapsto (x_1,\hdots,x_i)$.  The $i$-th
-\textit{polar variety} \[W(\pi_i,V) := \{\xb \in V~|~\dim \pi_i(T_\xb
-V) < i\}\] is the set of critical points of $\pi_i$ on $V$, which is
-thus defined by the vanishing of 
-\[
-f,\frac{\pa f}{\pa
-  X_{i+1}},\hdots,\frac{\pa f}{\pa X_n}.
-\]
-Consider again the $n\times n$ matrix of indeterminates $\A=(\A_{j,k})_{1 \le j,k \le n}$ where we define $f^\A := f(\A\xb).$ For a matrix $\mA \in \C^{n \times n}$ we define $f^\mA := f(\mA\xb),$ and for a variety $Y \subset \C^n,$  $Y^{\mA}$ is the image of $Y$ by the map $\phi_{\mA} : \xb \mapsto \mA^{-1}\xb.$
-\vspace{2mm}
-\par 
-\noindent \textbf{Responding to questions.} 
-In what follows, we address the main questions posed in the three reviews of our paper. There is some overlap between the ideas given in each review. To avoid repetition, we do not respond to each review individually. 
 
+\noindent \textbf{Responding to questions.} We take
+$f\in\ZZ[X_1\hdots,X_n]$ squarefree, satisfying $\deg(f) \leq d$ and
+$V=V(f) \subset \C^n$ smooth. For $i \in \{1,\hdots,n-1\},$ denote by
+$\pi_i:\C^n \rightarrow \C^i$ the projection $(x_1,\hdots,x_n) \mapsto
+(x_1,\hdots,x_i)$.  The $i$-th \textit{polar variety} \[W(\pi_i,V) :=
+\{\xb \in V~|~\dim \pi_i(T_\xb V) < i\}\] is the set of critical
+points of $\pi_i$ on $V$.
+For a matrix $\mA \in \C^{n \times n}$ we define $f^\mA := f(\mA\xb),$
+and for a variety $Y \subset \C^n,$ $Y^{\mA}$ is the image of $Y$ by
+the map $\phi_{\mA} : \xb \mapsto \mA^{-1}\xb.$
 
-
-
+There is some overlap between the questions in the reviews. To
+avoid repetition, we do not respond to each review individually.
 
 \begin{enumerate}
-    \item \textit{Can we replace each upper degree bound $d^n$ by $\deg W(\pi_i,V)$? }
+    \item \textit{Can we replace each upper degree bound $d^n$ by
+      $\deg W(\pi_i,V)$? }
     
-    It is not straightforward to replace $d^n$ with degree bounds of polar varieties; we are not sure how to do it. In any case, we do not expect that it would improve our degree bounds.  
+    This is not straightforward to replace $d^n$; we are not sure how
+    to do it. In any case, we do not expect that it would improve the
+    worst-case bounds.
     
     \item \textit{Can you explain the FAIL output in the main algorithm?}
     
-    The main algorithm is guaranteed to succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. When Algorithm 2 does not succeed, it either returns a proper subset of the solutions, or FAIL. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
+    The main algorithm is guaranteed to succeed as long as our call
+    to Algorithm 2 in [30] does. The latter is randomized; when it
+    does not succeed, it either returns a proper subset of the
+    solutions, or FAIL.
         
-        
-    \item\textit{ Is the quantitative Noether position statement a new result? }
+    \item\textit{Is the quantitative Noether position statement a new result? }
     
-    In Theorem 2.1, we show that, for $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in \C^{n\times n}$ does not cancel $\D_i$, then $\mA$ is invertible and $f^\mA$ satisfies:
-%
-\begin{enumerate}[(i)]
-\item For any $\xb$ in $W(\pi_i,V(f^{\mA}))$, the Jacobian matrix
-  $\jac_\xb(f^{\mA},\frac{\pa f^{\mA}}{\pa
-  X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n})$ has full rank $n-(i-1)$.
+    In Theorem 2.1, we show that, for $i=1,\dots,n$, there exists a
+    non-zero polynomial $\D_i$ of degree at most
+    $6n^2(2d)^{2n}$ such that if $\mA \in \C^{n\times n}$ does not
+    cancel $\D_i$, then $\mA$ is invertible and $W(\pi_i,V(f^{\mA}))$
+    is either empty or in Noether position for $\pi_{i-1}$.
 
-\smallskip
-
-\item $W(\pi_i,V(f^{\mA}))$ is either empty or in Noether position for
-  $\pi_{i-1}$.
+    In the second review, it was pointed out that Lemma 5 in G. Jeronimo
+    and J. Sabia, {\em Effective equidimensional decomposition of affine
+      varieties} or Proposition 4.5 in T. Krick, L.-M. Pardo and
+    M. Sombra, {\em Sharp estimates for the arithmetic Nullstellensatz},
+    are quantitative Noether position statements. The question is  
+    whether our Theorem 2.1 is new. 
+    
+    Our theorem does not follow from these previous results. Indeed,
+    results in the references above would allow us to quantify when
+    $W(\pi_i,V(f))^\mA$ is in Noether position, whereas we need to
+    understand when $W(\pi_i,V(f^\mA))$ is. These two sets are in general
+    different: the operations of computing the critical points of a
+    projection and changing variables do not commute (this can be seen
+    already for polynomials such as $f = X_1^2 + 2X_2^2-1$).
+    We should have made it clearer.
 \end{enumerate}
 
-In the second review, it was pointed out that \cite[Lemma 5]{JeSa10} and \cite[Proposition 4.5]{SharpEstimatesForTheEffectiveN} are similar quantitative Noether position statements. Although the authors proceed in a way that is different from our approach, each of these statements show that a non-zero polynomial $g \in \C[\A]$ exists, with $\deg g \leq D,$ for some explicit degree bound $D \in \mathbb{N}-\{0\},$
-such that if $\mA \in \C^{n \times n}$ does not cancel $g$, then $W(\pi_i,V(f))^A$ is in Noether position for $\pi_{i-1}.$ However, (ii) does not follow from these statements. Indeed, it is not necessarily the case that $W(\pi_i,V(f))^A$ is equal to $W(\pi_i,V(f^A))$. For instance, their dimensions may not be equal. This can be seen already for simple polynomials such as $f = x^2 + 2y^2-1$. 
-\end{enumerate}
-
-
-\newpage 
-
+\vspace{2mm}
+\par 
+\noindent \textbf{On the student author's contribution.}  Jesse
+Elliott is a Master's student, under the supervision of Mark
+Giesbrecht and \'Eric Schost; this paper will form the basis of his
+Master's thesis. Jesse was the main contributor to this submission. He
+came up with the idea of analyzing the bit-complexity of a former
+algorithm by Safey El Din and Schost, worked out most estimates, and
+wrote the bulk of the paper. He also wrote this rebuttal (except of
+course for this paragraph). We (MG and \'ES) would like to nominate
+him for a distinguished student paper award.
 
 
 

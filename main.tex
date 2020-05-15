@@ -498,7 +498,7 @@ $\C(\A)[X_1,\dots,X_n]$ or $\C[\A,X_1,\dots,X_n]$.
 This being said, our two key results are the following.
 \begin{theorem}\label{theo:gen}
   For $i=1,\dots,n$, there exists a non-zero polynomial $\D_i$ in
-  $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in
+  $\C[\A]$ of degree at most $5n^2(2d)^{2n}$ such that if $\mA \in
   \C^{n\times n}$ does not cancel $\D_i$, then $\mA$ is invertible and
   $f^\mA$ satisfies $\textbf{H}_i$.
 \end{theorem}
@@ -882,7 +882,7 @@ equations has rank $n$. Theorem~\ref{theo:Hp} is proved.
 
 \section{Property ${\bf H}_i(2)$: Noether position}\label{sec:Hi2}
 Let $f\in \ZZ[X_1,\hdots,X_n]$, with total degree $d$ and $V(f)\subset \C^n$ smooth, and $i \in \{1,\hdots,n\}$ be fixed throughout this section. We
-prove that there exists a non-zero polynomial $\D_{i}$ in $\C[\A]$ of degree at most $6n^2(2d)^{2n}$ such that if $\mA \in \C^{n \times n}$ does not cancel $\D_{i}$,
+prove that there exists a non-zero polynomial $\D_{i}$ in $\C[\A]$ of degree at most $5n^2(2d)^{2n}$ such that if $\mA \in \C^{n \times n}$ does not cancel $\D_{i}$,
 then $\mA$ is invertible and $f^{\mA}$ satisfies both conditions in
 $\textbf{H}_i$.
 
@@ -1051,7 +1051,7 @@ the slightly less precise bound $\deg(\alpha_j) \le 2n(2d)^{2n}$.
 We saw in Section~\ref{ssec:Hi1} that $\D_{i,1}$ has degree at most
 $2nd^{2n}$, and all $D_j$'s have degree at most $(2d)^n$. This gives
 the upper bound
-$$\deg(\D_i) \le 2nd^{2n} + 2n^2(2d)^{2n} + n(2d)^n \le 6n^2 (2d)^{2n}.$$
+$$\deg(\D_i) \le 2nd^{2n} + 2n^2(2d)^{2n} + n(2d)^n \le 5n^2 (2d)^{2n}.$$
 This completes the proof of Theorem~\ref{theo:gen}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1086,7 +1086,7 @@ $X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1}$; this gives $\Gamma_i$.
 \KwOut{$n$ zero-dimensional parameterizations, the union of whose zeros
   includes at least one point in each connected component of $V(f)\cap \R^n$, with probability of success at least $1-\epsilon$. } 
 
-\nl Construct $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil\}$ and $T :=
+\nl Construct $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}5n^3(2d)^{2n} \rceil\}$ and $T :=
 \{1,2,\hdots,\lceil 3\epsilon^{-1}nd^{2n}\rceil\},$ and randomly choose $\mA \in
 S^{n^2}$, and $\bm \sigma \in T^{n-1}$\; 
 
@@ -1114,10 +1114,10 @@ Theorem~2 in~\cite{EMP} establishes correctness.
 
 \paragraph*{Bit operation cost:} The following lists the costs for each step of Algorithm 1:
 \begin{enumerate}
-    \item We defined $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n} \rceil \}$
+    \item We defined $S := \{1,2,\hdots,\lceil 3\epsilon^{-1}5n^3(2d)^{2n} \rceil \}$
       and therefore the height of any $a_{i,j} \in S$ is at most
     \[
-    \log 3/{\epsilon} + \log(6n^3(2d)^{2n}) \in O^{\sim}(\log 1/{\epsilon} + n\log d).
+    \log 3/{\epsilon} + \log(5n^3(2d)^{2n}) \in O^{\sim}(\log 1/{\epsilon} + n\log d).
     \]
     \item 
     After computing the partial derivatives, the height grows by at
@@ -1149,7 +1149,7 @@ Let $\Delta_i \in \C[\A]$ be the polynomials from
 Theorem~\ref{theo:gen}. Denote by $\Delta := \prod_{i=1}^n \D_i,$ and
 note that
 \begin{align}
-    \deg \Delta \leq \sum_{i=1}^n \deg \Delta_i \leq 6n^3(2d)^{2n}.
+    \deg \Delta \leq \sum_{i=1}^n \deg \Delta_i \leq 5n^3(2d)^{2n}.
 \end{align}
 If $\mA \in \C^{n \times n}$ does not cancel $\Delta,$ then $\mA$ is
 invertible and $f^\mA$ satisfies $\textbf{H}_i$ for all $i \in
@@ -1165,7 +1165,7 @@ $\bm \sigma$ satisfy $\textbf{H}_i^{'}$ for all $i \in
 succeed, as long as our call to Algorithm 2 in~\cite{SH} succeeds. That latter reference establishes that by repeating the calculation $k$ times, and keeping the output of highest degree among those $k$ results, we succeed with probability at least $1-(1/2)^k$. When Algorithm 2 does not succeed, it either returns a proper subset of the solutions, or FAIL. Note that Algorithm 2 is shown to succeed in a single run with  probability at least $1-11/32,$ and we bound the probability of success with $1-1/2$ for simplicity. 
 Now, by construction of
 \[
-S := \{1,2,\hdots,\lceil 3\epsilon^{-1}6n^3(2d)^{2n}\rceil \}
+S := \{1,2,\hdots,\lceil 3\epsilon^{-1}5n^3(2d)^{2n}\rceil \}
 \] 
 and 
 \[

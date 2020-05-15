@@ -453,7 +453,7 @@ $W(\pi_i,V(f))$.  Then, we say that $f$ satisfies $\textbf{H}_i$ if
 
   {\em By the Jacobian Criterion~\cite[Corollary 16.20]{ECA}, this
   implies that $W(\pi_i,V(f))$ is either empty or $(i-1)$-equidimensional,
-  and that $\I(i, f)$ is radical.}
+  and that $\I(i, f)$ defines a radical ideal.}
 
 \smallskip
 
@@ -845,7 +845,7 @@ that $f$ satisfies $\textbf{H}_i(1)$, and we prove the following: {\em
 
 Let $\bm\Psi: \C^n \times \C^{i-1} \rightarrow \C^{n}$ be the mapping defined by the polynomials
 \[
-  (X_1-S_1,\hdots,X_{i-1}-S_{i-1}, f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa f}{\pa X_n} ).
+  \left(X_1-S_1,\hdots,X_{i-1}-S_{i-1}, f,\pa f/\pa X_{i+1},\hdots,\pa f/\pa X_n \right).
 \]
 %
 \begin{lemma}
@@ -864,8 +864,8 @@ by $X_1,\dots,X_n,S_1,\dots,S_{i-1}$, this matrix is equal to
 \end{array}
 \right].
 \] 
-Since the Jacobian of $f,\frac{\pa f}{\pa X_{i+1}},\hdots,\frac{\pa
-  f}{\pa X_n}$ at $\xb$ is non-zero (by $\textbf{H}_i$), the entire
+Since the Jacobian of $f,\pa f/\pa X_{i+1},\hdots,\pa
+  f/\pa X_n$ at $\xb$ is non-zero (by $\textbf{H}_i$), the entire
 matrix must have full rank $n$. Thus,  $\bz$ is a regular value of $\bm\Psi.$
 \end{proof}
 
@@ -895,7 +895,7 @@ and define $f^{\A} \in \C(\A)[X_1,\dots,X_n]$.  Since $i$ is fixed, to
 simplify notation, let $\I^\A$ denote the following polynomials in
 $\C(\A)[X_1,\dots,X_n]$:
 $$\I(i,f^\A)= \big (f^\A, {\pa f^\A}/{\pa X_{i+1}},\dots,{\pa
-  f^\A}/{\pa X_n}) \big ),$$ and let $W^\A$ denote their zero-set,
+  f^\A}/{\pa X_n} \big ),$$ and let $W^\A$ denote their zero-set,
 that is, $W(\pi_i,V(f^\A)).$ In Section~\ref{ssec:Hi1}, we saw that
 $f^\A$ satisfies $\textbf{H}_i(1)$, so that $\I^\A$ defines a
 radical ideal, and $W^\A$ is equidimensional of dimension $i-1$. We
@@ -1034,16 +1034,16 @@ To estimate the degree of $\D_{i}$, what remains is to give an upper
 bound on the degree of $\alpha_i,\dots,\alpha_n$. This will come as an
 application of the effective Nullstellensatz given in~\cite{EN}, for
 which we first need to determine degree bounds, separately in $\Xb,T$
-and $\A,$ of the polynomials in the membership relationship. We have
+and $\A,$ of the polynomials in the membership relationship:
 \begin{align*}
 \deg_{\Xb,T}\left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\}&\leq d,\\
+\right\}&\leq d;\\
 \deg_{\A}  
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
-\right\}& \leq d,\\
-\deg_{\Xb,T}(1-T\pjb) &\leq (2d)^n +1,\\
+\right\}& \leq d;\\
+\deg_{\Xb,T}(1-T\pjb) &\leq (2d)^n +1;\\
 \deg_{\A}(1-T\pjb)& \leq (2d)^n.
 \end{align*}
 For each $j \in \{i,\hdots,n\},$ a direct application of \cite[Theorem
@@ -1099,8 +1099,8 @@ S^{n^2}$, and $\bm \sigma \in T^{n-1}$\;
 \nl \For{$i\gets1$ \KwTo $n$}{
  \nl Build a straight-line program $\Gamma_i$ that computes the 
  equations
-  $\{X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1},f^{\mA},\frac{\pa
-    f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n} \}$\;
+  $\left\{X_1-\sigma_1,\hdots,X_{i-1}-\sigma_{i-1},f^{\mA},\frac{\pa
+    f^{\mA}}{\pa X_{i+1}},\hdots,\frac{\pa f^{\mA}}{\pa X_n} \right\}$\;
  
   \nl Run \cite[Algorithm 2]{SH} $k \geq \lg(3n/\epsilon)$ times
   with input $\Gamma_i$\;

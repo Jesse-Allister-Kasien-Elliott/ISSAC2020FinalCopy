@@ -105,6 +105,18 @@
 \usepackage{chngcntr}
 \usepackage{titlesec}
 
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010147.10010148.10010149.10010150</concept_id>
+<concept_desc>Computing methodologies~Algebraic algorithms</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computing methodologies~Algebraic algorithms}
 \begin{document}
 
 %%
@@ -588,7 +600,7 @@ mappings~\cite[Section~3.7]{demazure2000bifurcations}, written in an
 algebraic context. In what follows, we revisit this proof,
 establishing a bound on the degree of $\Gamma$.
 
-Put $V = \bm\Phi^{-1}(\bm 0)$. If $V$ is empty, there is nothing to do,
+Put $V := \bm\Phi^{-1}(\bm 0)$. If $V$ is empty, there is nothing to do,
 since all values $\thetab$ in $\C^\dt$ satisfy the conclusion of the
 proposition. Thus, we assume that $V$ is not empty. Then, the Jacobian
 criterion shows that $V$ is smooth and $(n+ \dt -m)$-equidimensional.
@@ -606,7 +618,7 @@ then $\bm 0$ is a regular value of $\bm\Phi_{\thetab}$.
 
 To describe the set $Z$ of critical points of $\pi_{|V}$, let $\bm M$
 denote the $(s+m) \times (s+n)$ Jacobian matrix with entries in
-$\C[\Xb,\Thetab]$ given by $\bm M = \jac_{\Xb,\Thetab}(\pi,\bm\Phi)$,
+$\C[\Xb,\Thetab]$ given by $\bm M := \jac_{\Xb,\Thetab}(\pi,\bm\Phi)$,
 that is,
 \begin{align*}
 \bm M &= 
@@ -700,7 +712,7 @@ For this, we let $\textit{\textbf{L}}=[L_1,\hdots,L_m]$ be new
 variables, thought of as Lagrange multipliers, and consider the
 ``Lagrange polynomials'' $\mathscr{L}_1,\dots,\mathscr{L}_{n}$, with
 \[
-[\mathscr{L}_1 \cdots \mathscr{L}_{n}]=\textit{\textbf{L}}\cdot \bm J(\xb,\thetab).
+[\mathscr{L}_1 \cdots \mathscr{L}_{n}]:=\textit{\textbf{L}}\cdot \bm J(\xb,\thetab).
 \] 
 Denote by $\frak{Z} \subset \C^{n+\dt+m}$ the algebraic set defined by
 the vanishing of $\mathscr{L}_1,\hdots,\mathscr{L}_{n},$ and
@@ -831,7 +843,7 @@ $\bm\Phi_\mA$ at $\mA \xb$, that is, $n-i+1$. Our claim is proved.
 
 In Section~\ref{sec:Hi2}, we will need the following by-product of
 this result: if we consider $f^\A \in \C(\frak
-A_{j,k})[X_1,\dots,X_n]$ as defined Section~\ref{sec:gen}, this
+A_{j,k})[X_1,\dots,X_n]$ as defined in Section~\ref{sec:gen}, this
 polynomial satisfies the rank property $\textbf{H}_i(1)$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -938,7 +950,7 @@ $\overline P$ is in $\C[\A,X_1,\dots,X_n]$.
 
 
 \begin{lemma} 
-  For $j=1,\dots,n$, there exists a polynomial $P_j$ in
+  For $j=i,\dots,n$, there exists a polynomial $P_j$ in
   $\C(\A)[X_1,\dots,X_{i-1},X_j]$, monic in $X_j$, with $\pjb$ in
   $\I^\A$, and such that $\deg(\pjb)\leq (2d)^{n}.$
 \end{lemma} 
@@ -989,13 +1001,14 @@ Nullstellensatz in $\C(\A)[X_1,\dots,X_n,T]$, and clearing
 denominators, we obtain the existence of $\alpha_j$ in
 $\C[\A]-\{0\}$ and $ C_{j,\ell},B_j$ in
 $\C[\A][X_1,\dots,X_n][T]$, such that
+%
 \begin{align}\label{eq:nullst}
 \alpha_j = \sum_{\ell=1}^{n-i+1} C_{j,\ell} G_\ell + B_j (1-\pjb T),\ \  G_\ell \in 
 \left\{ 
 f^\A,\frac{\partial f^\A}{\partial X_{i+1}},\hdots,\frac{\partial f^\A}{\partial X_n}
 \right\}.
 \end{align}
-
+%
 Let us then define 
 $$\D_{i}:=\D_{i,1} \alpha_i \cdots \alpha_n D_i \cdots D_n,$$ where
 $\D_{i,1}$ was defined in Section~\ref{ssec:Hi1} and for all $j$,
